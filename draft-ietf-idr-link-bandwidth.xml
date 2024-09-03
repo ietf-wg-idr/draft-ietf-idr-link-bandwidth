@@ -10,7 +10,7 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std" docName="draft-ietf-idr-link-bandwidth-08"
+<rfc category="std" docName="draft-ietf-idr-link-bandwidth-09"
      ipr="trust200902">
   <front>
     <title abbrev="BGP Link Bandwidth Extended Community">BGP Link Bandwidth
@@ -105,7 +105,7 @@
       </address>
     </author>
 
-    <date day="28" month="08" year="2024"/>
+    <date day="03" month="09" year="2024"/>
 
     <abstract>
       <t>This document describes an application of BGP extended communities
