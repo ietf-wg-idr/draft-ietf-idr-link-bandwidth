@@ -150,9 +150,9 @@
       Bandwidth Community, but in can be set to any 4B value. If four octet AS
       numbering scheme is used <xref target="RFC6793"/>, AS_TRANS should be
       used in the Global Administrator subfield. The bandwidth of the link is
-      expressed as 4 octets in IEEE floating point format binary32 interchenge
-      floating point format, units being bytes (not bits!) per second. It is
-      carried in the Local Administrator subfield of the Value Field.</t>
+      expressed as 4 octets in <xref target="IEEE.754-2019"/> floating point
+      format, units being bytes (not bits!) per second. It is carried in the
+      Local Administrator subfield of the Value Field.</t>
     </section>
 
     <section title="Protocol Procedures">
@@ -328,6 +328,20 @@
       <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4364.xml"?>
 
       <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6793.xml"?>
+
+      <reference anchor="IEEE.754-2019"
+                 target="https://ieeexplore.ieee.org/document/8766229">
+        <front>
+          <title abbrev="IEEE-754-2019">IEEE Standard for Floating-Point
+          Arithmetic</title>
+
+          <author>
+            <organization showOnFrontPage="true">IEEE</organization>
+          </author>
+
+          <date day="22" month="July" year="2019"/>
+        </front>
+      </reference>
     </references>
   </back>
 </rfc>

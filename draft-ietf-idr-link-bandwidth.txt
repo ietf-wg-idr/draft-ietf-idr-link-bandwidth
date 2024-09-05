@@ -131,10 +131,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
    attaches the Link Bandwidth Community, but in can be set to any 4B
    value.  If four octet AS numbering scheme is used [RFC6793], AS_TRANS
    should be used in the Global Administrator subfield.  The bandwidth
-   of the link is expressed as 4 octets in IEEE floating point format
-   binary32 interchenge floating point format, units being bytes (not
-   bits!) per second.  It is carried in the Local Administrator subfield
-   of the Value Field.
+   of the link is expressed as 4 octets in [IEEE.754-2019] floating
+   point format, units being bytes (not bits!) per second.  It is
+   carried in the Local Administrator subfield of the Value Field.
 
 3.  Protocol Procedures
 
@@ -162,6 +161,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
    both transitive or non-transitive type.  The receiver SHOULD NOT flap
    or treat the route as malformed based on the transitivity of the link
    bandwidth community and/or BGP session type (internal vs.  external).
+
 
 
 
@@ -282,6 +282,10 @@ Mohapatra, et al.         Expires 7 March 2025                  [Page 5]
 Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
 
 
+   [IEEE.754-2019]
+              IEEE, "IEEE Standard for Floating-Point Arithmetic", 22
+              July 2019, <https://ieeexplore.ieee.org/document/8766229>.
+
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
@@ -323,12 +327,8 @@ Authors' Addresses
    Email: dreshma@juniper.net
 
 
-   Satya Mohanty (editor)
-   Zscaler
-   120 Holger Way,
-   San Jose, CA 95134
-   United States of America
-   Email: smohanty@zscaler.com
+
+
 
 
 
@@ -338,20 +338,20 @@ Mohapatra, et al.         Expires 7 March 2025                  [Page 6]
 Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
 
 
+   Satya Mohanty (editor)
+   Zscaler
+   120 Holger Way,
+   San Jose, CA 95134
+   United States of America
+   Email: smohanty@zscaler.com
+
+
    Mankamana Mishra
    Cisco Systems
    821 alder drive,
    Milpitas, CA 95035
    United States of America
    Email: mankamis@cisco.com
-
-
-
-
-
-
-
-
 
 
 
