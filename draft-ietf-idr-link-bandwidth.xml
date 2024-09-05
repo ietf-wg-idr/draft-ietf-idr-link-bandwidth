@@ -127,27 +127,31 @@
       network performance. Traditional equal-cost multi-path (ECMP) routing
       does not account for the varying capacities of different paths. This
       document suggests that the external link bandwidth be carried in the
-      network using a new extended community <xref target="RFC4360"/> - the
-      link bandwidth extended community. The Link Bandwidth Extended Community
+      network using one of two new extended communities <xref target="RFC4360"/>
+      - the transitive and non-transitive link bandwidth extended community. 
+      The Link Bandwidth Extended Community
       provides a mechanism for routers to advertise the bandwidth of their
-      links, facilitating maximum utilisation of paths.</t>
+      downstream path(s), facilitating maximum utilisation of network resources.</t>
     </section>
 
     <section title="Link Bandwidth Extended Community">
-      <t>The Link Bandwidth Extended Community is defined as a BGP extended
-      community that carries the bandwidth information of a link connecting to
-      a neighbor. This community can be used to inform other routers about the
-      available bandwidth on a given link.</t>
+      <t>The Link Bandwidth Extended Communities are defined as a BGP extended
+      community that carries the bandwidth information of a router, represented by
+      BGP Protocol Next Hop, connecting to remote network. 
+      This community can be used to inform other routers about the
+      available bandwidth on trough a given route.</t>
 
-      <t>The extended community can be optional transitive or non-transitive.
-      The value of the high-order octet of the extended Type Field can be 0x00
-      or 0x40. The value of the low-order octet of the extended type field for
-      this community is 0x04. The value of the Global Administrator subfield
+      <t>Two extended communities are both optional, one transitive and other
+      non-transitive. Therefore the value of the high-order octet of the extended
+      Type Field is 0x00 or 0x40 respectivly. 
+      The value of the low-order octet of the extended type field for
+      this communities is 0x04. The value of the Global Administrator subfield
       in the Value Field SHOULD represent the Autonomous System of the router
-      that attaches the Link Bandwidth Community. If four octet AS numbering
-      scheme is used <xref target="RFC6793"/>, AS_TRANS should be used in the
-      Global Administrator subfield. The bandwidth of the link is expressed as
-      4 octets in IEEE floating point format, units being bytes (not bits!)
+      that attaches the Link Bandwidth Community, but in can be set to any 4B value.
+      If four octet AS numbering scheme is used <xref target="RFC6793"/>, AS_TRANS
+      should be used in the Global Administrator subfield.
+      The bandwidth of the link is expressed as <xfef target="IEEE754-2019"/> binary32
+      interchenge floating point format, units being bytes (not bits!)
       per second. It is carried in the Local Administrator subfield of the
       Value Field.</t>
     </section>
@@ -158,9 +162,38 @@
         <t>An originator of the link bandwidth community SHOULD be able to
         originate either a transitive or a non-transitive link bandwidth
         extended community. Implementation SHOULD provide configuration to set
-        the transitivity type of the link bandwidth community.&nbsp;No more
+        the transitivity type of the link bandwidth community, as well as Global
+        Administrator filed value and bandwidth value in (Local Administrator
+        filed), trough local policy.&nbsp;No more
         than one link bandwidth extended community SHALL be attached to a
         route.</t>
+        <t>An originator can attach link bandwidth community to BGP path in
+        egress processing to adj-RIB-out only or in ingress processing in which
+        case link bandwidth community is present in Local-RIB.</t>
+        <section anchor="Egress"
+               title="Originating in egress processing">
+          <t>When link bandwidth community is inserted in egress bgp path processing,
+          it is present in adj-RIB-out only and is send to BGP peers, regardless
+          of session type (interbal vs. external) and community transitivity bit.
+          The link bandwidth community has no impact on sender's forwarding
+          behavioiour.</t>
+        </section>
+        <section anchor="Ingress"
+                 title="Originating in ingress processing">
+          <t>When link bandwidth community is inserted in ingress bgp path processing,
+          it is present in Local-RIB, and:</t>
+          <ul spacing=normal>
+            <li>The transitive link bandwidth community is send to BGP peers, regardless
+            of session type (interbal vs. external)</li>
+            <li>The non-transitive link bandwidth community is send to internal BGP peers
+            only.</li>
+          </ul>
+          <t>Note: Implementation may provide configuration option (knob) to allow sending
+          of non-transitive link bandwidth communities to external BGP sessiosns.</t>
+          <t>Since link bandwidth community is present in LOCAL-RIB, it may be used by
+          sender to construct weighted ECMP forwarding behaviour (provided BGP
+          multipath is in use)</t>
+        </section>
       </section>
 
       <section anchor="Receiver"
@@ -168,7 +201,7 @@
         <t>A BGP receiver MUST be able to process link bandwidth community of
         both transitive or non-transitive type. The receiver SHOULD NOT flap
         or treat the route as malformed based on the transitivity of the link
-        bandwidth community.</t>
+        bandwidth community and/or BGP session type (internal vs. external).</t>
       </section>
 
       <section anchor="Re-advertisement" title="Re-advertisement Procedures">
@@ -176,7 +209,7 @@
                  title="Re-advertisement with Next hop Self">
           <t>When a BGP speaker re-advertises a route with the Link Bandwidth
           Extended Community and sets the next hop to itself, it SHOULD follow
-          the same procedures as outlined in <xref target="Originator"/>.</t>
+          the same procedures as outlined in <xref target="Ingress"/>.</t>
         </section>
 
         <section anchor="NextHopUnchanged"
@@ -186,6 +219,12 @@
           next hop SHOULD NOT change the link bandwidth extended community in
           any way.</t>
         </section>
+      </section>
+      <section title="Link bandwidth community aritmetics and BGP multipath">
+      <t>In BGP multi-path ECMP enviroment, send or re-advertised link-bandwidth
+      community value may be calculated based on link bandwidth communities of
+      multipath-conmtributing routes in Local-RIB. This subject is out of scope 
+      of this document</t>
       </section>
     </section>
 
@@ -266,6 +305,27 @@
       </author>
     </section>
 
+    <author fullname="Rafal Jan Szarecki" initials="R.J."
+              surname="Szarecki">
+        <organization>Google LLC</organization>
+
+        <address>
+          <postal>
+            <street>1160 N Mathilda Ave,,</street>
+
+            <city>Sunnyvale</city>
+
+            <region>CA</region>
+
+            <code>94089</code>
+
+            <country>US</country>
+          </postal>
+
+          <email>rszarecki@gmail.com</email>
+        </address>
+      </author>
+
     <section anchor="Acknowledgments" title="Acknowledgments">
       <t>The authors would like to thank Yakov Rekhter, Srihari Sangli and Dan
       Tappan for proposing unequal cost load balancing as one possible
@@ -286,6 +346,9 @@
       <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4364.xml"?>
 
       <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6793.xml"?>
+
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml6/reference.R.IEEE.754-2019.xml"/>
+
     </references>
   </back>
 </rfc>
