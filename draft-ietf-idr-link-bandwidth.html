@@ -1346,6 +1346,9 @@ li > p:last-of-type:only-child {
 </li>
                 </ul>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-link-bandwidth-community-ari" class="internal xref">Link bandwidth community aritmetics and BGP multipath</a></p>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
@@ -1359,6 +1362,14 @@ li > p:last-of-type:only-child {
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-contributors-2" class="internal xref">Contributors</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref"></a><a href="#name-co-authors-2" class="internal xref">Co-Authors</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="auto internal xref"></a><a href="#name-other-contributors-2" class="internal xref">Other Contributors</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
             <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-acknowledgments-2" class="internal xref">Acknowledgments</a></p>
@@ -1382,30 +1393,32 @@ li > p:last-of-type:only-child {
       network performance. Traditional equal-cost multi-path (ECMP) routing
       does not account for the varying capacities of different paths. This
       document suggests that the external link bandwidth be carried in the
-      network using a new extended community <span>[<a href="#RFC4360" class="cite xref">RFC4360</a>]</span> - the
-      link bandwidth extended community. The Link Bandwidth Extended Community
-      provides a mechanism for routers to advertise the bandwidth of their
-      links, facilitating maximum utilisation of paths.<a href="#section-1-1" class="pilcrow">¶</a></p>
+      network using one of two new extended communities <span>[<a href="#RFC4360" class="cite xref">RFC4360</a>]</span> - the transitive and non-transitive link bandwidth
+      extended community. The Link Bandwidth Extended Community provides a
+      mechanism for routers to advertise the bandwidth of their downstream
+      path(s), facilitating maximum utilisation of network resources.<a href="#section-1-1" class="pilcrow">¶</a></p>
 </section>
 <section id="section-2">
       <h2 id="name-link-bandwidth-extended-comm">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-link-bandwidth-extended-comm" class="section-name selfRef">Link Bandwidth Extended Community</a>
       </h2>
-<p id="section-2-1">The Link Bandwidth Extended Community is defined as a BGP extended
-      community that carries the bandwidth information of a link connecting to
-      a neighbor. This community can be used to inform other routers about the
-      available bandwidth on a given link.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<p id="section-2-2">The extended community can be optional transitive or non-transitive.
-      The value of the high-order octet of the extended Type Field can be 0x00
-      or 0x40. The value of the low-order octet of the extended type field for
-      this community is 0x04. The value of the Global Administrator subfield
-      in the Value Field SHOULD represent the Autonomous System of the router
-      that attaches the Link Bandwidth Community. If four octet AS numbering
-      scheme is used <span>[<a href="#RFC6793" class="cite xref">RFC6793</a>]</span>, AS_TRANS should be used in the
-      Global Administrator subfield. The bandwidth of the link is expressed as
-      4 octets in IEEE floating point format, units being bytes (not bits!)
-      per second. It is carried in the Local Administrator subfield of the
-      Value Field.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-1">The Link Bandwidth Extended Communities are defined as a BGP extended
+      community that carries the bandwidth information of a router,
+      represented by BGP Protocol Next Hop, connecting to remote network. This
+      community can be used to inform other routers about the available
+      bandwidth on trough a given route.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">The Link bandwidth extended communities can be either transitive or
+      non-transitive. Therefore the value of the high-order octet of the
+      extended Type Field cab be 0x00 or 0x40 respectively. The value of the
+      low-order octet of the extended type field for this communities is 0x04.
+      The value of the Global Administrator subfield in the Value Field SHOULD
+      represent the Autonomous System of the router that attaches the Link
+      Bandwidth Community, but in can be set to any 4B value. If four octet AS
+      numbering scheme is used <span>[<a href="#RFC6793" class="cite xref">RFC6793</a>]</span>, AS_TRANS should be
+      used in the Global Administrator subfield. The bandwidth of the link is
+      expressed as 4 octets in IEEE floating point format binary32 interchenge
+      floating point format, units being bytes (not bits!) per second. It is
+      carried in the Local Administrator subfield of the Value Field.<a href="#section-2-2" class="pilcrow">¶</a></p>
 </section>
 <section id="section-3">
       <h2 id="name-protocol-procedures-2">
@@ -1419,9 +1432,16 @@ li > p:last-of-type:only-child {
 <p id="section-3.1-1">An originator of the link bandwidth community SHOULD be able to
         originate either a transitive or a non-transitive link bandwidth
         extended community. Implementation SHOULD provide configuration to set
-        the transitivity type of the link bandwidth community. No more
-        than one link bandwidth extended community SHALL be attached to a
-        route.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+        the transitivity type of the link bandwidth community, as well as
+        Global Administrator filed value and bandwidth value in (Local
+        Administrator filed), trough local policy. No more than one link
+        bandwidth extended community SHALL be attached to a route.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">An originator can attach link bandwidth community to BGP path in
+        egress processing to adj-RIB-out only or in ingress processing in
+        which case link bandwidth community is present in Local-RIB.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-3"> Note: Implementation may provide configuration option (knob) to
+        allow sending of non-transitive link bandwidth communities to external
+        BGP sessions.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="Receiver">
@@ -1432,7 +1452,8 @@ li > p:last-of-type:only-child {
 <p id="section-3.2-1">A BGP receiver MUST be able to process link bandwidth community of
         both transitive or non-transitive type. The receiver SHOULD NOT flap
         or treat the route as malformed based on the transitivity of the link
-        bandwidth community.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+        bandwidth community and/or BGP session type (internal vs.
+        external).<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="Re-advertisement">
@@ -1463,6 +1484,15 @@ li > p:last-of-type:only-child {
 </div>
 </section>
 </div>
+<section id="section-3.4">
+        <h3 id="name-link-bandwidth-community-ari">
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-link-bandwidth-community-ari" class="section-name selfRef">Link bandwidth community aritmetics and BGP multipath</a>
+        </h3>
+<p id="section-3.4-1">In BGP multi-path ECMP enviroment, send or re-advertised
+        link-bandwidth community value may be calculated based on link
+        bandwidth communities of multipath-conmtributing routes in Local-RIB.
+        This subject is out of scope of this document<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+</section>
 </section>
 <div id="Error">
 <section id="section-4">
@@ -1493,14 +1523,10 @@ li > p:last-of-type:only-child {
       specific extended community. IANA is requested to assign a sub- type
       value of 0x04 for the link bandwidth extended community.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-5-2">
-<pre>    Name                                           Value
-    ----                                           -----
-    non-transitive Link Bandwidth Ext. Community   0x4004</pre><a href="#section-5-2" class="pilcrow">¶</a>
+<pre>Name Value ---- ----- non-transitive Link Bandwidth Ext. Community 0x4004</pre><a href="#section-5-2" class="pilcrow">¶</a>
 </div>
 <div class="alignLeft art-text artwork" id="section-5-3">
-<pre>    Name                                           Value
-    ----                                           -----
-    transitive Link Bandwidth Ext. Community       0x0004</pre><a href="#section-5-3" class="pilcrow">¶</a>
+<pre>Name Value ---- ----- transitive Link Bandwidth Ext. Community 0x0004</pre><a href="#section-5-3" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
@@ -1517,8 +1543,33 @@ li > p:last-of-type:only-child {
       <h2 id="name-contributors-2">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-contributors-2" class="section-name selfRef">Contributors</a>
       </h2>
+<div id="Co-Authors">
+<section id="section-7.1">
+        <h3 id="name-co-authors-2">
+<a href="#name-co-authors-2" class="section-name selfRef">Co-Authors</a>
+        </h3>
 <address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Kaliraj Vairavakkalai</span></div>
+          <div dir="auto" class="left"><span class="fn nameRole">Rafal Jan Szarecki</span></div>
+<div dir="auto" class="left"><span class="org">Google LLC</span></div>
+<div dir="auto" class="left"><span class="street-address">1160 N Mathilda Ave,,</span></div>
+<div dir="auto" class="left">
+<span class="locality">Sunnyvale</span>, <span class="region">CA</span> <span class="postal-code">94089</span>
+</div>
+<div dir="auto" class="left"><span class="country-name">United States of America</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:rszarecki@gmail.com" class="email">rszarecki@gmail.com</a>
+</div>
+</address>
+</section>
+</div>
+<div id="Other_Contributors">
+<section id="section-7.2">
+        <h3 id="name-other-contributors-2">
+<a href="#name-other-contributors-2" class="section-name selfRef">Other Contributors</a>
+        </h3>
+<address class="vcard">
+          <div dir="auto" class="left"><span class="fn nameRole">Kaliraj Vairavakkalai</span></div>
 <div dir="auto" class="left"><span class="org">Juniper Networks, Inc.</span></div>
 <div dir="auto" class="left"><span class="street-address">1133 Innovation Way,</span></div>
 <div dir="auto" class="left">
@@ -1531,7 +1582,7 @@ li > p:last-of-type:only-child {
 </div>
 </address>
 <address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Natrajan Venkataraman</span></div>
+          <div dir="auto" class="left"><span class="fn nameRole">Natrajan Venkataraman</span></div>
 <div dir="auto" class="left"><span class="org">Juniper Networks, Inc.</span></div>
 <div dir="auto" class="left"><span class="street-address">1133 Innovation Way,</span></div>
 <div dir="auto" class="left">
@@ -1543,6 +1594,8 @@ li > p:last-of-type:only-child {
 <a href="mailto:natv@juniper.net" class="email">natv@juniper.net</a>
 </div>
 </address>
+</section>
+</div>
 </section>
 </div>
 <div id="Acknowledgments">
