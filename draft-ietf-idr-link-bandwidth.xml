@@ -285,9 +285,13 @@
       <t>This document defines a specific application of the two-octet AS
       specific extended community. IANA is requested to assign a sub- type
       value of 0x04 for the link bandwidth extended community.<figure>
-          <artwork>Name Value ---- ----- non-transitive Link Bandwidth Ext. Community 0x4004</artwork>
+          <artwork>    Name                                           Value
+    ----                                           -----
+    non-transitive Link Bandwidth Ext. Community  0x4004</artwork>
         </figure><figure>
-          <artwork>Name Value ---- ----- transitive Link Bandwidth Ext. Community 0x0004</artwork>
+          <artwork>    Name                                           Value
+    ----                                           -----
+    transitive Link Bandwidth Ext. Community       0x0004</artwork>
         </figure></t>
     </section>
 

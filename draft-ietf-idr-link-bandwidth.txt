@@ -288,9 +288,13 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
    specific extended community.  IANA is requested to assign a sub- type
    value of 0x04 for the link bandwidth extended community.
 
-Name Value ---- ----- non-transitive Link Bandwidth Ext. Community 0x4004
+       Name                                           Value
+       ----                                           -----
+       non-transitive Link Bandwidth Ext. Community  0x4004
 
-   Name Value ---- ----- transitive Link Bandwidth Ext. Community 0x0004
+       Name                                           Value
+       ----                                           -----
+       transitive Link Bandwidth Ext. Community       0x0004
 
 7.  Security Considerations
 
@@ -324,10 +328,6 @@ Other Contributors
    Sunnyvale, CA 94089
    United States of America
    Email: natv@juniper.net
-
-
-
-
 
 
 
