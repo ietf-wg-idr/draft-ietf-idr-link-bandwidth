@@ -135,7 +135,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
    floating point format, units being bytes (not bits!) per second.  It
    is carried in the Local Administrator subfield of the Value Field.
 
-   0                   1                   2                   3
+    0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |   Type=0x00/0x40   | SubType= 0x04 |       AS Number          |
