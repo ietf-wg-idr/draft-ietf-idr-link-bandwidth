@@ -147,12 +147,38 @@
       low-order octet of the extended type field for this communities is 0x04.
       The value of the Global Administrator subfield in the Value Field SHOULD
       represent the Autonomous System of the router that attaches the Link
-      Bandwidth Community, but in can be set to any 4B value. If four octet AS
-      numbering scheme is used <xref target="RFC6793"/>, AS_TRANS should be
-      used in the Global Administrator subfield. The bandwidth of the link is
-      expressed as 4 octets in <xref target="IEEE.754-2019"/> floating point
-      format, units being bytes (not bits!) per second. It is carried in the
-      Local Administrator subfield of the Value Field.</t>
+      Bandwidth Community, but in can be set to any 2-byte value. If four
+      octet AS numbering scheme is used <xref target="RFC6793"/>, AS_TRANS
+      should be used in the Global Administrator subfield. The bandwidth of
+      the link is expressed as 4 octets in <xref target="IEEE.754-2019"/>
+      floating point format, units being bytes (not bits!) per second. It is
+      carried in the Local Administrator subfield of the Value Field.</t>
+
+      <figure anchor="LBWExtCom" suppress-title="false"
+              title="Link Bandwidth Extended Community">
+        <artwork align="left" xml:space="preserve">
+0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|   Type=0x00/0x40   | SubType= 0x04 |       AS Number          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Link Bandwidth Value                       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+ Type:   1-octet field MUST be set to 0x00 or 0x40 
+         to indicate transitive/non-transitive.
+
+ SubType: 1-octet field MUST be set to 0x04 
+          to indicate 'Link-Bandwidth'.
+
+ Global Administrator sub-field: 
+          2-octet represent the Autonomous System.
+
+ Local Administrator sub-field: 
+          This bandwidth value is encoded as 4 octets 
+          in IEEE floating point format.
+</artwork>
+      </figure>
     </section>
 
     <section title="Protocol Procedures">
@@ -170,18 +196,22 @@
         egress processing to adj-RIB-out only or in ingress processing in
         which case link bandwidth community is present in Local-RIB.</t>
 
-        <t> Note: Implementation may provide configuration option (knob) to
-        allow sending of non-transitive link bandwidth communities to external
-        BGP sessions.</t>
+        <t>Note: Implementation may provide configuration option (knob) to
+        allow sending of non-transitive link bandwidth extended community
+        towards external BGP sessions.</t>
       </section>
 
       <section anchor="Receiver"
                title="Receiver (Receiving link bandwidth community)&nbsp;">
         <t>A BGP receiver MUST be able to process link bandwidth community of
-        both transitive or non-transitive type. The receiver SHOULD NOT flap
-        or treat the route as malformed based on the transitivity of the link
+        both transitive or non-transitive type. The receiver MUST NOT flap or
+        treat the route as malformed based on the transitivity of the link
         bandwidth community and/or BGP session type (internal vs.
         external).</t>
+
+        <t>Note: Implementation may provide configuration option (knob) to
+        accept non-transitive link bandwidth extended community from external
+        BGP sessions.</t>
       </section>
 
       <section anchor="Re-advertisement" title="Re-advertisement Procedures">
@@ -189,7 +219,11 @@
                  title="Re-advertisement with Next hop Self">
           <t>When a BGP speaker re-advertises a route with the Link Bandwidth
           Extended Community and sets the next hop to itself, it SHOULD follow
-          the same procedures as outlined in <xref target="Originator"/>.</t>
+          the same procedures as outlined in <xref target="Originator"/>. If
+          the export policy does not change the Link Bandwidth Extended
+          Community, it will be advertised as is from the Local Routing
+          Information Base (Local-RIB). This community can either be received
+          from the neighbor or attached via an import policy.</t>
         </section>
 
         <section anchor="NextHopUnchanged"
@@ -201,11 +235,12 @@
         </section>
       </section>
 
-      <section title="Link bandwidth community aritmetics and BGP multipath">
-        <t>In BGP multi-path ECMP enviroment, send or re-advertised
-        link-bandwidth community value may be calculated based on link
-        bandwidth communities of multipath-conmtributing routes in Local-RIB.
-        This subject is out of scope of this document</t>
+      <section title="Link bandwidth community Arithmetic and BGP multipath">
+        <t>In a BGP multipath ECMP environment, the value of the link
+        bandwidth community that is sent or re-advertised may be calculated
+        based on the link bandwidth communities of the routes contributing to
+        multipath in the Local Routing Information Base (Local-RIB). This
+        topic is beyond the scope of this document.</t>
       </section>
     </section>
 
