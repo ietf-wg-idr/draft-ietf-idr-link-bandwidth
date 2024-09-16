@@ -290,7 +290,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
 
 Name Value ---- ----- non-transitive Link Bandwidth Ext. Community 0x4004
 
-  Name Value ---- ----- transitive Link Bandwidth Ext. Comxmunity 0x0004
+   Name Value ---- ----- transitive Link Bandwidth Ext. Community 0x0004
 
 7.  Security Considerations
 
