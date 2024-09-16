@@ -105,7 +105,7 @@
       </address>
     </author>
 
-    <date day="03" month="09" year="2024"/>
+    <date day="16" month="09" year="2024"/>
 
     <abstract>
       <t>This document describes an application of BGP extended communities
@@ -259,13 +259,35 @@
       the above preference.</t>
     </section>
 
+    <section anchor="History" title="Document History">
+      <t>The BGP Link Bandwidth Extended Community has evolved over several
+      versions of the IETF draft. In the earlier versions up to
+      draft-ietf-idr-link-bandwidth-08, only the non-transitive version of the
+      link bandwidth extended community was supported. However, starting from
+      draft-ietf-idr-link-bandwidth-09, both transitive and non-transitive
+      versions of the link bandwidth extended community are supported.</t>
+
+      <t>An old sender/receiver is a BGP speakers either use procedures upto
+      draft
+      (https://datatracker.ietf.org/doc/html/draft-ietf-idr-link-bandwidth-08)
+      or undocumented behavior for link bandwidth extended community.</t>
+
+      <t>A new sender/receiver is a BGP speaker that implements procedures
+      specified in this document. </t>
+
+      <t>Old receivers will not be able to interpret or utilize the new
+      procedures described from draft-ietf-idr-link-bandwidth-09, potentially
+      leading to inconsistencies in bandwidth management. The procedures
+      defined in this document does not cover old receivers.</t>
+    </section>
+
     <section anchor="IANA" title="IANA Considerations">
       <t>This document defines a specific application of the two-octet AS
       specific extended community. IANA is requested to assign a sub- type
       value of 0x04 for the link bandwidth extended community.<figure>
           <artwork>Name Value ---- ----- non-transitive Link Bandwidth Ext. Community 0x4004</artwork>
         </figure><figure>
-          <artwork>Name Value ---- ----- transitive Link Bandwidth Ext. Community 0x0004</artwork>
+          <artwork>Name Value ---- ----- transitive Link Bandwidth Ext. Comxmunity 0x0004</artwork>
         </figure></t>
     </section>
 
