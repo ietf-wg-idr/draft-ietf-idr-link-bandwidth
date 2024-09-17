@@ -153,7 +153,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
              2-octet represent the Autonomous System.
 
     Local Administrator sub-field:
-             This bandwidth value is encoded as 4 octets
+             Bandwidth value (bytes per sec) encoded as 4 octets
              in IEEE floating point format.
 
                 Figure 1: Link Bandwidth Extended Community
@@ -184,9 +184,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
    egress processing to adj-RIB-out only or in ingress processing in
    which case link bandwidth community is present in Local-RIB.
 
-   Note: Implementation may provide configuration option (knob) to allow
-   sending of non-transitive link bandwidth extended community towards
-   external BGP sessions.
+   Note: Implementation MAY provide configuration option (knob) to allow
+   sending non-transitive link bandwidth extended community on external
+   BGP sessions.
 
 3.2.  Receiver (Receiving link bandwidth community)
 
@@ -195,7 +195,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
    or treat the route as malformed based on the transitivity of the link
    bandwidth community and/or BGP session type (internal vs.  external).
 
-   Note: Implementation may provide configuration option (knob) to
+   Note: Implementation MAY provide configuration option (knob) to
    accept non-transitive link bandwidth extended community from external
    BGP sessions.
 
@@ -205,18 +205,18 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
 
    When a BGP speaker re-advertises a route with the Link Bandwidth
    Extended Community and sets the next hop to itself, it SHOULD follow
-   the same procedures as outlined in Section 3.1.  If the export policy
-   does not change the Link Bandwidth Extended Community, it will be
-   advertised as is from the Local Routing Information Base (Local-RIB).
-   This community can either be received from the neighbor or attached
-   via an import policy.
+   the same procedures as outlined in Section 3.1.
+
+   In the absence of any import or export policies that alter the Link
+   Bandwidth Extended Community, any received Link Bandwidth extended
+   community on the route will be re-advertised unchanged, in accordance
+   with standard BGP procedures.
 
 3.3.2.  Re-advertisement with Next Hop Unchanged
 
    A BGP speaker that receives a route with link bandwidth community,
    re-advertises or reflects the same without changing its next hop
    SHOULD NOT change the link bandwidth extended community in any way.
-
 
 
 
@@ -261,17 +261,17 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
 
    An old sender/receiver is a BGP speakers either use procedures upto
    draft (https://datatracker.ietf.org/doc/html/draft-ietf-idr-link-
-   bandwidth-08) or undocumented behavior for link bandwidth extended
-   community.
+   bandwidth-08) or any undocumented behavior for link bandwidth
+   extended community.
 
    A new sender/receiver is a BGP speaker that implements procedures
    specified in this document.
 
-   Old receivers will not be able to interpret or utilize the new
-   procedures described from draft-ietf-idr-link-bandwidth-09,
-   potentially leading to inconsistencies in bandwidth management.  The
-   procedures defined in this document does not cover old receivers.
-
+   Receiving speaker needs to be upgraded to support the procedures
+   defined in this document to provide full interop with both transitive
+   and non-transitive versions of LBW.  In order to keep changes to
+   procedures simple, it is not a goal to provide interop between old
+   Receiver and new Sender.
 
 
 

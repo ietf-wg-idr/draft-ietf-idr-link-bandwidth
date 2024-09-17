@@ -1444,7 +1444,7 @@ li > p:last-of-type:only-child {
           2-octet represent the Autonomous System.
 
  Local Administrator sub-field:
-          This bandwidth value is encoded as 4 octets
+          Bandwidth value (bytes per sec) encoded as 4 octets
           in IEEE floating point format.
 </pre>
 </div>
@@ -1472,9 +1472,9 @@ li > p:last-of-type:only-child {
 <p id="section-3.1-2">An originator can attach link bandwidth community to BGP path in
         egress processing to adj-RIB-out only or in ingress processing in
         which case link bandwidth community is present in Local-RIB.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
-<p id="section-3.1-3">Note: Implementation may provide configuration option (knob) to
-        allow sending of non-transitive link bandwidth extended community
-        towards external BGP sessions.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.1-3">Note: Implementation MAY provide configuration option (knob) to
+        allow sending non-transitive link bandwidth extended community on
+        external BGP sessions.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="Receiver">
@@ -1487,7 +1487,7 @@ li > p:last-of-type:only-child {
         treat the route as malformed based on the transitivity of the link
         bandwidth community and/or BGP session type (internal vs.
         external).<a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.2-2">Note: Implementation may provide configuration option (knob) to
+<p id="section-3.2-2">Note: Implementation MAY provide configuration option (knob) to
         accept non-transitive link bandwidth extended community from external
         BGP sessions.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
 </section>
@@ -1504,11 +1504,11 @@ li > p:last-of-type:only-child {
           </h4>
 <p id="section-3.3.1-1">When a BGP speaker re-advertises a route with the Link Bandwidth
           Extended Community and sets the next hop to itself, it SHOULD follow
-          the same procedures as outlined in <a href="#Originator" class="auto internal xref">Section 3.1</a>. If
-          the export policy does not change the Link Bandwidth Extended
-          Community, it will be advertised as is from the Local Routing
-          Information Base (Local-RIB). This community can either be received
-          from the neighbor or attached via an import policy.<a href="#section-3.3.1-1" class="pilcrow">¶</a></p>
+          the same procedures as outlined in <a href="#Originator" class="auto internal xref">Section 3.1</a>.<a href="#section-3.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.3.1-2">In the absence of any import or export policies that alter the
+          Link Bandwidth Extended Community, any received Link Bandwidth
+          extended community on the route will be re-advertised unchanged, in
+          accordance with standard BGP procedures.<a href="#section-3.3.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="NextHopUnchanged">
@@ -1569,13 +1569,14 @@ li > p:last-of-type:only-child {
 <p id="section-5-2">An old sender/receiver is a BGP speakers either use procedures upto
       draft
       (https://datatracker.ietf.org/doc/html/draft-ietf-idr-link-bandwidth-08)
-      or undocumented behavior for link bandwidth extended community.<a href="#section-5-2" class="pilcrow">¶</a></p>
+      or any undocumented behavior for link bandwidth extended community.<a href="#section-5-2" class="pilcrow">¶</a></p>
 <p id="section-5-3">A new sender/receiver is a BGP speaker that implements procedures
       specified in this document.<a href="#section-5-3" class="pilcrow">¶</a></p>
-<p id="section-5-4">Old receivers will not be able to interpret or utilize the new
-      procedures described from draft-ietf-idr-link-bandwidth-09, potentially
-      leading to inconsistencies in bandwidth management. The procedures
-      defined in this document does not cover old receivers.<a href="#section-5-4" class="pilcrow">¶</a></p>
+<p id="section-5-4">Receiving speaker needs to be upgraded to support the procedures
+      defined in this document to provide full interop with both transitive
+      and non-transitive versions of LBW. In order to keep changes to
+      procedures simple, it is not a goal to provide interop between old
+      Receiver and new Sender.<a href="#section-5-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="IANA">
