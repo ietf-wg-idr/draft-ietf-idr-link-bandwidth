@@ -105,6 +105,26 @@
       </address>
     </author>
 
+    <author fullname="Rafal Jan Szarecki" initials="R.J." surname="Szarecki">
+      <organization>Google LLC</organization>
+
+      <address>
+        <postal>
+          <street>1160 N Mathilda Ave,,</street>
+
+          <city>Sunnyvale</city>
+
+          <region>CA</region>
+
+          <code>94089</code>
+
+          <country>US</country>
+        </postal>
+
+        <email>rszarecki@gmail.com</email>
+      </address>
+    </author>
+
     <date day="16" month="09" year="2024"/>
 
     <abstract>
@@ -301,74 +321,48 @@
       <t>There are no additional security risks introduced by this design.</t>
     </section>
 
-    <section anchor="Contributors" title="Contributors">
-      <section anchor="Co-Authors" numbered="false" title="Co-Authors">
-        <author fullname="Rafal Jan Szarecki" initials="R.J."
-                surname="Szarecki">
-          <organization>Google LLC</organization>
+    <section anchor=" Contributors" title=" Contributors">
+      <author fullname="Kaliraj Vairavakkalai" initials="K."
+              surname="Vairavakkalai">
+        <organization>Juniper Networks, Inc.</organization>
 
-          <address>
-            <postal>
-              <street>1160 N Mathilda Ave,,</street>
+        <address>
+          <postal>
+            <street>1133 Innovation Way,</street>
 
-              <city>Sunnyvale</city>
+            <city>Sunnyvale</city>
 
-              <region>CA</region>
+            <region>CA</region>
 
-              <code>94089</code>
+            <code>94089</code>
 
-              <country>US</country>
-            </postal>
+            <country>US</country>
+          </postal>
 
-            <email>rszarecki@gmail.com</email>
-          </address>
-        </author>
-      </section>
+          <email>kaliraj@juniper.net</email>
+        </address>
+      </author>
 
-      <section anchor="Other Contributors" numbered="false"
-               title="Other Contributors">
-        <author fullname="Kaliraj Vairavakkalai" initials="K."
-                surname="Vairavakkalai">
-          <organization>Juniper Networks, Inc.</organization>
+      <author fullname="Natrajan Venkataraman" initials="N."
+              surname="Venkataraman">
+        <organization>Juniper Networks, Inc.</organization>
 
-          <address>
-            <postal>
-              <street>1133 Innovation Way,</street>
+        <address>
+          <postal>
+            <street>1133 Innovation Way,</street>
 
-              <city>Sunnyvale</city>
+            <city>Sunnyvale</city>
 
-              <region>CA</region>
+            <region>CA</region>
 
-              <code>94089</code>
+            <code>94089</code>
 
-              <country>US</country>
-            </postal>
+            <country>US</country>
+          </postal>
 
-            <email>kaliraj@juniper.net</email>
-          </address>
-        </author>
-
-        <author fullname="Natrajan Venkataraman" initials="N."
-                surname="Venkataraman">
-          <organization>Juniper Networks, Inc.</organization>
-
-          <address>
-            <postal>
-              <street>1133 Innovation Way,</street>
-
-              <city>Sunnyvale</city>
-
-              <region>CA</region>
-
-              <code>94089</code>
-
-              <country>US</country>
-            </postal>
-
-            <email>natv@juniper.net</email>
-          </address>
-        </author>
-      </section>
+          <email>natv@juniper.net</email>
+        </address>
+      </author>
     </section>
 
     <section anchor="Acknowledgments" title="Acknowledgments">
@@ -387,8 +381,6 @@
       <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"?>
 
       <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4360.xml"?>
-
-      <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4364.xml"?>
 
       <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6793.xml"?>
 

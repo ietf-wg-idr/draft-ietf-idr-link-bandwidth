@@ -12,6 +12,8 @@ Expires: 20 March 2025                                     Cisco Systems
                                                                  Zscaler
                                                                M. Mishra
                                                            Cisco Systems
+                                                           R.J. Szarecki
+                                                              Google LLC
                                                        16 September 2024
 
 
@@ -46,10 +48,8 @@ Status of This Memo
 
    This Internet-Draft will expire on 20 March 2025.
 
-Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
-   document authors.  All rights reserved.
+
 
 
 
@@ -57,6 +57,11 @@ Mohapatra, et al.         Expires 20 March 2025                 [Page 1]
 
 Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
 
+
+Copyright Notice
+
+   Copyright (c) 2024 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents (https://trustee.ietf.org/
@@ -83,10 +88,8 @@ Table of Contents
    6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   6
    7.  Security Considerations . . . . . . . . . . . . . . . . . . .   6
    8.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .   6
-     Co-Authors  . . . . . . . . . . . . . . . . . . . . . . . . . .   6
-     Other Contributors  . . . . . . . . . . . . . . . . . . . . . .   6
-   9.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   7
-   10. Normative References  . . . . . . . . . . . . . . . . . . . .   7
+   9.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   6
+   10. Normative References  . . . . . . . . . . . . . . . . . . . .   6
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   7
 
 1.  Introduction
@@ -101,9 +104,6 @@ Table of Contents
    community.  The Link Bandwidth Extended Community provides a
    mechanism for routers to advertise the bandwidth of their downstream
    path(s), facilitating maximum utilisation of network resources.
-
-
-
 
 
 
@@ -302,18 +302,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
 
 8.  Contributors
 
-Co-Authors
-
-   Rafal Jan Szarecki
-   Google LLC
-   1160 N Mathilda Ave,,
-   Sunnyvale, CA 94089
-   United States of America
-   Email: rszarecki@gmail.com
-
-
-Other Contributors
-
    Kaliraj Vairavakkalai
    Juniper Networks, Inc.
    1133 Innovation Way,
@@ -330,14 +318,6 @@ Other Contributors
    Email: natv@juniper.net
 
 
-
-
-
-Mohapatra, et al.         Expires 20 March 2025                 [Page 6]
-
-Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
-
-
 9.  Acknowledgments
 
    The authors would like to thank Yakov Rekhter, Srihari Sangli and Dan
@@ -349,6 +329,14 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
    their comments and contributions.
 
 10.  Normative References
+
+
+
+
+Mohapatra, et al.         Expires 20 March 2025                 [Page 6]
+
+Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
+
 
    [IEEE.754-2019]
               IEEE, "IEEE Standard for Floating-Point Arithmetic", 22
@@ -362,10 +350,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
    [RFC4360]  Sangli, S., Tappan, D., and Y. Rekhter, "BGP Extended
               Communities Attribute", RFC 4360, DOI 10.17487/RFC4360,
               February 2006, <https://www.rfc-editor.org/info/rfc4360>.
-
-   [RFC4364]  Rosen, E. and Y. Rekhter, "BGP/MPLS IP Virtual Private
-              Networks (VPNs)", RFC 4364, DOI 10.17487/RFC4364, February
-              2006, <https://www.rfc-editor.org/info/rfc4364>.
 
    [RFC6793]  Vohra, Q. and E. Chen, "BGP Support for Four-Octet
               Autonomous System (AS) Number Space", RFC 6793,
@@ -387,13 +371,6 @@ Authors' Addresses
    Email: rex@cisco.com
 
 
-
-
-Mohapatra, et al.         Expires 20 March 2025                 [Page 7]
-
-Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
-
-
    Reshma Das (editor)
    Juniper Networks, Inc.
    1133 Innovation Way,
@@ -410,12 +387,35 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
    Email: smohanty@zscaler.com
 
 
+
+
+Mohapatra, et al.         Expires 20 March 2025                 [Page 7]
+
+Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
+
+
    Mankamana Mishra
    Cisco Systems
    821 alder drive,
    Milpitas, CA 95035
    United States of America
    Email: mankamis@cisco.com
+
+
+   Rafal Jan Szarecki
+   Google LLC
+   1160 N Mathilda Ave,,
+   Sunnyvale, CA 94089
+   United States of America
+   Email: rszarecki@gmail.com
+
+
+
+
+
+
+
+
 
 
 
