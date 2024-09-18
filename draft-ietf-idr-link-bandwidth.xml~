@@ -105,27 +105,7 @@
       </address>
     </author>
 
-    <author fullname="Rafal Jan Szarecki" initials="R.J." surname="Szarecki">
-      <organization>Google LLC</organization>
-
-      <address>
-        <postal>
-          <street>1160 N Mathilda Ave,,</street>
-
-          <city>Sunnyvale</city>
-
-          <region>CA</region>
-
-          <code>94089</code>
-
-          <country>US</country>
-        </postal>
-
-        <email>rszarecki@gmail.com</email>
-      </address>
-    </author>
-
-    <date day="16" month="09" year="2024"/>
+    <date day="03" month="09" year="2024"/>
 
     <abstract>
       <t>This document describes an application of BGP extended communities
@@ -177,7 +157,7 @@
       <figure anchor="LBWExtCom" suppress-title="false"
               title="Link Bandwidth Extended Community">
         <artwork align="left" xml:space="preserve">
- 0                   1                   2                   3
+0                   1                   2                   3
  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 |   Type=0x00/0x40   | SubType= 0x04 |       AS Number          |
@@ -195,7 +175,7 @@
           2-octet represent the Autonomous System.
 
  Local Administrator sub-field: 
-          Bandwidth value (bytes per sec) encoded as 4 octets
+          This bandwidth value is encoded as 4 octets 
           in IEEE floating point format.
 </artwork>
       </figure>
@@ -216,9 +196,9 @@
         egress processing to adj-RIB-out only or in ingress processing in
         which case link bandwidth community is present in Local-RIB.</t>
 
-        <t>Note: Implementation MAY provide configuration option (knob) to
-        allow sending non-transitive link bandwidth extended community on
-        external BGP sessions.</t>
+        <t>Note: Implementation may provide configuration option (knob) to
+        allow sending of non-transitive link bandwidth extended community
+        towards external BGP sessions.</t>
       </section>
 
       <section anchor="Receiver"
@@ -229,7 +209,7 @@
         bandwidth community and/or BGP session type (internal vs.
         external).</t>
 
-        <t>Note: Implementation MAY provide configuration option (knob) to
+        <t>Note: Implementation may provide configuration option (knob) to
         accept non-transitive link bandwidth extended community from external
         BGP sessions.</t>
       </section>
@@ -239,12 +219,11 @@
                  title="Re-advertisement with Next hop Self">
           <t>When a BGP speaker re-advertises a route with the Link Bandwidth
           Extended Community and sets the next hop to itself, it SHOULD follow
-          the same procedures as outlined in <xref target="Originator"/>.</t>
-
-          <t>In the absence of any import or export policies that alter the
-          Link Bandwidth Extended Community, any received Link Bandwidth
-          extended community on the route will be re-advertised unchanged, in
-          accordance with standard BGP procedures. </t>
+          the same procedures as outlined in <xref target="Originator"/>. If
+          the export policy does not change the Link Bandwidth Extended
+          Community, it will be advertised as is from the Local Routing
+          Information Base (Local-RIB). This community can either be received
+          from the neighbor or attached via an import policy.</t>
         </section>
 
         <section anchor="NextHopUnchanged"
@@ -280,40 +259,13 @@
       the above preference.</t>
     </section>
 
-    <section anchor="History" title="Document History">
-      <t>The BGP Link Bandwidth Extended Community has evolved over several
-      versions of the IETF draft. In the earlier versions up to
-      draft-ietf-idr-link-bandwidth-08, only the non-transitive version of the
-      link bandwidth extended community was supported. However, starting from
-      draft-ietf-idr-link-bandwidth-09, both transitive and non-transitive
-      versions of the link bandwidth extended community are supported.</t>
-
-      <t>An old sender/receiver is a BGP speakers either use procedures upto
-      draft
-      (https://datatracker.ietf.org/doc/html/draft-ietf-idr-link-bandwidth-08)
-      or any undocumented behavior for link bandwidth extended community.</t>
-
-      <t>A new sender/receiver is a BGP speaker that implements procedures
-      specified in this document. </t>
-
-      <t>Receiving speaker needs to be upgraded to support the procedures
-      defined in this document to provide full interop with both transitive
-      and non-transitive versions of LBW. In order to keep changes to
-      procedures simple, it is not a goal to provide interop between old
-      Receiver and new Sender.</t>
-    </section>
-
     <section anchor="IANA" title="IANA Considerations">
       <t>This document defines a specific application of the two-octet AS
       specific extended community. IANA is requested to assign a sub- type
       value of 0x04 for the link bandwidth extended community.<figure>
-          <artwork>    Name                                           Value
-    ----                                           -----
-    non-transitive Link Bandwidth Ext. Community  0x4004</artwork>
+          <artwork>Name Value ---- ----- non-transitive Link Bandwidth Ext. Community 0x4004</artwork>
         </figure><figure>
-          <artwork>    Name                                           Value
-    ----                                           -----
-    transitive Link Bandwidth Ext. Community       0x0004</artwork>
+          <artwork>Name Value ---- ----- transitive Link Bandwidth Ext. Community 0x0004</artwork>
         </figure></t>
     </section>
 
@@ -321,48 +273,74 @@
       <t>There are no additional security risks introduced by this design.</t>
     </section>
 
-    <section anchor=" Contributors" title=" Contributors">
-      <author fullname="Kaliraj Vairavakkalai" initials="K."
-              surname="Vairavakkalai">
-        <organization>Juniper Networks, Inc.</organization>
+    <section anchor="Contributors" title="Contributors">
+      <section anchor="Co-Authors" numbered="false" title="Co-Authors">
+        <author fullname="Rafal Jan Szarecki" initials="R.J."
+                surname="Szarecki">
+          <organization>Google LLC</organization>
 
-        <address>
-          <postal>
-            <street>1133 Innovation Way,</street>
+          <address>
+            <postal>
+              <street>1160 N Mathilda Ave,,</street>
 
-            <city>Sunnyvale</city>
+              <city>Sunnyvale</city>
 
-            <region>CA</region>
+              <region>CA</region>
 
-            <code>94089</code>
+              <code>94089</code>
 
-            <country>US</country>
-          </postal>
+              <country>US</country>
+            </postal>
 
-          <email>kaliraj@juniper.net</email>
-        </address>
-      </author>
+            <email>rszarecki@gmail.com</email>
+          </address>
+        </author>
+      </section>
 
-      <author fullname="Natrajan Venkataraman" initials="N."
-              surname="Venkataraman">
-        <organization>Juniper Networks, Inc.</organization>
+      <section anchor="Other Contributors" numbered="false"
+               title="Other Contributors">
+        <author fullname="Kaliraj Vairavakkalai" initials="K."
+                surname="Vairavakkalai">
+          <organization>Juniper Networks, Inc.</organization>
 
-        <address>
-          <postal>
-            <street>1133 Innovation Way,</street>
+          <address>
+            <postal>
+              <street>1133 Innovation Way,</street>
 
-            <city>Sunnyvale</city>
+              <city>Sunnyvale</city>
 
-            <region>CA</region>
+              <region>CA</region>
 
-            <code>94089</code>
+              <code>94089</code>
 
-            <country>US</country>
-          </postal>
+              <country>US</country>
+            </postal>
 
-          <email>natv@juniper.net</email>
-        </address>
-      </author>
+            <email>kaliraj@juniper.net</email>
+          </address>
+        </author>
+
+        <author fullname="Natrajan Venkataraman" initials="N."
+                surname="Venkataraman">
+          <organization>Juniper Networks, Inc.</organization>
+
+          <address>
+            <postal>
+              <street>1133 Innovation Way,</street>
+
+              <city>Sunnyvale</city>
+
+              <region>CA</region>
+
+              <code>94089</code>
+
+              <country>US</country>
+            </postal>
+
+            <email>natv@juniper.net</email>
+          </address>
+        </author>
+      </section>
     </section>
 
     <section anchor="Acknowledgments" title="Acknowledgments">
@@ -381,6 +359,8 @@
       <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"?>
 
       <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4360.xml"?>
+
+      <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4364.xml"?>
 
       <?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.6793.xml"?>
 
