@@ -124,7 +124,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
 
    The Link bandwidth extended communities can be either transitive or
    non-transitive.  Therefore the value of the high-order octet of the
-   extended Type Field cab be 0x00 or 0x40 respectively.  The value of
+   extended Type Field can be 0x00 or 0x40 respectively.  The value of
    the low-order octet of the extended type field for this communities
    is 0x04.  The value of the Global Administrator subfield in the Value
    Field SHOULD represent the Autonomous System of the router that

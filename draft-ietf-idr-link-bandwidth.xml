@@ -163,7 +163,7 @@
 
       <t>The Link bandwidth extended communities can be either transitive or
       non-transitive. Therefore the value of the high-order octet of the
-      extended Type Field cab be 0x00 or 0x40 respectively. The value of the
+      extended Type Field can be 0x00 or 0x40 respectively. The value of the
       low-order octet of the extended type field for this communities is 0x04.
       The value of the Global Administrator subfield in the Value Field SHOULD
       represent the Autonomous System of the router that attaches the Link
@@ -244,7 +244,7 @@
           <t>In the absence of any import or export policies that alter the
           Link Bandwidth Extended Community, any received Link Bandwidth
           extended community on the route will be re-advertised unchanged, in
-          accordance with standard BGP procedures. </t>
+          accordance with standard BGP procedures.</t>
         </section>
 
         <section anchor="NextHopUnchanged"
@@ -294,7 +294,7 @@
       or any undocumented behavior for link bandwidth extended community.</t>
 
       <t>A new sender/receiver is a BGP speaker that implements procedures
-      specified in this document. </t>
+      specified in this document.</t>
 
       <t>Receiving speaker needs to be upgraded to support the procedures
       defined in this document to provide full interop with both transitive
