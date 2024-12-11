@@ -5,7 +5,7 @@
 Network Working Group                                       P. Mohapatra
 Internet-Draft                                          Sproute Networks
 Intended status: Standards Track                             R. Fernando
-Expires: 20 March 2025                                     Cisco Systems
+Expires: 13 June 2025                                      Cisco Systems
                                                              R. Das, Ed.
                                                   Juniper Networks, Inc.
                                                          S. Mohanty, Ed.
@@ -14,11 +14,11 @@ Expires: 20 March 2025                                     Cisco Systems
                                                            Cisco Systems
                                                            R.J. Szarecki
                                                               Google LLC
-                                                       16 September 2024
+                                                        10 December 2024
 
 
                  BGP Link Bandwidth Extended Community
-                    draft-ietf-idr-link-bandwidth-09
+                    draft-ietf-idr-link-bandwidth-10
 
 Abstract
 
@@ -46,16 +46,16 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 March 2025.
+   This Internet-Draft will expire on 13 June 2025.
 
 
 
 
 
 
-Mohapatra, et al.         Expires 20 March 2025                 [Page 1]
+Mohapatra, et al.         Expires 13 June 2025                  [Page 1]
 
-Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
+Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
 
 
 Copyright Notice
@@ -88,8 +88,8 @@ Table of Contents
    6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   6
    7.  Security Considerations . . . . . . . . . . . . . . . . . . .   6
    8.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .   6
-   9.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   6
-   10. Normative References  . . . . . . . . . . . . . . . . . . . .   6
+   9.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   7
+   10. Normative References  . . . . . . . . . . . . . . . . . . . .   7
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   7
 
 1.  Introduction
@@ -103,15 +103,15 @@ Table of Contents
    [RFC4360] - the transitive and non-transitive link bandwidth extended
    community.  The Link Bandwidth Extended Community provides a
    mechanism for routers to advertise the bandwidth of their downstream
-   path(s), facilitating maximum utilisation of network resources.
+   path(s), facilitating maximum utilization of network resources.
 
 
 
 
 
-Mohapatra, et al.         Expires 20 March 2025                 [Page 2]
+Mohapatra, et al.         Expires 13 June 2025                  [Page 2]
 
-Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
+Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
 
 
 2.  Link Bandwidth Extended Community
@@ -165,9 +165,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
 
 
 
-Mohapatra, et al.         Expires 20 March 2025                 [Page 3]
+Mohapatra, et al.         Expires 13 June 2025                  [Page 3]
 
-Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
+Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
 
 
 3.1.  Sender (Originating Link Bandwidth Community)
@@ -177,7 +177,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
    extended community.  Implementation SHOULD provide configuration to
    set the transitivity type of the link bandwidth community, as well as
    Global Administrator filed value and bandwidth value in (Local
-   Administrator filed), trough local policy.  No more than one link
+   Administrator filed), through local policy.  No more than one link
    bandwidth extended community SHALL be attached to a route.
 
    An originator can attach link bandwidth community to BGP path in
@@ -221,9 +221,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
 
 
 
-Mohapatra, et al.         Expires 20 March 2025                 [Page 4]
+Mohapatra, et al.         Expires 13 June 2025                  [Page 4]
 
-Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
+Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
 
 
 3.4.  Link bandwidth community Arithmetic and BGP multipath
@@ -249,6 +249,16 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
    Implementations MAY provide configuration options (knobs) to change
    the above preference.
 
+   WECMP (Weighted Equal-Cost Multi-Path) is utilized only when all
+   contributing paths have a Link Bandwidth community.  If any of the
+   paths lack a Link Bandwidth community, the routing falls back to ECMP
+   (Equal-Cost Multi-Path).  Furthermore, if any contributing path has a
+   Link Bandwidth community value of 0, it shall be regarded as
+   equivalent to the absence of a Link Bandwidth community.  It is
+   imperative to note that the Link Bandwidth community MUST NOT be a
+   negative value.
+
+
 5.  Document History
 
    The BGP Link Bandwidth Extended Community has evolved over several
@@ -259,10 +269,18 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
    transitive versions of the link bandwidth extended community are
    supported.
 
-   An old sender/receiver is a BGP speakers either use procedures upto
+   An old sender/receiver is a BGP speakers either use procedures up to
    draft (https://datatracker.ietf.org/doc/html/draft-ietf-idr-link-
    bandwidth-08) or any undocumented behavior for link bandwidth
    extended community.
+
+
+
+
+Mohapatra, et al.         Expires 13 June 2025                  [Page 5]
+
+Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
+
 
    A new sender/receiver is a BGP speaker that implements procedures
    specified in this document.
@@ -272,15 +290,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
    and non-transitive versions of LBW.  In order to keep changes to
    procedures simple, it is not a goal to provide interop between old
    Receiver and new Sender.
-
-
-
-
-
-Mohapatra, et al.         Expires 20 March 2025                 [Page 5]
-
-Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
-
 
 6.  IANA Considerations
 
@@ -318,6 +327,17 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
    Email: natv@juniper.net
 
 
+
+
+
+
+
+
+Mohapatra, et al.         Expires 13 June 2025                  [Page 6]
+
+Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
+
+
 9.  Acknowledgments
 
    The authors would like to thank Yakov Rekhter, Srihari Sangli and Dan
@@ -325,18 +345,10 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
    application of the extended community attribute.
 
    The authors would like to thank Bruno Decraene, Robert Raszuk, Joel
-   Halpern, Aleksi Suhonen, Randy Bush, Jeff Haas and John Scudder for
-   their comments and contributions.
+   Halpern, Aleksi Suhonen, Randy Bush, Jeff Haas, Stephane Litkowski,
+   Serge Krier and John Scudder for their comments and contributions.
 
 10.  Normative References
-
-
-
-
-Mohapatra, et al.         Expires 20 March 2025                 [Page 6]
-
-Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
-
 
    [IEEE.754-2019]
               IEEE, "IEEE Standard for Floating-Point Arithmetic", 22
@@ -371,6 +383,17 @@ Authors' Addresses
    Email: rex@cisco.com
 
 
+
+
+
+
+
+
+Mohapatra, et al.         Expires 13 June 2025                  [Page 7]
+
+Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
+
+
    Reshma Das (editor)
    Juniper Networks, Inc.
    1133 Innovation Way,
@@ -385,13 +408,6 @@ Authors' Addresses
    San Jose, CA 95134
    United States of America
    Email: smohanty@zscaler.com
-
-
-
-
-Mohapatra, et al.         Expires 20 March 2025                 [Page 7]
-
-Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
 
 
    Mankamana Mishra
@@ -429,20 +445,4 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2024
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Mohapatra, et al.         Expires 20 March 2025                 [Page 8]
+Mohapatra, et al.         Expires 13 June 2025                  [Page 8]

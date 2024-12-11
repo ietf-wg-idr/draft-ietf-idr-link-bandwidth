@@ -10,7 +10,7 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std" docName="draft-ietf-idr-link-bandwidth-09"
+<rfc category="std" docName="draft-ietf-idr-link-bandwidth-10"
      ipr="trust200902">
   <front>
     <title abbrev="BGP Link Bandwidth Extended Community">BGP Link Bandwidth
@@ -125,7 +125,7 @@
       </address>
     </author>
 
-    <date day="16" month="09" year="2024"/>
+    <date day="10" month="12" year="2024"/>
 
     <abstract>
       <t>This document describes an application of BGP extended communities
@@ -151,7 +151,7 @@
       target="RFC4360"/> - the transitive and non-transitive link bandwidth
       extended community. The Link Bandwidth Extended Community provides a
       mechanism for routers to advertise the bandwidth of their downstream
-      path(s), facilitating maximum utilisation of network resources.</t>
+      path(s), facilitating maximum utilization of network resources.</t>
     </section>
 
     <section title="Link Bandwidth Extended Community">
@@ -209,7 +209,7 @@
         extended community. Implementation SHOULD provide configuration to set
         the transitivity type of the link bandwidth community, as well as
         Global Administrator filed value and bandwidth value in (Local
-        Administrator filed), trough local policy. No more than one link
+        Administrator filed), through local policy. No more than one link
         bandwidth extended community SHALL be attached to a route.</t>
 
         <t>An originator can attach link bandwidth community to BGP path in
@@ -278,6 +278,16 @@
 
       <t>Implementations MAY provide configuration options (knobs) to change
       the above preference.</t>
+
+      <t>WECMP (Weighted Equal-Cost Multi-Path) is utilized only when all
+      contributing paths have a Link Bandwidth community. If any of the paths
+      lack a Link Bandwidth community, the routing falls back to ECMP
+      (Equal-Cost Multi-Path). Furthermore, if any contributing path has a
+      Link Bandwidth community value of 0, it shall be regarded as equivalent
+      to the absence of a Link Bandwidth community. It is imperative to note
+      that the Link Bandwidth community MUST NOT be a negative value.</t>
+
+      <t/>
     </section>
 
     <section anchor="History" title="Document History">
@@ -288,7 +298,7 @@
       draft-ietf-idr-link-bandwidth-09, both transitive and non-transitive
       versions of the link bandwidth extended community are supported.</t>
 
-      <t>An old sender/receiver is a BGP speakers either use procedures upto
+      <t>An old sender/receiver is a BGP speakers either use procedures up to
       draft
       (https://datatracker.ietf.org/doc/html/draft-ietf-idr-link-bandwidth-08)
       or any undocumented behavior for link bandwidth extended community.</t>
@@ -371,8 +381,8 @@
       application of the extended community attribute.</t>
 
       <t>The authors would like to thank Bruno Decraene, Robert Raszuk, Joel
-      Halpern, Aleksi Suhonen, Randy Bush, Jeff Haas and John Scudder for
-      their comments and contributions.</t>
+      Halpern, Aleksi Suhonen, Randy Bush, Jeff Haas, Stephane Litkowski,
+      Serge Krier and John Scudder for their comments and contributions.</t>
     </section>
   </middle>
 
