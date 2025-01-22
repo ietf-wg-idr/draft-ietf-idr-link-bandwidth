@@ -110,7 +110,7 @@
 
       <address>
         <postal>
-          <street>1160 N Mathilda Ave,,</street>
+          <street>1160 N Mathilda Ave,</street>
 
           <city>Sunnyvale</city>
 
@@ -125,7 +125,7 @@
       </address>
     </author>
 
-    <date day="10" month="12" year="2024"/>
+    <date day="22" month="01" year="2025"/>
 
     <abstract>
       <t>This document describes an application of BGP extended communities
@@ -280,12 +280,10 @@
       the above preference.</t>
 
       <t>WECMP (Weighted Equal-Cost Multi-Path) is utilized only when all
-      contributing paths have a Link Bandwidth community. If any of the paths
-      lack a Link Bandwidth community, the routing falls back to ECMP
-      (Equal-Cost Multi-Path). Furthermore, if any contributing path has a
-      Link Bandwidth community value of 0, it shall be regarded as equivalent
-      to the absence of a Link Bandwidth community. It is imperative to note
-      that the Link Bandwidth community MUST NOT be a negative value.</t>
+      contributing paths have a non-zero value in the Link Bandwidth
+      community. If any of the paths lack a Link Bandwidth community, the
+      routing falls back to ECMP (Equal-Cost Multi-Path). It is imperative to
+      note that the Link Bandwidth community MUST NOT be a negative value.</t>
 
       <t/>
     </section>

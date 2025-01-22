@@ -5,7 +5,7 @@
 Network Working Group                                       P. Mohapatra
 Internet-Draft                                          Sproute Networks
 Intended status: Standards Track                             R. Fernando
-Expires: 13 June 2025                                      Cisco Systems
+Expires: 26 July 2025                                      Cisco Systems
                                                              R. Das, Ed.
                                                   Juniper Networks, Inc.
                                                          S. Mohanty, Ed.
@@ -14,7 +14,7 @@ Expires: 13 June 2025                                      Cisco Systems
                                                            Cisco Systems
                                                            R.J. Szarecki
                                                               Google LLC
-                                                        10 December 2024
+                                                         22 January 2025
 
 
                  BGP Link Bandwidth Extended Community
@@ -46,21 +46,21 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 June 2025.
+   This Internet-Draft will expire on 26 July 2025.
 
 
 
 
 
 
-Mohapatra, et al.         Expires 13 June 2025                  [Page 1]
+Mohapatra, et al.         Expires 26 July 2025                  [Page 1]
 
-Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
+Internet-Draft    BGP Link Bandwidth Extended Community     January 2025
 
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -88,7 +88,7 @@ Table of Contents
    6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   6
    7.  Security Considerations . . . . . . . . . . . . . . . . . . .   6
    8.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .   6
-   9.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   7
+   9.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   6
    10. Normative References  . . . . . . . . . . . . . . . . . . . .   7
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   7
 
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Mohapatra, et al.         Expires 13 June 2025                  [Page 2]
+Mohapatra, et al.         Expires 26 July 2025                  [Page 2]
 
-Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
+Internet-Draft    BGP Link Bandwidth Extended Community     January 2025
 
 
 2.  Link Bandwidth Extended Community
@@ -165,9 +165,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
 
 
 
-Mohapatra, et al.         Expires 13 June 2025                  [Page 3]
+Mohapatra, et al.         Expires 26 July 2025                  [Page 3]
 
-Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
+Internet-Draft    BGP Link Bandwidth Extended Community     January 2025
 
 
 3.1.  Sender (Originating Link Bandwidth Community)
@@ -221,9 +221,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
 
 
 
-Mohapatra, et al.         Expires 13 June 2025                  [Page 4]
+Mohapatra, et al.         Expires 26 July 2025                  [Page 4]
 
-Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
+Internet-Draft    BGP Link Bandwidth Extended Community     January 2025
 
 
 3.4.  Link bandwidth community Arithmetic and BGP multipath
@@ -250,13 +250,11 @@ Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
    the above preference.
 
    WECMP (Weighted Equal-Cost Multi-Path) is utilized only when all
-   contributing paths have a Link Bandwidth community.  If any of the
-   paths lack a Link Bandwidth community, the routing falls back to ECMP
-   (Equal-Cost Multi-Path).  Furthermore, if any contributing path has a
-   Link Bandwidth community value of 0, it shall be regarded as
-   equivalent to the absence of a Link Bandwidth community.  It is
-   imperative to note that the Link Bandwidth community MUST NOT be a
-   negative value.
+   contributing paths have a non-zero value in the Link Bandwidth
+   community.  If any of the paths lack a Link Bandwidth community, the
+   routing falls back to ECMP (Equal-Cost Multi-Path).  It is imperative
+   to note that the Link Bandwidth community MUST NOT be a negative
+   value.
 
 
 5.  Document History
@@ -274,16 +272,15 @@ Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
    bandwidth-08) or any undocumented behavior for link bandwidth
    extended community.
 
-
-
-
-Mohapatra, et al.         Expires 13 June 2025                  [Page 5]
-
-Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
-
-
    A new sender/receiver is a BGP speaker that implements procedures
    specified in this document.
+
+
+
+Mohapatra, et al.         Expires 26 July 2025                  [Page 5]
+
+Internet-Draft    BGP Link Bandwidth Extended Community     January 2025
+
 
    Receiving speaker needs to be upgraded to support the procedures
    defined in this document to provide full interop with both transitive
@@ -327,22 +324,19 @@ Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
    Email: natv@juniper.net
 
 
-
-
-
-
-
-
-Mohapatra, et al.         Expires 13 June 2025                  [Page 6]
-
-Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
-
-
 9.  Acknowledgments
 
    The authors would like to thank Yakov Rekhter, Srihari Sangli and Dan
    Tappan for proposing unequal cost load balancing as one possible
    application of the extended community attribute.
+
+
+
+
+Mohapatra, et al.         Expires 26 July 2025                  [Page 6]
+
+Internet-Draft    BGP Link Bandwidth Extended Community     January 2025
+
 
    The authors would like to thank Bruno Decraene, Robert Raszuk, Joel
    Halpern, Aleksi Suhonen, Randy Bush, Jeff Haas, Stephane Litkowski,
@@ -383,23 +377,21 @@ Authors' Addresses
    Email: rex@cisco.com
 
 
-
-
-
-
-
-
-Mohapatra, et al.         Expires 13 June 2025                  [Page 7]
-
-Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
-
-
    Reshma Das (editor)
    Juniper Networks, Inc.
    1133 Innovation Way,
    Sunnyvale, CA 94089
    United States of America
    Email: dreshma@juniper.net
+
+
+
+
+
+
+Mohapatra, et al.         Expires 26 July 2025                  [Page 7]
+
+Internet-Draft    BGP Link Bandwidth Extended Community     January 2025
 
 
    Satya Mohanty (editor)
@@ -420,7 +412,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
 
    Rafal Jan Szarecki
    Google LLC
-   1160 N Mathilda Ave,,
+   1160 N Mathilda Ave,
    Sunnyvale, CA 94089
    United States of America
    Email: rszarecki@gmail.com
@@ -445,4 +437,12 @@ Internet-Draft    BGP Link Bandwidth Extended Community    December 2024
 
 
 
-Mohapatra, et al.         Expires 13 June 2025                  [Page 8]
+
+
+
+
+
+
+
+
+Mohapatra, et al.         Expires 26 July 2025                  [Page 8]

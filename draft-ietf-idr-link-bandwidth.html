@@ -1209,11 +1209,11 @@ li > p:last-of-type:only-child {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">BGP Link Bandwidth Extended Community</td>
-<td class="right">December 2024</td>
+<td class="right">January 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Mohapatra, et al.</td>
-<td class="center">Expires 13 June 2025</td>
+<td class="center">Expires 26 July 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1226,12 +1226,12 @@ li > p:last-of-type:only-child {
 <dd class="internet-draft">draft-ietf-idr-link-bandwidth-10</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-12-10" class="published">10 December 2024</time>
+<time datetime="2025-01-22" class="published">22 January 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-06-13">13 June 2025</time></dd>
+<dd class="expires"><time datetime="2025-07-26">26 July 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1296,7 +1296,7 @@ li > p:last-of-type:only-child {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 13 June 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 26 July 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1305,7 +1305,7 @@ li > p:last-of-type:only-child {
 <a href="#name-copyright-notice-2" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2024 IETF Trust and the persons identified as the
+            Copyright (c) 2025 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1551,12 +1551,10 @@ li > p:last-of-type:only-child {
 <p id="section-4-3">Implementations MAY provide configuration options (knobs) to change
       the above preference.<a href="#section-4-3" class="pilcrow">¶</a></p>
 <p id="section-4-4">WECMP (Weighted Equal-Cost Multi-Path) is utilized only when all
-      contributing paths have a Link Bandwidth community. If any of the paths
-      lack a Link Bandwidth community, the routing falls back to ECMP
-      (Equal-Cost Multi-Path). Furthermore, if any contributing path has a
-      Link Bandwidth community value of 0, it shall be regarded as equivalent
-      to the absence of a Link Bandwidth community. It is imperative to note
-      that the Link Bandwidth community MUST NOT be a negative value.<a href="#section-4-4" class="pilcrow">¶</a></p>
+      contributing paths have a non-zero value in the Link Bandwidth
+      community. If any of the paths lack a Link Bandwidth community, the
+      routing falls back to ECMP (Equal-Cost Multi-Path). It is imperative to
+      note that the Link Bandwidth community MUST NOT be a negative value.<a href="#section-4-4" class="pilcrow">¶</a></p>
 <p id="section-4-5"></p>
 </section>
 </div>
@@ -1749,7 +1747,7 @@ li > p:last-of-type:only-child {
 <address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Rafal Jan Szarecki</span></div>
 <div dir="auto" class="left"><span class="org">Google LLC</span></div>
-<div dir="auto" class="left"><span class="street-address">1160 N Mathilda Ave,,</span></div>
+<div dir="auto" class="left"><span class="street-address">1160 N Mathilda Ave,</span></div>
 <div dir="auto" class="left">
 <span class="locality">Sunnyvale</span>, <span class="region">CA</span> <span class="postal-code">94089</span>
 </div>
