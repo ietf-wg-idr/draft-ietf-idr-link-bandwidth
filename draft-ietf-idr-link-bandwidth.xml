@@ -159,16 +159,17 @@
       community that carries the bandwidth information of a router,
       represented by BGP Protocol Next Hop, connecting to remote network. This
       community can be used to inform other routers about the available
-      bandwidth on trough a given route.</t>
+      bandwidth on through a given route.</t>
 
       <t>The Link bandwidth extended communities can be either transitive or
       non-transitive. Therefore the value of the high-order octet of the
-      extended Type Field can be 0x00 or 0x40 respectively. The value of the
+      extended Type Field can be 0x00 or 0x40, respectively. The value of the
       low-order octet of the extended type field for this communities is 0x04.
       The value of the Global Administrator subfield in the Value Field SHOULD
       represent the Autonomous System of the router that attaches the Link
-      Bandwidth Community, but in can be set to any 2-byte value. If four
-      octet AS numbering scheme is used <xref target="RFC6793"/>, AS_TRANS
+      Bandwidth Community, but it can be set to any 2-byte value. If the
+      Autonomous System number cannot be represented in two octets, as enabled
+      by <xref target="RFC6793"/>, AS_TRANS
       should be used in the Global Administrator subfield. The bandwidth of
       the link is expressed as 4 octets in <xref target="IEEE.754-2019"/>
       floating point format, units being bytes (not bits!) per second. It is
@@ -206,39 +207,41 @@
                title="Sender (Originating Link Bandwidth Community)">
         <t>An originator of the link bandwidth community SHOULD be able to
         originate either a transitive or a non-transitive link bandwidth
-        extended community. Implementation SHOULD provide configuration to set
-        the transitivity type of the link bandwidth community, as well as
-        Global Administrator filed value and bandwidth value in (Local
-        Administrator filed), through local policy. No more than one link
+        extended community. Implementations SHOULD provide configuration to set
+        the transitivity type of the link bandwidth community, as well as the
+        Global Administrator and bandwidth values in (Local
+        Administrator field), using local policy. No more than one link
         bandwidth extended community SHALL be attached to a route.</t>
 
-        <t>An originator can attach link bandwidth community to BGP path in
-        egress processing to adj-RIB-out only or in ingress processing in
-        which case link bandwidth community is present in Local-RIB.</t>
+        <t>The link bandwidth extended community MAY be attached or updated for
+        a BGP route upon receipt during Adj-RIB-In processing.  The link
+        bandwidth extended community MAY be attached or updated for a BGP
+        route's Adj-RIB-Out entry while being advertised to a neighboring BGP
+        speaker.</t>
 
-        <t>Note: Implementation MAY provide configuration option (knob) to
-        allow sending non-transitive link bandwidth extended community on
+        <t>Note: Implementations MAY provide a configuration option to
+        send non-transitive link bandwidth extended communities on
         external BGP sessions.</t>
       </section>
 
       <section anchor="Receiver"
-               title="Receiver (Receiving link bandwidth community)&nbsp;">
-        <t>A BGP receiver MUST be able to process link bandwidth community of
-        both transitive or non-transitive type. The receiver MUST NOT flap or
+               title="Receiver (Receiving Link Bandwidth Community)&nbsp;">
+        <t>A BGP receiver MUST be able to process link bandwidth extended community of
+        both transitive and non-transitive types. The receiver MUST NOT flap or
         treat the route as malformed based on the transitivity of the link
-        bandwidth community and/or BGP session type (internal vs.
+        bandwidth extended community and/or BGP session type (internal vs.
         external).</t>
 
-        <t>Note: Implementation MAY provide configuration option (knob) to
-        accept non-transitive link bandwidth extended community from external
+        <t>Note: Implementations MAY provide configuration to
+        accept non-transitive link bandwidth extended communities from external
         BGP sessions.</t>
       </section>
 
       <section anchor="Re-advertisement" title="Re-advertisement Procedures">
         <section anchor="NextHopSelf"
                  title="Re-advertisement with Next hop Self">
-          <t>When a BGP speaker re-advertises a route with the Link Bandwidth
-          Extended Community and sets the next hop to itself, it SHOULD follow
+          <t>When a BGP speaker re-advertises a route with the link bandwidth
+          extended community and sets the next hop to itself, it SHOULD follow
           the same procedures as outlined in <xref target="Originator"/>.</t>
 
           <t>In the absence of any import or export policies that alter the
@@ -249,14 +252,14 @@
 
         <section anchor="NextHopUnchanged"
                  title=" Re-advertisement with Next Hop Unchanged">
-          <t>A BGP speaker that receives a route with link bandwidth
+          <t>A BGP speaker that receives a route with the link bandwidth
           community, re-advertises or reflects the same without changing its
-          next hop SHOULD NOT change the link bandwidth extended community in
+          next hop, SHOULD NOT change the link bandwidth extended community in
           any way.</t>
         </section>
       </section>
 
-      <section title="Link bandwidth community Arithmetic and BGP multipath">
+      <section title="Link Bandwidth Community Arithmetic and BGP Multipath">
         <t>In a BGP multipath ECMP environment, the value of the link
         bandwidth community that is sent or re-advertised may be calculated
         based on the link bandwidth communities of the routes contributing to
@@ -267,24 +270,26 @@
 
     <section anchor="Error" title="Error Handling">
       <t>If a receiver receives a route with more than one Link Bandwidth
-      Extended Community, it SHOULD:<list>
-          <t>Prefer the lowest value of the attached link bandwidth community
-          (Irrespective of the transitivity)</t>
+      Extended Community, it SHOULD:<ul>
+          <li>Prefer the lowest value of the attached link bandwidth community,
+          irrespective of the extended community's transitivity.</li>
 
-          <t>Prefer the transitive Link Bandwidth Extended Community when
+          <li>Prefer the transitive link bandwidth extended community when
           choosing between transitive and non-transitive types that have the
-          same value</t>
-        </list></t>
+          same value.</li>
+        </ul></t>
 
-      <t>Implementations MAY provide configuration options (knobs) to change
+      <t>Implementations MAY provide configuration to change
       the above preference.</t>
 
-      <t>WECMP (Weighted Equal-Cost Multi-Path) is utilized only when all
-      contributing paths have a non-zero value in the Link Bandwidth
-      community. If any of the paths lack a valid Link Bandwidth community,
-      the routing falls back to ECMP (Equal-Cost Multi-Path). It is imperative
-      to note that the Link Bandwidth community MUST NOT be a negative
-      value.</t>
+      <t>Link bandwidth extended communities with a negative value SHALL be
+      ignored and MUST NOT be originated.</t>
+
+      <t>WECMP (Weighted Equal-Cost Multi-Path) can be utilized when only all
+      contributing paths have a non-zero value in the link bandwidth
+      extended community. If any of the paths lack a valid link bandwidth extended community,
+      ECMP (Equal-Cost Multi-Path) MUST be used instead.</t>
+
 
       <t/>
     </section>
@@ -297,7 +302,7 @@
       draft-ietf-idr-link-bandwidth-09, both transitive and non-transitive
       versions of the link bandwidth extended community are supported.</t>
 
-      <t>An old sender/receiver is a BGP speakers either use procedures up to
+      <t>An old sender/receiver is a BGP speaker that uses procedures up to
       draft
       (https://datatracker.ietf.org/doc/html/draft-ietf-idr-link-bandwidth-08)
       or any undocumented behavior for link bandwidth extended community.</t>
@@ -305,25 +310,34 @@
       <t>A new sender/receiver is a BGP speaker that implements procedures
       specified in this document.</t>
 
-      <t>Receiving speaker needs to be upgraded to support the procedures
-      defined in this document to provide full interop with both transitive
-      and non-transitive versions of LBW. In order to keep changes to
-      procedures simple, it is not a goal to provide interop between old
-      Receiver and new Sender.</t>
+      <t>Receiving BGP speakers need to be upgraded to support the procedures
+      defined in this document to provide full interoperability for both transitive
+      and non-transitive versions of the link bandwidth extended community. In
+      order simplify implementations, it is not a goal to provide
+      interoperability between old Receivers and new Senders.</t>
     </section>
 
     <section anchor="IANA" title="IANA Considerations">
       <t>This document defines a specific application of the two-octet AS
-      specific extended community. IANA is requested to assign a sub- type
-      value of 0x04 for the link bandwidth extended community.<figure>
-          <artwork>    Name                                           Value
-    ----                                           -----
-    non-transitive Link Bandwidth Ext. Community  0x4004</artwork>
-        </figure><figure>
-          <artwork>    Name                                           Value
-    ----                                           -----
-    transitive Link Bandwidth Ext. Community       0x0004</artwork>
-        </figure></t>
+      specific extended community.</t>
+
+      <t>IANA is requested to update the Transitive Two-Octet AS-Specific
+      Extended Community Sub-Types registry (Type 0x00) and Sub-Type 0x04 to:</t>
+      <figure>
+          <artwork>    Name
+    ----
+    transitive Link Bandwidth Ext. Community</artwork>
+        </figure>
+      <t>IANA is requested to update the Non-Transitive Two-Octet AS-Specific
+      Extended Community Sub-Types registry (Type 0x40) and Sub-Type 0x04 to:</t>
+        <figure>
+          <artwork>    Name
+    ----
+    non-transitive Link Bandwidth Ext. Community
+          </artwork>
+        </figure>
+
+        <t>Both updates are to Reference this document.</t>
     </section>
 
     <section anchor="Security" title="Security Considerations">
