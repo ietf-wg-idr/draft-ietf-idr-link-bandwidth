@@ -280,7 +280,7 @@
         </ul></t>
 
       <t>Implementations MAY provide configuration to change
-      the above preference.</t>
+      the above preferences.</t>
 
       <t>Link bandwidth extended communities with a negative value SHALL be
       ignored and MUST NOT be originated.</t>
