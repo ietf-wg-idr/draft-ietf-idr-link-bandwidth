@@ -254,7 +254,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community     January 2025
       same value.
 
    Implementations MAY provide configuration to change the above
-   preference.
+   preferences.
 
    Link bandwidth extended communities with a negative value SHALL be
    ignored and MUST NOT be originated.
