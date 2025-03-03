@@ -10,7 +10,7 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std" docName="draft-ietf-idr-link-bandwidth-10"
+<rfc category="std" docName="draft-ietf-idr-link-bandwidth-11"
      ipr="trust200902">
   <front>
     <title abbrev="BGP Link Bandwidth Extended Community">BGP Link Bandwidth
@@ -125,7 +125,7 @@
       </address>
     </author>
 
-    <date day="22" month="01" year="2025"/>
+    <date day="03" month="03" year="2025"/>
 
     <abstract>
       <t>This document describes an application of BGP extended communities
@@ -169,11 +169,11 @@
       represent the Autonomous System of the router that attaches the Link
       Bandwidth Community, but it can be set to any 2-byte value. If the
       Autonomous System number cannot be represented in two octets, as enabled
-      by <xref target="RFC6793"/>, AS_TRANS
-      should be used in the Global Administrator subfield. The bandwidth of
-      the link is expressed as 4 octets in <xref target="IEEE.754-2019"/>
-      floating point format, units being bytes (not bits!) per second. It is
-      carried in the Local Administrator subfield of the Value Field.</t>
+      by <xref target="RFC6793"/>, AS_TRANS should be used in the Global
+      Administrator subfield. The bandwidth of the link is expressed as 4
+      octets in <xref target="IEEE.754-2019"/> floating point format, units
+      being bytes (not bits!) per second. It is carried in the Local
+      Administrator subfield of the Value Field.</t>
 
       <figure anchor="LBWExtCom" suppress-title="false"
               title="Link Bandwidth Extended Community">
@@ -207,34 +207,34 @@
                title="Sender (Originating Link Bandwidth Community)">
         <t>An originator of the link bandwidth community SHOULD be able to
         originate either a transitive or a non-transitive link bandwidth
-        extended community. Implementations SHOULD provide configuration to set
-        the transitivity type of the link bandwidth community, as well as the
-        Global Administrator and bandwidth values in (Local
-        Administrator field), using local policy. No more than one link
-        bandwidth extended community SHALL be attached to a route.</t>
+        extended community. Implementations SHOULD provide configuration to
+        set the transitivity type of the link bandwidth community, as well as
+        the Global Administrator and bandwidth values in (Local Administrator
+        field), using local policy. No more than one link bandwidth extended
+        community SHALL be attached to a route.</t>
 
-        <t>The link bandwidth extended community MAY be attached or updated for
-        a BGP route upon receipt during Adj-RIB-In processing.  The link
+        <t>The link bandwidth extended community MAY be attached or updated
+        for a BGP route upon receipt during Adj-RIB-In processing. The link
         bandwidth extended community MAY be attached or updated for a BGP
         route's Adj-RIB-Out entry while being advertised to a neighboring BGP
         speaker.</t>
 
-        <t>Note: Implementations MAY provide a configuration option to
-        send non-transitive link bandwidth extended communities on
-        external BGP sessions.</t>
+        <t>Note: Implementations MAY provide a configuration option to send
+        non-transitive link bandwidth extended communities on external BGP
+        sessions.</t>
       </section>
 
       <section anchor="Receiver"
                title="Receiver (Receiving Link Bandwidth Community)&nbsp;">
-        <t>A BGP receiver MUST be able to process link bandwidth extended community of
-        both transitive and non-transitive types. The receiver MUST NOT flap or
-        treat the route as malformed based on the transitivity of the link
-        bandwidth extended community and/or BGP session type (internal vs.
-        external).</t>
+        <t>A BGP receiver MUST be able to process link bandwidth extended
+        community of both transitive and non-transitive types. The receiver
+        MUST NOT flap or treat the route as malformed based on the
+        transitivity of the link bandwidth extended community and/or BGP
+        session type (internal vs. external).</t>
 
-        <t>Note: Implementations MAY provide configuration to
-        accept non-transitive link bandwidth extended communities from external
-        BGP sessions.</t>
+        <t>Note: Implementations MAY provide configuration to accept
+        non-transitive link bandwidth extended communities from external BGP
+        sessions.</t>
       </section>
 
       <section anchor="Re-advertisement" title="Re-advertisement Procedures">
@@ -271,25 +271,25 @@
     <section anchor="Error" title="Error Handling">
       <t>If a receiver receives a route with more than one Link Bandwidth
       Extended Community, it SHOULD:<ul>
-          <li>Prefer the lowest value of the attached link bandwidth community,
-          irrespective of the extended community's transitivity.</li>
+          <li>Prefer the lowest value of the attached link bandwidth
+          community, irrespective of the extended community's
+          transitivity.</li>
 
           <li>Prefer the transitive link bandwidth extended community when
           choosing between transitive and non-transitive types that have the
           same value.</li>
         </ul></t>
 
-      <t>Implementations MAY provide configuration to change
-      the above preferences.</t>
+      <t>Implementations MAY provide configuration to change the above
+      preferences.</t>
 
       <t>Link bandwidth extended communities with a negative value SHALL be
       ignored and MUST NOT be originated.</t>
 
       <t>WECMP (Weighted Equal-Cost Multi-Path) can be utilized when only all
-      contributing paths have a non-zero value in the link bandwidth
-      extended community. If any of the paths lack a valid link bandwidth extended community,
-      ECMP (Equal-Cost Multi-Path) MUST be used instead.</t>
-
+      contributing paths have a non-zero value in the link bandwidth extended
+      community. If any of the paths lack a valid link bandwidth extended
+      community, ECMP (Equal-Cost Multi-Path) MUST be used instead.</t>
 
       <t/>
     </section>
@@ -311,10 +311,10 @@
       specified in this document.</t>
 
       <t>Receiving BGP speakers need to be upgraded to support the procedures
-      defined in this document to provide full interoperability for both transitive
-      and non-transitive versions of the link bandwidth extended community. In
-      order simplify implementations, it is not a goal to provide
-      interoperability between old Receivers and new Senders.</t>
+      defined in this document to provide full interoperability for both
+      transitive and non-transitive versions of the link bandwidth extended
+      community. In order simplify implementations, it is not a goal to
+      provide interoperability between old Receivers and new Senders.</t>
     </section>
 
     <section anchor="IANA" title="IANA Considerations">
@@ -322,22 +322,27 @@
       specific extended community.</t>
 
       <t>IANA is requested to update the Transitive Two-Octet AS-Specific
-      Extended Community Sub-Types registry (Type 0x00) and Sub-Type 0x04 to:</t>
+      Extended Community Sub-Types registry (Type 0x00) and Sub-Type 0x04
+      to:</t>
+
       <figure>
-          <artwork>    Name
+        <artwork>    Name
     ----
     transitive Link Bandwidth Ext. Community</artwork>
-        </figure>
+      </figure>
+
       <t>IANA is requested to update the Non-Transitive Two-Octet AS-Specific
-      Extended Community Sub-Types registry (Type 0x40) and Sub-Type 0x04 to:</t>
-        <figure>
-          <artwork>    Name
+      Extended Community Sub-Types registry (Type 0x40) and Sub-Type 0x04
+      to:</t>
+
+      <figure>
+        <artwork>    Name
     ----
     non-transitive Link Bandwidth Ext. Community
           </artwork>
-        </figure>
+      </figure>
 
-        <t>Both updates are to Reference this document.</t>
+      <t>Both updates are to Reference this document.</t>
     </section>
 
     <section anchor="Security" title="Security Considerations">
