@@ -86,8 +86,8 @@ Table of Contents
    4.  Error Handling  . . . . . . . . . . . . . . . . . . . . . . .   5
    5.  Document History  . . . . . . . . . . . . . . . . . . . . . .   6
    6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   6
-   7.  Security Considerations . . . . . . . . . . . . . . . . . . .   6
-   8.  Operational Considerations  . . . . . . . . . . . . . . . . .   6
+   7.  Security Considerations . . . . . . . . . . . . . . . . . . .   7
+   8.  Operational Considerations  . . . . . . . . . . . . . . . . .   7
      8.1.  Inconsistent Deployment . . . . . . . . . . . . . . . . .   7
    9.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .   7
    10. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   8
@@ -314,21 +314,21 @@ Internet-Draft    BGP Link Bandwidth Extended Community         May 2025
    Extended Community Sub-Types registry (Type 0x00) and Sub-Type 0x04
    to:
 
-    Name ---- transitive Link Bandwidth Ext. Community
+       Name
+       ----
+       transitive Link Bandwidth Ext. Community
 
    IANA is requested to update the Non-Transitive Two-Octet AS-Specific
    Extended Community Sub-Types registry (Type 0x40) and Sub-Type 0x04
    to:
 
-    Name ---- non-transitive Link Bandwidth Ext. Community
+       Name
+       ----
+       non-transitive Link Bandwidth Ext. Community
 
    Both updates are to Reference this document.
 
-7.  Security Considerations
 
-   There are no additional security risks introduced by this design.
-
-8.  Operational Considerations
 
 
 
@@ -337,6 +337,12 @@ Mohapatra, et al.       Expires 28 November 2025                [Page 6]
 
 Internet-Draft    BGP Link Bandwidth Extended Community         May 2025
 
+
+7.  Security Considerations
+
+   There are no additional security risks introduced by this design.
+
+8.  Operational Considerations
 
 8.1.  Inconsistent Deployment
 
@@ -380,18 +386,15 @@ Internet-Draft    BGP Link Bandwidth Extended Community         May 2025
    1133 Innovation Way,
    Sunnyvale, CA 94089
    United States of America
-   Email: kaliraj@juniper.net
-
-
-
-
-
 
 
 
 Mohapatra, et al.       Expires 28 November 2025                [Page 7]
 
 Internet-Draft    BGP Link Bandwidth Extended Community         May 2025
+
+
+   Email: kaliraj@juniper.net
 
 
    Natrajan Venkataraman
@@ -437,10 +440,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community         May 2025
               Communities Attribute", RFC 4360, DOI 10.17487/RFC4360,
               February 2006, <https://www.rfc-editor.org/info/rfc4360>.
 
-   [RFC6793]  Vohra, Q. and E. Chen, "BGP Support for Four-Octet
-              Autonomous System (AS) Number Space", RFC 6793,
-              DOI 10.17487/RFC6793, December 2012,
-              <https://www.rfc-editor.org/info/rfc6793>.
+
 
 
 
@@ -449,6 +449,11 @@ Mohapatra, et al.       Expires 28 November 2025                [Page 8]
 
 Internet-Draft    BGP Link Bandwidth Extended Community         May 2025
 
+
+   [RFC6793]  Vohra, Q. and E. Chen, "BGP Support for Four-Octet
+              Autonomous System (AS) Number Space", RFC 6793,
+              DOI 10.17487/RFC6793, December 2012,
+              <https://www.rfc-editor.org/info/rfc6793>.
 
 Authors' Addresses
 
@@ -493,6 +498,14 @@ Authors' Addresses
    5453 Great America Parkway
    Santa Clara, CA 95054
    United States of America
+
+
+
+Mohapatra, et al.       Expires 28 November 2025                [Page 9]
+
+Internet-Draft    BGP Link Bandwidth Extended Community         May 2025
+
+
    Email: akshay@arista.com
 
 
@@ -501,4 +514,47 @@ Authors' Addresses
 
 
 
-Mohapatra, et al.       Expires 28 November 2025                [Page 9]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Mohapatra, et al.       Expires 28 November 2025               [Page 10]

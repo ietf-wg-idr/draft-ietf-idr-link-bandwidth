@@ -325,7 +325,9 @@
       to:</t>
 
       <figure>
-        <artwork> Name ---- transitive Link Bandwidth Ext. Community</artwork>
+        <artwork align="left" xml:space="preserve">    Name
+    ----
+    transitive Link Bandwidth Ext. Community</artwork>
       </figure>
 
       <t>IANA is requested to update the Non-Transitive Two-Octet AS-Specific
@@ -333,8 +335,9 @@
       to:</t>
 
       <figure>
-        <artwork> Name ---- non-transitive Link Bandwidth Ext. Community
-        </artwork>
+        <artwork align="left" xml:space="preserve">    Name
+    ----
+    non-transitive Link Bandwidth Ext. Community</artwork>
       </figure>
 
       <t>Both updates are to Reference this document.</t>
