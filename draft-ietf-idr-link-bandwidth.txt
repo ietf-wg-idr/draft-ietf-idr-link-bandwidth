@@ -92,7 +92,7 @@ Table of Contents
    9.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .   7
    10. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   8
    11. Normative References  . . . . . . . . . . . . . . . . . . . .   8
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   8
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   9
 
 1.  Introduction
 
@@ -414,11 +414,13 @@ Internet-Draft    BGP Link Bandwidth Extended Community         May 2025
 
    The authors would like to thank Yakov Rekhter, Srihari Sangli and Dan
    Tappan for proposing unequal cost load balancing as one possible
-   application of the extended community attribute.
+   application of the extended community attribute.  The authors would
+   like to thank Jeff Haas for all the discussions and providing text
+   for operational considerations.
 
    The authors would like to thank Bruno Decraene, Robert Raszuk, Joel
-   Halpern, Aleksi Suhonen, Randy Bush, Jeff Haas, Stephane Litkowski,
-   Serge Krier and John Scudder for their comments and contributions.
+   Halpern, Aleksi Suhonen, Randy Bush, Stephane Litkowski, Mankamana
+   Mishra and John Scudder for their comments and contributions.
 
 11.  Normative References
 
@@ -440,8 +442,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community         May 2025
               DOI 10.17487/RFC6793, December 2012,
               <https://www.rfc-editor.org/info/rfc6793>.
 
-Authors' Addresses
-
 
 
 
@@ -449,6 +449,8 @@ Mohapatra, et al.       Expires 28 November 2025                [Page 8]
 
 Internet-Draft    BGP Link Bandwidth Extended Community         May 2025
 
+
+Authors' Addresses
 
    Pradosh Mohapatra
    Sproute Networks
@@ -492,8 +494,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community         May 2025
    Santa Clara, CA 95054
    United States of America
    Email: akshay@arista.com
-
-
 
 
 

@@ -447,11 +447,13 @@
     <section anchor="Acknowledgments" title="Acknowledgments">
       <t>The authors would like to thank Yakov Rekhter, Srihari Sangli and Dan
       Tappan for proposing unequal cost load balancing as one possible
-      application of the extended community attribute.</t>
+      application of the extended community attribute. The authors would like
+      to thank Jeff Haas for all the discussions and providing text for
+      operational considerations.</t>
 
       <t>The authors would like to thank Bruno Decraene, Robert Raszuk, Joel
-      Halpern, Aleksi Suhonen, Randy Bush, Jeff Haas, Stephane Litkowski,
-      Serge Krier and John Scudder for their comments and contributions.</t>
+      Halpern, Aleksi Suhonen, Randy Bush, Stephane Litkowski, Mankamana
+      Mishra and John Scudder for their comments and contributions.</t>
     </section>
   </middle>
 
