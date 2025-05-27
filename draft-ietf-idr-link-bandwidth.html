@@ -6,11 +6,11 @@
 <meta content="initial-scale=1.0" name="viewport">
 <title>BGP Link Bandwidth Extended Community</title>
 <meta content="Pradosh Mohapatra" name="author">
-<meta content="Rex Fernando" name="author">
 <meta content="Reshma Das" name="author">
 <meta content="Satya Mohanty" name="author">
-<meta content="Mankamana Mishra" name="author">
+<meta content="Serge Krier" name="author">
 <meta content="Rafal Jan Szarecki" name="author">
+<meta content="Akshay Gattani" name="author">
 <meta content="
        This document describes an application of BGP extended communities
       that allows a router to perform unequal cost load balancing. 
@@ -1209,11 +1209,11 @@ li > p:last-of-type:only-child {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">BGP Link Bandwidth Extended Community</td>
-<td class="right">March 2025</td>
+<td class="right">May 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Mohapatra, et al.</td>
-<td class="center">Expires 26 September 2025</td>
+<td class="center">Expires 28 November 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1226,21 +1226,17 @@ li > p:last-of-type:only-child {
 <dd class="internet-draft">draft-ietf-idr-link-bandwidth-12</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-03-25" class="published">25 March 2025</time>
+<time datetime="2025-05-27" class="published">27 May 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-09-26">26 September 2025</time></dd>
+<dd class="expires"><time datetime="2025-11-28">28 November 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
       <div class="author-name">P. Mohapatra</div>
 <div class="org">Sproute Networks</div>
-</div>
-<div class="author">
-      <div class="author-name">R. Fernando</div>
-<div class="org">Cisco Systems</div>
 </div>
 <div class="author">
       <div class="author-name">R. Das, <span class="editor">Ed.</span>
@@ -1253,12 +1249,16 @@ li > p:last-of-type:only-child {
 <div class="org">Zscaler</div>
 </div>
 <div class="author">
-      <div class="author-name">M. Mishra</div>
+      <div class="author-name">S. Krier</div>
 <div class="org">Cisco Systems</div>
 </div>
 <div class="author">
       <div class="author-name">R.J. Szarecki</div>
 <div class="org">Google LLC</div>
+</div>
+<div class="author">
+      <div class="author-name">A. Gattani</div>
+<div class="org">Arista Networks</div>
 </div>
 </dd>
 </dl>
@@ -1296,7 +1296,7 @@ li > p:last-of-type:only-child {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 26 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 28 November 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1369,16 +1369,24 @@ li > p:last-of-type:only-child {
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-security-considerations-2" class="internal xref">Security Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-contributors-2" class="internal xref">Contributors</a></p>
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-operational-considerations-2" class="internal xref">Operational Considerations</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-inconsistent-deployment-2" class="internal xref">Inconsistent Deployment</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-acknowledgments-2" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-contributors-2" class="internal xref">Contributors</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-normative-references-2" class="internal xref">Normative References</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-acknowledgments-2" class="internal xref">Acknowledgments</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-authors-addresses-2" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-normative-references-2" class="internal xref">Normative References</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-authors-addresses-2" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1601,17 +1609,13 @@ li > p:last-of-type:only-child {
       Extended Community Sub-Types registry (Type 0x00) and Sub-Type 0x04
       to:<a href="#section-6-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-6-3">
-<pre>    Name
-    ----
-    transitive Link Bandwidth Ext. Community</pre><a href="#section-6-3" class="pilcrow">¶</a>
+<pre> Name ---- transitive Link Bandwidth Ext. Community</pre><a href="#section-6-3" class="pilcrow">¶</a>
 </div>
 <p id="section-6-4">IANA is requested to update the Non-Transitive Two-Octet AS-Specific
       Extended Community Sub-Types registry (Type 0x40) and Sub-Type 0x04
       to:<a href="#section-6-4" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-6-5">
-<pre>    Name
-    ----
-    non-transitive Link Bandwidth Ext. Community
+<pre> Name ---- non-transitive Link Bandwidth Ext. Community
 </pre><a href="#section-6-5" class="pilcrow">¶</a>
 </div>
 <p id="section-6-6">Both updates are to Reference this document.<a href="#section-6-6" class="pilcrow">¶</a></p>
@@ -1625,10 +1629,48 @@ li > p:last-of-type:only-child {
 <p id="section-7-1">There are no additional security risks introduced by this design.<a href="#section-7-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="Contributors">
 <section id="section-8">
+      <h2 id="name-operational-considerations-2">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-operational-considerations-2" class="section-name selfRef">Operational Considerations</a>
+      </h2>
+<section id="section-8.1">
+        <h3 id="name-inconsistent-deployment-2">
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-inconsistent-deployment-2" class="section-name selfRef">Inconsistent Deployment</a>
+        </h3>
+<p id="section-8.1-1">Prior deployments of the feature specified in this document have
+        involved implementations that only understood one of the two extended
+        community transitivity types. As a result, such implementations would
+        treat the use of the other transitivity type in a "ships in the night"
+        fashion. The procedures in this document govern how multiple
+        transitivity types for link bandwith should operate.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
+<p id="section-8.1-2">In circumstances where networks have deployed a mixture of
+        implementations supporting this document's current procedures for both
+        transitivity types, and older implementations that only understand one
+        transitivity type, inconsistent behavior could result. A primary
+        example is when a route received by a BGP speaker contains both a
+        transitive and a non-transitive Link Bandwidth Extended Community and
+        that BGP speaker performs an operation that updates only one of the
+        Link Bandwidth Extended Communities, the other community may be have
+        an inconsistent value. As a result, downstream BGP speakers that may
+        receive such routes may perform inappropriate ECMP load balancing.<a href="#section-8.1-2" class="pilcrow">¶</a></p>
+<p id="section-8.1-3">To mitigate such issues, when operators are aware that older
+        implementations are in present in their networks, they may wish to
+        take actions to address such inconsistencies. One example would be to
+        filter either at advertisement time on the older BGP speaker the
+        unsupported transitivity type of Link Bandwidth Extended Community -
+        if the implementation is capable of such filtering. Alternatively, a
+        receiving BGP speaker, knowing that the sending speaker is incapable
+        of doing such operations, could strip the Link Bandwidth Extended
+        Community type that is unsupported by the sender.<a href="#section-8.1-3" class="pilcrow">¶</a></p>
+<p id="section-8.1-4">Ideally this operational consideration is short-lived until the
+        network has been upgraded to implementations that consistently support
+        the procedures in this draft.<a href="#section-8.1-4" class="pilcrow">¶</a></p>
+</section>
+</section>
+<div id="Contributors">
+<section id="section-9">
       <h2 id="name-contributors-2">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-contributors-2" class="section-name selfRef">Contributors</a>
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-contributors-2" class="section-name selfRef">Contributors</a>
       </h2>
 <address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Kaliraj Vairavakkalai</span></div>
@@ -1656,24 +1698,37 @@ li > p:last-of-type:only-child {
 <a href="mailto:natv@juniper.net" class="email">natv@juniper.net</a>
 </div>
 </address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Rex Fernando</span></div>
+<div dir="auto" class="left"><span class="org">Cisco Systems</span></div>
+<div dir="auto" class="left"><span class="street-address">170 W. Tasman Drive</span></div>
+<div dir="auto" class="left">
+<span class="locality">San Jose</span>, <span class="region">CA</span> <span class="postal-code">95134</span>
+</div>
+<div dir="auto" class="left"><span class="country-name">United States of America</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:rex@cisco.com" class="email">rex@cisco.com</a>
+</div>
+</address>
 </section>
 </div>
 <div id="Acknowledgments">
-<section id="section-9">
+<section id="section-10">
       <h2 id="name-acknowledgments-2">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-acknowledgments-2" class="section-name selfRef">Acknowledgments</a>
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-acknowledgments-2" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="section-9-1">The authors would like to thank Yakov Rekhter, Srihari Sangli and Dan
+<p id="section-10-1">The authors would like to thank Yakov Rekhter, Srihari Sangli and Dan
       Tappan for proposing unequal cost load balancing as one possible
-      application of the extended community attribute.<a href="#section-9-1" class="pilcrow">¶</a></p>
-<p id="section-9-2">The authors would like to thank Bruno Decraene, Robert Raszuk, Joel
+      application of the extended community attribute.<a href="#section-10-1" class="pilcrow">¶</a></p>
+<p id="section-10-2">The authors would like to thank Bruno Decraene, Robert Raszuk, Joel
       Halpern, Aleksi Suhonen, Randy Bush, Jeff Haas, Stephane Litkowski,
-      Serge Krier and John Scudder for their comments and contributions.<a href="#section-9-2" class="pilcrow">¶</a></p>
+      Serge Krier and John Scudder for their comments and contributions.<a href="#section-10-2" class="pilcrow">¶</a></p>
 </section>
 </div>
-<section id="section-10">
+<section id="section-11">
       <h2 id="name-normative-references-2">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-normative-references-2" class="section-name selfRef">Normative References</a>
+<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-normative-references-2" class="section-name selfRef">Normative References</a>
       </h2>
 <dl class="references">
 <dt id="IEEE.754-2019">[IEEE.754-2019]</dt>
@@ -1708,19 +1763,6 @@ li > p:last-of-type:only-child {
 </div>
 </address>
 <address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Rex Fernando</span></div>
-<div dir="auto" class="left"><span class="org">Cisco Systems</span></div>
-<div dir="auto" class="left"><span class="street-address">170 W. Tasman Drive</span></div>
-<div dir="auto" class="left">
-<span class="locality">San Jose</span>, <span class="region">CA</span> <span class="postal-code">95134</span>
-</div>
-<div dir="auto" class="left"><span class="country-name">United States of America</span></div>
-<div class="email">
-<span>Email:</span>
-<a href="mailto:rex@cisco.com" class="email">rex@cisco.com</a>
-</div>
-</address>
-<address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Reshma Das (<span class="role">editor</span>)</span></div>
 <div dir="auto" class="left"><span class="org">Juniper Networks, Inc.</span></div>
 <div dir="auto" class="left"><span class="street-address">1133 Innovation Way,</span></div>
@@ -1747,16 +1789,13 @@ li > p:last-of-type:only-child {
 </div>
 </address>
 <address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Mankamana Mishra</span></div>
+        <div dir="auto" class="left"><span class="fn nameRole">Serge Krier</span></div>
 <div dir="auto" class="left"><span class="org">Cisco Systems</span></div>
-<div dir="auto" class="left"><span class="street-address">821 alder drive,</span></div>
-<div dir="auto" class="left">
-<span class="locality">Milpitas</span>, <span class="region">CA</span> <span class="postal-code">95035</span>
-</div>
-<div dir="auto" class="left"><span class="country-name">United States of America</span></div>
+<div dir="auto" class="left"><span class="street-address">Pegasus Parc, De Kleetlaan 6a</span></div>
+<div dir="auto" class="left"><span class="country-name">Belgium</span></div>
 <div class="email">
 <span>Email:</span>
-<a href="mailto:mankamis@cisco.com" class="email">mankamis@cisco.com</a>
+<a href="mailto:sekrier@cisco.com" class="email">sekrier@cisco.com</a>
 </div>
 </address>
 <address class="vcard">
@@ -1770,6 +1809,19 @@ li > p:last-of-type:only-child {
 <div class="email">
 <span>Email:</span>
 <a href="mailto:rszarecki@gmail.com" class="email">rszarecki@gmail.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Akshay Gattani</span></div>
+<div dir="auto" class="left"><span class="org">Arista Networks</span></div>
+<div dir="auto" class="left"><span class="street-address">5453 Great America Parkway</span></div>
+<div dir="auto" class="left">
+<span class="locality">Santa Clara</span>, <span class="region">CA</span> <span class="postal-code">95054</span>
+</div>
+<div dir="auto" class="left"><span class="country-name">United States of America</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:akshay@arista.com" class="email">akshay@arista.com</a>
 </div>
 </address>
 </section>

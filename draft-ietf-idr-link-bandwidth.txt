@@ -4,17 +4,17 @@
 
 Network Working Group                                       P. Mohapatra
 Internet-Draft                                          Sproute Networks
-Intended status: Standards Track                             R. Fernando
-Expires: 26 September 2025                                 Cisco Systems
-                                                             R. Das, Ed.
-                                                  Juniper Networks, Inc.
+Intended status: Standards Track                             R. Das, Ed.
+Expires: 28 November 2025                         Juniper Networks, Inc.
                                                          S. Mohanty, Ed.
                                                                  Zscaler
-                                                               M. Mishra
+                                                                S. Krier
                                                            Cisco Systems
                                                            R.J. Szarecki
                                                               Google LLC
-                                                           25 March 2025
+                                                              A. Gattani
+                                                         Arista Networks
+                                                             27 May 2025
 
 
                  BGP Link Bandwidth Extended Community
@@ -46,16 +46,16 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 September 2025.
+   This Internet-Draft will expire on 28 November 2025.
 
 
 
 
 
 
-Mohapatra, et al.       Expires 26 September 2025               [Page 1]
+Mohapatra, et al.       Expires 28 November 2025                [Page 1]
 
-Internet-Draft    BGP Link Bandwidth Extended Community       March 2025
+Internet-Draft    BGP Link Bandwidth Extended Community         May 2025
 
 
 Copyright Notice
@@ -86,10 +86,12 @@ Table of Contents
    4.  Error Handling  . . . . . . . . . . . . . . . . . . . . . . .   5
    5.  Document History  . . . . . . . . . . . . . . . . . . . . . .   6
    6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   6
-   7.  Security Considerations . . . . . . . . . . . . . . . . . . .   7
-   8.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .   7
-   9.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   7
-   10. Normative References  . . . . . . . . . . . . . . . . . . . .   7
+   7.  Security Considerations . . . . . . . . . . . . . . . . . . .   6
+   8.  Operational Considerations  . . . . . . . . . . . . . . . . .   6
+     8.1.  Inconsistent Deployment . . . . . . . . . . . . . . . . .   7
+   9.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .   7
+   10. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   8
+   11. Normative References  . . . . . . . . . . . . . . . . . . . .   8
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   8
 
 1.  Introduction
@@ -107,11 +109,9 @@ Table of Contents
 
 
 
-
-
-Mohapatra, et al.       Expires 26 September 2025               [Page 2]
+Mohapatra, et al.       Expires 28 November 2025                [Page 2]
 
-Internet-Draft    BGP Link Bandwidth Extended Community       March 2025
+Internet-Draft    BGP Link Bandwidth Extended Community         May 2025
 
 
 2.  Link Bandwidth Extended Community
@@ -165,9 +165,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community       March 2025
 
 
 
-Mohapatra, et al.       Expires 26 September 2025               [Page 3]
+Mohapatra, et al.       Expires 28 November 2025                [Page 3]
 
-Internet-Draft    BGP Link Bandwidth Extended Community       March 2025
+Internet-Draft    BGP Link Bandwidth Extended Community         May 2025
 
 
 3.  Protocol Procedures
@@ -221,9 +221,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community       March 2025
 
 
 
-Mohapatra, et al.       Expires 26 September 2025               [Page 4]
+Mohapatra, et al.       Expires 28 November 2025                [Page 4]
 
-Internet-Draft    BGP Link Bandwidth Extended Community       March 2025
+Internet-Draft    BGP Link Bandwidth Extended Community         May 2025
 
 
    In the absence of any import or export policies that alter the Link
@@ -277,9 +277,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community       March 2025
 
 
 
-Mohapatra, et al.       Expires 26 September 2025               [Page 5]
+Mohapatra, et al.       Expires 28 November 2025                [Page 5]
 
-Internet-Draft    BGP Link Bandwidth Extended Community       March 2025
+Internet-Draft    BGP Link Bandwidth Extended Community         May 2025
 
 
 5.  Document History
@@ -314,35 +314,66 @@ Internet-Draft    BGP Link Bandwidth Extended Community       March 2025
    Extended Community Sub-Types registry (Type 0x00) and Sub-Type 0x04
    to:
 
-       Name
-       ----
-       transitive Link Bandwidth Ext. Community
+    Name ---- transitive Link Bandwidth Ext. Community
 
    IANA is requested to update the Non-Transitive Two-Octet AS-Specific
    Extended Community Sub-Types registry (Type 0x40) and Sub-Type 0x04
    to:
 
-       Name
-       ----
-       non-transitive Link Bandwidth Ext. Community
+    Name ---- non-transitive Link Bandwidth Ext. Community
 
    Both updates are to Reference this document.
-
-
-
-
-
-
-Mohapatra, et al.       Expires 26 September 2025               [Page 6]
-
-Internet-Draft    BGP Link Bandwidth Extended Community       March 2025
-
 
 7.  Security Considerations
 
    There are no additional security risks introduced by this design.
 
-8.  Contributors
+8.  Operational Considerations
+
+
+
+
+Mohapatra, et al.       Expires 28 November 2025                [Page 6]
+
+Internet-Draft    BGP Link Bandwidth Extended Community         May 2025
+
+
+8.1.  Inconsistent Deployment
+
+   Prior deployments of the feature specified in this document have
+   involved implementations that only understood one of the two extended
+   community transitivity types.  As a result, such implementations
+   would treat the use of the other transitivity type in a "ships in the
+   night" fashion.  The procedures in this document govern how multiple
+   transitivity types for link bandwith should operate.
+
+   In circumstances where networks have deployed a mixture of
+   implementations supporting this document's current procedures for
+   both transitivity types, and older implementations that only
+   understand one transitivity type, inconsistent behavior could result.
+   A primary example is when a route received by a BGP speaker contains
+   both a transitive and a non-transitive Link Bandwidth Extended
+   Community and that BGP speaker performs an operation that updates
+   only one of the Link Bandwidth Extended Communities, the other
+   community may be have an inconsistent value.  As a result, downstream
+   BGP speakers that may receive such routes may perform inappropriate
+   ECMP load balancing.
+
+   To mitigate such issues, when operators are aware that older
+   implementations are in present in their networks, they may wish to
+   take actions to address such inconsistencies.  One example would be
+   to filter either at advertisement time on the older BGP speaker the
+   unsupported transitivity type of Link Bandwidth Extended Community -
+   if the implementation is capable of such filtering.  Alternatively, a
+   receiving BGP speaker, knowing that the sending speaker is incapable
+   of doing such operations, could strip the Link Bandwidth Extended
+   Community type that is unsupported by the sender.
+
+   Ideally this operational consideration is short-lived until the
+   network has been upgraded to implementations that consistently
+   support the procedures in this draft.
+
+9.  Contributors
 
    Kaliraj Vairavakkalai
    Juniper Networks, Inc.
@@ -350,6 +381,17 @@ Internet-Draft    BGP Link Bandwidth Extended Community       March 2025
    Sunnyvale, CA 94089
    United States of America
    Email: kaliraj@juniper.net
+
+
+
+
+
+
+
+
+Mohapatra, et al.       Expires 28 November 2025                [Page 7]
+
+Internet-Draft    BGP Link Bandwidth Extended Community         May 2025
 
 
    Natrajan Venkataraman
@@ -360,7 +402,15 @@ Internet-Draft    BGP Link Bandwidth Extended Community       March 2025
    Email: natv@juniper.net
 
 
-9.  Acknowledgments
+   Rex Fernando
+   Cisco Systems
+   170 W. Tasman Drive
+   San Jose, CA 95134
+   United States of America
+   Email: rex@cisco.com
+
+
+10.  Acknowledgments
 
    The authors would like to thank Yakov Rekhter, Srihari Sangli and Dan
    Tappan for proposing unequal cost load balancing as one possible
@@ -370,7 +420,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community       March 2025
    Halpern, Aleksi Suhonen, Randy Bush, Jeff Haas, Stephane Litkowski,
    Serge Krier and John Scudder for their comments and contributions.
 
-10.  Normative References
+11.  Normative References
 
    [IEEE.754-2019]
               IEEE, "IEEE Standard for Floating-Point Arithmetic", 22
@@ -385,15 +435,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community       March 2025
               Communities Attribute", RFC 4360, DOI 10.17487/RFC4360,
               February 2006, <https://www.rfc-editor.org/info/rfc4360>.
 
-
-
-
-
-Mohapatra, et al.       Expires 26 September 2025               [Page 7]
-
-Internet-Draft    BGP Link Bandwidth Extended Community       March 2025
-
-
    [RFC6793]  Vohra, Q. and E. Chen, "BGP Support for Four-Octet
               Autonomous System (AS) Number Space", RFC 6793,
               DOI 10.17487/RFC6793, December 2012,
@@ -401,17 +442,17 @@ Internet-Draft    BGP Link Bandwidth Extended Community       March 2025
 
 Authors' Addresses
 
+
+
+
+Mohapatra, et al.       Expires 28 November 2025                [Page 8]
+
+Internet-Draft    BGP Link Bandwidth Extended Community         May 2025
+
+
    Pradosh Mohapatra
    Sproute Networks
    Email: pradosh@sproute.com
-
-
-   Rex Fernando
-   Cisco Systems
-   170 W. Tasman Drive
-   San Jose, CA 95134
-   United States of America
-   Email: rex@cisco.com
 
 
    Reshma Das (editor)
@@ -430,24 +471,11 @@ Authors' Addresses
    Email: smohanty@zscaler.com
 
 
-   Mankamana Mishra
+   Serge Krier
    Cisco Systems
-   821 alder drive,
-   Milpitas, CA 95035
-   United States of America
-   Email: mankamis@cisco.com
-
-
-
-
-
-
-
-
-
-Mohapatra, et al.       Expires 26 September 2025               [Page 8]
-
-Internet-Draft    BGP Link Bandwidth Extended Community       March 2025
+   Pegasus Parc, De Kleetlaan 6a
+   Belgium
+   Email: sekrier@cisco.com
 
 
    Rafal Jan Szarecki
@@ -458,6 +486,12 @@ Internet-Draft    BGP Link Bandwidth Extended Community       March 2025
    Email: rszarecki@gmail.com
 
 
+   Akshay Gattani
+   Arista Networks
+   5453 Great America Parkway
+   Santa Clara, CA 95054
+   United States of America
+   Email: akshay@arista.com
 
 
 
@@ -467,38 +501,4 @@ Internet-Draft    BGP Link Bandwidth Extended Community       March 2025
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Mohapatra, et al.       Expires 26 September 2025               [Page 9]
+Mohapatra, et al.       Expires 28 November 2025                [Page 9]

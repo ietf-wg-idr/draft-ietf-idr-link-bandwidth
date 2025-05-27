@@ -9,7 +9,7 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std" docName="draft-ietf-idr-link-bandwidth-13"
+<rfc category="std" docName="draft-ietf-idr-link-bandwidth-12"
      ipr="trust200902">
   <front>
     <title abbrev="BGP Link Bandwidth Extended Community">BGP Link Bandwidth
@@ -20,26 +20,6 @@
 
       <address>
         <email>pradosh@sproute.com</email>
-      </address>
-    </author>
-
-    <author fullname="Rex Fernando" initials="R." surname="Fernando">
-      <organization>Cisco Systems</organization>
-
-      <address>
-        <postal>
-          <street>170 W. Tasman Drive</street>
-
-          <city>San Jose</city>
-
-          <region>CA</region>
-
-          <code>95134</code>
-
-          <country>US</country>
-        </postal>
-
-        <email>rex@cisco.com</email>
       </address>
     </author>
 
@@ -84,23 +64,17 @@
       </address>
     </author>
 
-    <author fullname="Mankamana Mishra" initials="M." surname="Mishra">
+    <author fullname="Serge Krier" initials="S." surname="Krier">
       <organization>Cisco Systems</organization>
 
       <address>
         <postal>
-          <street>821 alder drive,</street>
+          <street> Pegasus Parc, De Kleetlaan 6a</street>
 
-          <city>Milpitas</city>
-
-          <region>CA</region>
-
-          <code>95035</code>
-
-          <country>US</country>
+          <country>Belgium</country>
         </postal>
 
-        <email>mankamis@cisco.com</email>
+        <email>sekrier@cisco.com</email>
       </address>
     </author>
 
@@ -124,7 +98,27 @@
       </address>
     </author>
 
-    <date year="2025"/>
+    <author fullname="Akshay Gattani" initials="A." surname="Gattani">
+      <organization>Arista Networks</organization>
+
+      <address>
+        <postal>
+          <street>5453 Great America Parkway</street>
+
+          <city>Santa Clara</city>
+
+          <region>CA</region>
+
+          <code>95054</code>
+
+          <country>US</country>
+        </postal>
+
+        <email> akshay@arista.com</email>
+      </address>
+    </author>
+
+    <date day="27" month="05" year="2025"/>
 
     <abstract>
       <t>This document describes an application of BGP extended communities
@@ -331,9 +325,7 @@
       to:</t>
 
       <figure>
-        <artwork>    Name
-    ----
-    transitive Link Bandwidth Ext. Community</artwork>
+        <artwork> Name ---- transitive Link Bandwidth Ext. Community</artwork>
       </figure>
 
       <t>IANA is requested to update the Non-Transitive Two-Octet AS-Specific
@@ -341,10 +333,8 @@
       to:</t>
 
       <figure>
-        <artwork>    Name
-    ----
-    non-transitive Link Bandwidth Ext. Community
-          </artwork>
+        <artwork> Name ---- non-transitive Link Bandwidth Ext. Community
+        </artwork>
       </figure>
 
       <t>Both updates are to Reference this document.</t>
@@ -358,32 +348,31 @@
       <section title="Inconsistent Deployment">
         <t>Prior deployments of the feature specified in this document have
         involved implementations that only understood one of the two extended
-        community transitivity types.  As a result, such implementations would
+        community transitivity types. As a result, such implementations would
         treat the use of the other transitivity type in a "ships in the night"
-        fashion.  The procedures in this document govern how multiple
+        fashion. The procedures in this document govern how multiple
         transitivity types for link bandwith should operate.</t>
 
         <t>In circumstances where networks have deployed a mixture of
         implementations supporting this document's current procedures for both
         transitivity types, and older implementations that only understand one
-        transitivity type, inconsistent behavior could result.  A primary
+        transitivity type, inconsistent behavior could result. A primary
         example is when a route received by a BGP speaker contains both a
         transitive and a non-transitive Link Bandwidth Extended Community and
         that BGP speaker performs an operation that updates only one of the
-        Link Bandwidth Extended Communities, the other community may be
-        have an inconsistent value.  As a result, downstream BGP speakers that
-        may receive such routes may perform inappropriate ECMP load
-        balancing.</t>
+        Link Bandwidth Extended Communities, the other community may be have
+        an inconsistent value. As a result, downstream BGP speakers that may
+        receive such routes may perform inappropriate ECMP load balancing.</t>
 
         <t>To mitigate such issues, when operators are aware that older
-        implementations are in present in their networks, they may wish to take
-        actions to address such inconsistencies.  One example would be to filter
-        either at advertisement time on the older BGP speaker the unsupported
-        transitivity type of Link Bandwidth Extended Community - if the
-        implementation is capable of such filtering.  Alternatively, a receiving
-        BGP speaker, knowing that the sending speaker is incapable of doing such
-        operations, could strip the Link Bandwidth Extended Community type that
-        is unsupported by the sender.</t>
+        implementations are in present in their networks, they may wish to
+        take actions to address such inconsistencies. One example would be to
+        filter either at advertisement time on the older BGP speaker the
+        unsupported transitivity type of Link Bandwidth Extended Community -
+        if the implementation is capable of such filtering. Alternatively, a
+        receiving BGP speaker, knowing that the sending speaker is incapable
+        of doing such operations, could strip the Link Bandwidth Extended
+        Community type that is unsupported by the sender.</t>
 
         <t>Ideally this operational consideration is short-lived until the
         network has been upgraded to implementations that consistently support
@@ -431,6 +420,26 @@
           </postal>
 
           <email>natv@juniper.net</email>
+        </address>
+      </author>
+
+      <author fullname="Rex Fernando" initials="R." surname="Fernando">
+        <organization>Cisco Systems</organization>
+
+        <address>
+          <postal>
+            <street>170 W. Tasman Drive</street>
+
+            <city>San Jose</city>
+
+            <region>CA</region>
+
+            <code>95134</code>
+
+            <country>US</country>
+          </postal>
+
+          <email>rex@cisco.com</email>
         </address>
       </author>
     </section>
