@@ -154,7 +154,7 @@
       community can be used to inform other routers about the available
       bandwidth on through a given route.</t>
 
-      <t>The Link bandwidth extended community can be either transitive or
+      <t>The Link Bandwidth Extended Community can be either transitive or
       non-transitive. Therefore the value of the high-order octet of the
       extended Type Field can be 0x00 or 0x40, respectively. The value of the
       low-order octet of the extended type field for this communities is 0x04.
@@ -203,7 +203,12 @@
         Extended Community. Implementations SHOULD provide configuration to
         set the transitivity type of the link bandwidth extended community, as
         well as the Global Administrator and bandwidth values in (Local
-        Administrator field), using local policy. </t>
+        Administrator field), using local policy. For backward compatibility,
+        different implementations MAY use different default values for the
+        transitivity type of the link bandwidth community. The provided
+        configuration SHOULD allow operators to override the default
+        transitivity value as needed. An implementation MAY advertise a link
+        bandwidth value as zero.</t>
 
         <t>No more than one Link Bandwidth Extended Community SHOULD be
         attached to a route. For purpose of backward compatibility during
@@ -228,7 +233,9 @@
         Community of both transitive and non-transitive types. The receiver
         MUST NOT flap or treat the route as malformed based on the
         transitivity of the Link Bandwidth Extended Community and/or BGP
-        session type (internal vs. external).</t>
+        session type (internal vs. external). Implemention MUST be able to
+        process and accept a Link Bandwidth Extended Community where the
+        bandwidth value is set to zero.</t>
 
         <t>Note: Implementations MAY provide configuration to accept
         non-transitive Link Bandwidth extended communities from external BGP
