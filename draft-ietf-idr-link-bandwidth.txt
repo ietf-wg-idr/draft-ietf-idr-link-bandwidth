@@ -18,7 +18,7 @@ Expires: 2 February 2026                          Juniper Networks, Inc.
 
 
                  BGP Link Bandwidth Extended Community
-                    draft-ietf-idr-link-bandwidth-13
+                    draft-ietf-idr-link-bandwidth-14
 
 Abstract
 
