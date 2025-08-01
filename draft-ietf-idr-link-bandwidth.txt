@@ -246,11 +246,11 @@ Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 
 3.4.  Link Bandwidth Extended Community Arithmetic and BGP Multipath
 
-   IIn a BGP multipath ECMP environment, the link bandwidth value that
-   is sent or re-advertised may be calculated based on the Link
-   Bandwidth Extended Community of the routes contributing to multipath
-   in the Local Routing Information Base (Local-RIB).  This topic is
-   beyond the scope of this document.
+   In a BGP multipath ECMP environment, the link bandwidth value that is
+   sent or re-advertised may be calculated based on the Link Bandwidth
+   Extended Community of the routes contributing to multipath in the
+   Local Routing Information Base (Local-RIB).  This topic is beyond the
+   scope of this document.
 
 4.  Error Handling
 
@@ -282,7 +282,7 @@ Mohapatra, et al.        Expires 2 February 2026                [Page 5]
 Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 
 
-   WECMP can be utilized when only all contributing paths have a non-
+   WECMP can be utilized only when all contributing paths have a non-
    zero value in the Link Bandwidth Extended Community.  If any of the
    paths lack a valid Link Bandwidth Extended Community, ECMP (Equal-
    Cost Multi-Path) MUST be used instead.
