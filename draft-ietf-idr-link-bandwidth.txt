@@ -23,7 +23,8 @@ Expires: 8 January 2026                           Juniper Networks, Inc.
 Abstract
 
    This document describes an application of BGP extended communities
-   that allows a router to perform unequal cost load balancing.
+   that allows a router to perform weighted equal-cost multipath
+   (WECMP).
 
 Requirements Language
 
@@ -47,7 +48,6 @@ Status of This Memo
    material or to cite them other than as "work in progress."
 
    This Internet-Draft will expire on 8 January 2026.
-
 
 
 
@@ -77,12 +77,13 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
    2.  Link Bandwidth Extended Community . . . . . . . . . . . . . .   3
    3.  Protocol Procedures . . . . . . . . . . . . . . . . . . . . .   4
-     3.1.  Sender (Originating Link Bandwidth Community) . . . . . .   4
-     3.2.  Receiver (Receiving Link Bandwidth Community) . . . . . .   4
-     3.3.  Re-advertisement Procedures . . . . . . . . . . . . . . .   4
+     3.1.  Sender (Originating Link Bandwidth Extended Community)  .   4
+     3.2.  Receiver (Receiving Link Bandwidth Extended Community)  .   4
+     3.3.  Re-advertisement Procedures . . . . . . . . . . . . . . .   5
        3.3.1.  Re-advertisement with Next hop Self . . . . . . . . .   5
        3.3.2.  Re-advertisement with Next Hop Unchanged  . . . . . .   5
-     3.4.  Link Bandwidth Community Arithmetic and BGP Multipath . .   5
+     3.4.  Link Bandwidth Extended Community Arithmetic and BGP
+           Multipath . . . . . . . . . . . . . . . . . . . . . . . .   5
    4.  Error Handling  . . . . . . . . . . . . . . . . . . . . . . .   5
    5.  Document History  . . . . . . . . . . . . . . . . . . . . . .   6
    6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   6
@@ -102,10 +103,9 @@ Table of Contents
    routing does not account for the varying capacities of different
    paths.  This document suggests that the external link bandwidth be
    carried in the network using one of two new extended communities
-   [RFC4360] - the transitive and non-transitive link bandwidth extended
-   community.  The Link Bandwidth Extended Community provides a
+   [RFC4360] - the transitive and non-transitive Link Bandwidth Extended
+   Community.  The Link Bandwidth Extended Community provides a
    mechanism for routers to advertise the bandwidth of their downstream
-   path(s), facilitating maximum utilization of network resources.
 
 
 
@@ -114,13 +114,15 @@ Mohapatra, et al.        Expires 8 January 2026                 [Page 2]
 Internet-Draft    BGP Link Bandwidth Extended Community        July 2025
 
 
+   path(s), facilitating maximum utilization of network resources.
+
 2.  Link Bandwidth Extended Community
 
    The Link Bandwidth Extended Community is defined as a BGP extended
    community that carries the bandwidth information of a router,
    represented by BGP Protocol Next Hop, connecting to remote network.
    This community can be used to inform other routers about the
-   available bandwidth on through a given route.
+   available bandwidth through a given route.
 
    The Link Bandwidth Extended Community can be either transitive or
    non-transitive.  Therefore the value of the high-order octet of the
@@ -128,18 +130,20 @@ Internet-Draft    BGP Link Bandwidth Extended Community        July 2025
    the low-order octet of the extended type field for this communities
    is 0x04.  The value of the Global Administrator subfield in the Value
    Field SHOULD represent the Autonomous System of the router that
-   attaches the Link Bandwidth Community, but it can be set to any
-   2-byte value.  If the Autonomous System number cannot be represented
-   in two octets, as enabled by [RFC6793], AS_TRANS should be used in
-   the Global Administrator subfield.  The bandwidth of the link is
-   expressed as 4 octets in [IEEE.754-2019] floating point format, units
-   being bytes (not bits!) per second.  It is carried in the Local
-   Administrator subfield of the Value Field.
+   attaches the Link Bandwidth Extended Community, but it can be set to
+   any 2-byte value.  If the Autonomous System number cannot be
+   represented in two octets, as enabled by [RFC6793], AS_TRANS should
+   be used in the Global Administrator subfield.  The encoding of
+   4-octet ASN is out of the scope and may be defined in a separate
+   document.  The bandwidth of the link is expressed as 4 octets in
+   [IEEE.754-2019] floating point format, units being bytes (not bits!)
+   per second.  It is carried in the Local Administrator subfield of the
+   Value Field.
 
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |   Type=0x00/0x40   | SubType= 0x04 |       AS Number          |
+   |Type=0x00/0x40 | SubType= 0x04 |       AS Number               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                    Link Bandwidth Value                       |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -161,10 +165,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community        July 2025
 
 
 
-
-
-
-
 Mohapatra, et al.        Expires 8 January 2026                 [Page 3]
 
 Internet-Draft    BGP Link Bandwidth Extended Community        July 2025
@@ -172,19 +172,22 @@ Internet-Draft    BGP Link Bandwidth Extended Community        July 2025
 
 3.  Protocol Procedures
 
-3.1.  Sender (Originating Link Bandwidth Community)
+3.1.  Sender (Originating Link Bandwidth Extended Community)
 
-   An originator of Link Bandwidth Extended Community SHOULD be able to
-   originate either a transitive or a non-transitive Link Bandwidth
-   Extended Community.  Implementations SHOULD provide configuration to
-   set the transitivity type of the link bandwidth extended community,
-   as well as the Global Administrator and bandwidth values in (Local
-   Administrator field), using local policy.  For backward
-   compatibility, different implementations MAY use different default
-   values for the transitivity type of the link bandwidth community.
-   The provided configuration SHOULD allow operators to override the
-   default transitivity value as needed.  An implementation MAY
-   advertise a link bandwidth value as zero.
+   An originator of the Link Bandwidth Extended Community SHOULD be able
+   to originate either a transitive or a non-transitive Link Bandwidth
+   Extended Community.  Implementations SHOULD allow configuration to
+   set the transitivity type, the Global Administrator, and the
+   bandwidth value (in the Local Administrator field) using local
+   policy.  For backward compatibility, different implementations MAY
+   use different default values for the transitivity type of the Link
+   Bandwidth Extended Community.  The provided configuration SHOULD
+   allow operators to override the default transitivity value as needed.
+   Implementations MAY also automatically detect the Global
+   Administrator value and the bandwidth of the interface towards a
+   peer.  This autosensed information can be used to populate the Link
+   Bandwidth Extended Community.  An implementation MAY advertise a link
+   bandwidth value of zero.
 
    No more than one Link Bandwidth Extended Community SHOULD be attached
    to a route.  For purpose of backward compatibility during transition,
@@ -202,7 +205,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community        July 2025
    transitive Link Bandwidth extended communities on external BGP
    sessions.
 
-3.2.  Receiver (Receiving Link Bandwidth Community)
+3.2.  Receiver (Receiving Link Bandwidth Extended Community)
 
    A BGP receiver MUST be able to process Link Bandwidth Extended
    Community of both transitive and non-transitive types.  The receiver
@@ -216,15 +219,14 @@ Internet-Draft    BGP Link Bandwidth Extended Community        July 2025
    transitive Link Bandwidth extended communities from external BGP
    sessions.
 
-3.3.  Re-advertisement Procedures
-
-
 
 
 Mohapatra, et al.        Expires 8 January 2026                 [Page 4]
 
 Internet-Draft    BGP Link Bandwidth Extended Community        July 2025
 
+
+3.3.  Re-advertisement Procedures
 
 3.3.1.  Re-advertisement with Next hop Self
 
@@ -244,13 +246,13 @@ Internet-Draft    BGP Link Bandwidth Extended Community        July 2025
    next hop, SHOULD NOT change the Link Bandwidth Extended Community in
    any way.
 
-3.4.  Link Bandwidth Community Arithmetic and BGP Multipath
+3.4.  Link Bandwidth Extended Community Arithmetic and BGP Multipath
 
-   In a BGP multipath ECMP environment, the value of the link bandwidth
-   community that is sent or re-advertised may be calculated based on
-   the link bandwidth communities of the routes contributing to
-   multipath in the Local Routing Information Base (Local-RIB).  This
-   topic is beyond the scope of this document.
+   IIn a BGP multipath ECMP environment, the link bandwidth value that
+   is sent or re-advertised may be calculated based on the Link
+   Bandwidth Extended Community of the routes contributing to multipath
+   in the Local Routing Information Base (Local-RIB).  This topic is
+   beyond the scope of this document.
 
 4.  Error Handling
 
@@ -271,8 +273,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community        July 2025
    any modification, while following the extended community transitivity
    rules.
 
-   Link bandwidth extended communities with a negative value SHALL be
-   ignored and MUST NOT be originated.
 
 
 
@@ -281,6 +281,9 @@ Mohapatra, et al.        Expires 8 January 2026                 [Page 5]
 
 Internet-Draft    BGP Link Bandwidth Extended Community        July 2025
 
+
+   Link bandwidth extended communities with a negative value SHALL be
+   ignored and MUST NOT be originated.
 
    WECMP (Weighted Equal-Cost Multi-Path) can be utilized when only all
    contributing paths have a non-zero value in the Link Bandwidth
@@ -292,10 +295,10 @@ Internet-Draft    BGP Link Bandwidth Extended Community        July 2025
 
    BGP Link Bandwidth Extended Community has evolved over several
    versions of the IETF draft.  In the earlier versions up to draft-
-   ietf-idr-link-bandwidth-08, only the non-transitive version of link
-   bandwidth extended community was supported.  However, starting from
+   ietf-idr-link-bandwidth-08, only the non-transitive version of Link
+   Bandwidth Extended Community was supported.  However, starting from
    draft-ietf-idr-link-bandwidth-09, both transitive and non-transitive
-   versions of link bandwidth extended community are supported.
+   versions of Link Bandwidth Extended Community are supported.
 
    An old sender/receiver is a BGP speaker that uses procedures up to
    draft (https://datatracker.ietf.org/doc/html/draft-ietf-idr-link-
@@ -322,14 +325,11 @@ Internet-Draft    BGP Link Bandwidth Extended Community        July 2025
 
        Name
        ----
-       transitive Link Bandwidth Ext. Community
+       transitive Link Bandwidth Extended Community
 
    IANA is requested to update the Non-Transitive Two-Octet AS-Specific
    Extended Community Sub-Types registry (Type 0x40) and Sub-Type 0x04
    to:
-
-
-
 
 
 
@@ -340,7 +340,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community        July 2025
 
        Name
        ----
-       non-transitive Link Bandwidth Ext. Community
+       non-transitive Link Bandwidth Extended Community
 
    Both updates are to Reference this document.
 
@@ -430,7 +430,8 @@ Internet-Draft    BGP Link Bandwidth Extended Community        July 2025
 
    The authors would like to thank Bruno Decraene, Robert Raszuk, Joel
    Halpern, Aleksi Suhonen, Randy Bush, Stephane Litkowski, Mankamana
-   Mishra and John Scudder for their comments and contributions.
+   Mishra, Moshiko Nayman, Yingzhen Qu, Anoop Ghanwani, Dongjie (Jimmy)
+   and John Scudder for their comments and contributions.
 
 11.  Normative References
 
@@ -438,10 +439,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community        July 2025
               IEEE, "IEEE Standard for Floating-Point Arithmetic", 22
               July 2019, <https://ieeexplore.ieee.org/document/8766229>.
 
-   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997,
-              <https://www.rfc-editor.org/info/rfc2119>.
+
+
+
 
 
 
@@ -449,6 +449,11 @@ Mohapatra, et al.        Expires 8 January 2026                 [Page 8]
 
 Internet-Draft    BGP Link Bandwidth Extended Community        July 2025
 
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/info/rfc2119>.
 
    [RFC4360]  Sangli, S., Tappan, D., and Y. Rekhter, "BGP Extended
               Communities Attribute", RFC 4360, DOI 10.17487/RFC4360,
@@ -489,12 +494,7 @@ Authors' Addresses
    Email: sekrier@cisco.com
 
 
-   Rafal Jan Szarecki
-   Google LLC
-   1160 N Mathilda Ave,
-   Sunnyvale, CA 94089
-   United States of America
-   Email: rszarecki@gmail.com
+
 
 
 
@@ -506,20 +506,20 @@ Mohapatra, et al.        Expires 8 January 2026                 [Page 9]
 Internet-Draft    BGP Link Bandwidth Extended Community        July 2025
 
 
+   Rafal Jan Szarecki
+   Google LLC
+   1160 N Mathilda Ave,
+   Sunnyvale, CA 94089
+   United States of America
+   Email: rszarecki@gmail.com
+
+
    Akshay Gattani
    Arista Networks
    5453 Great America Parkway
    Santa Clara, CA 95054
    United States of America
    Email: akshay@arista.com
-
-
-
-
-
-
-
-
 
 
 
