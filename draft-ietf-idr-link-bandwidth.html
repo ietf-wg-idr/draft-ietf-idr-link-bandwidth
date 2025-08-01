@@ -13,8 +13,8 @@
 <meta content="Akshay Gattani" name="author">
 <meta content="
        This document describes an application of BGP extended communities
-      that allows a router to perform weighted equal-cost multipath
-      (WECMP). 
+      that allows a router to perform WECMP (Weighted Equal-Cost
+      Multipath). 
     " name="description">
 <meta content="xml2rfc 3.16.0" name="generator">
 <meta content="draft-ietf-idr-link-bandwidth-13" name="ietf.draft">
@@ -1210,11 +1210,11 @@ li > p:last-of-type:only-child {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">BGP Link Bandwidth Extended Community</td>
-<td class="right">July 2025</td>
+<td class="right">August 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Mohapatra, et al.</td>
-<td class="center">Expires 8 January 2026</td>
+<td class="center">Expires 2 February 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1227,12 +1227,12 @@ li > p:last-of-type:only-child {
 <dd class="internet-draft">draft-ietf-idr-link-bandwidth-13</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-07-07" class="published">7 July 2025</time>
+<time datetime="2025-08-01" class="published">1 August 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-01-08">8 January 2026</time></dd>
+<dd class="expires"><time datetime="2026-02-02">2 February 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1268,8 +1268,8 @@ li > p:last-of-type:only-child {
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This document describes an application of BGP extended communities
-      that allows a router to perform weighted equal-cost multipath
-      (WECMP).<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+      that allows a router to perform WECMP (Weighted Equal-Cost
+      Multipath).<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note" id="section-note.1">
       <h2 id="name-requirements-language-2">
@@ -1298,7 +1298,7 @@ li > p:last-of-type:only-child {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 8 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 2 February 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1426,11 +1426,11 @@ li > p:last-of-type:only-child {
       Bandwidth Extended Community, but it can be set to any 2-byte value. If
       the Autonomous System number cannot be represented in two octets, as
       enabled by <span>[<a href="#RFC6793" class="cite xref">RFC6793</a>]</span>, AS_TRANS should be used in the
-      Global Administrator subfield. The encoding of 4-octet ASN is out of the
-      scope and may be defined in a separate document. The bandwidth of the
-      link is expressed as 4 octets in <span>[<a href="#IEEE.754-2019" class="cite xref">IEEE.754-2019</a>]</span> floating
-      point format, units being bytes (not bits!) per second. It is carried in
-      the Local Administrator subfield of the Value Field.<a href="#section-2-2" class="pilcrow">¶</a></p>
+      Global Administrator subfield. The encoding of 4-octet ASN is out of
+      scope of this document. The bandwidth of the link is expressed as 4
+      octets in <span>[<a href="#IEEE.754-2019" class="cite xref">IEEE.754-2019</a>]</span> floating point format, units
+      being bytes (not bits!) per second. It is carried in the Local
+      Administrator subfield of the Value Field.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <span id="name-link-bandwidth-extended-communi"></span><div id="LBWExtCom">
 <figure id="figure-1">
         <div class="alignLeft art-text artwork" id="section-2-3.1">
@@ -1471,20 +1471,17 @@ li > p:last-of-type:only-child {
         <h3 id="name-sender-originating-link-band">
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-sender-originating-link-band" class="section-name selfRef">Sender (Originating Link Bandwidth Extended Community)</a>
         </h3>
-<p id="section-3.1-1">An originator of the Link Bandwidth Extended Community SHOULD be
-        able to originate either a transitive or a non-transitive Link
-        Bandwidth Extended Community. Implementations SHOULD allow
-        configuration to set the transitivity type, the Global Administrator,
-        and the bandwidth value (in the Local Administrator field) using local
-        policy. For backward compatibility, different implementations MAY use
-        different default values for the transitivity type of the Link
-        Bandwidth Extended Community. The provided configuration SHOULD allow
-        operators to override the default transitivity value as needed.
-        Implementations MAY also automatically detect the Global Administrator
-        value and the bandwidth of the interface towards a peer. This
-        autosensed information can be used to populate the Link Bandwidth
-        Extended Community. An implementation MAY advertise a link bandwidth
-        value of zero.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-1">An originator of Link Bandwidth Extended Community SHOULD be able
+        to originate either a transitive or a non-transitive Link Bandwidth
+        Extended Community. Implementations SHOULD provide configuration to
+        set the transitivity type of the Link Bandwidth Extended Community, as
+        well as the Global Administrator and bandwidth values in (Local
+        Administrator field), using local policy. For backward compatibility,
+        different implementations MAY use different default values for the
+        transitivity type of the Link Bandwidth Extended Community. The
+        provided configuration SHOULD allow operators to override the default
+        transitivity value as needed. An implementation MAY advertise a link
+        bandwidth value as zero.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.1-2">No more than one Link Bandwidth Extended Community SHOULD be
         attached to a route. For purpose of backward compatibility during
         transition, a BGP speaker MAY attach one Link Bandwidth Extended
@@ -1573,7 +1570,7 @@ li > p:last-of-type:only-child {
 <p id="section-4-2">Between transitive and non-transitive types of Link Bandwidth
       extended communities that have the same 'Link Bandwidth Value', the
       transitivity doesn't matter for purpose of computing WECMP or
-      programming to forwarding.<a href="#section-4-2" class="pilcrow">¶</a></p>
+      programming to FIB (Forwarding Information Base).<a href="#section-4-2" class="pilcrow">¶</a></p>
 <p id="section-4-3">Note that these procedures mean that a BGP speaker reflecting a route
       with next hop unchanged (e.g. RR) will re-advertise the Link Bandwidth
       extended communities received on the route as-is without any
@@ -1581,10 +1578,10 @@ li > p:last-of-type:only-child {
       rules.<a href="#section-4-3" class="pilcrow">¶</a></p>
 <p id="section-4-4">Link bandwidth extended communities with a negative value SHALL be
       ignored and MUST NOT be originated.<a href="#section-4-4" class="pilcrow">¶</a></p>
-<p id="section-4-5">WECMP (Weighted Equal-Cost Multi-Path) can be utilized when only all
-      contributing paths have a non-zero value in the Link Bandwidth Extended
-      Community. If any of the paths lack a valid Link Bandwidth Extended
-      Community, ECMP (Equal-Cost Multi-Path) MUST be used instead.<a href="#section-4-5" class="pilcrow">¶</a></p>
+<p id="section-4-5">WECMP can be utilized when only all contributing paths have a
+      non-zero value in the Link Bandwidth Extended Community. If any of the
+      paths lack a valid Link Bandwidth Extended Community, ECMP (Equal-Cost
+      Multi-Path) MUST be used instead.<a href="#section-4-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="History">
@@ -1604,11 +1601,11 @@ li > p:last-of-type:only-child {
       or any undocumented behavior for Link Bandwidth Extended Community.<a href="#section-5-2" class="pilcrow">¶</a></p>
 <p id="section-5-3">A new sender/receiver is a BGP speaker that implements procedures
       specified in this document.<a href="#section-5-3" class="pilcrow">¶</a></p>
-<p id="section-5-4">A BGP speaker (Sender or Receiver) need to be upgraded to support the
-      procedures defined in this document to provide full interoperability for
-      both transitive and non-transitive versions of Link Bandwidth Extended
-      Community. In order simplify implementations, it is not a goal to
-      provide interoperability by upgrading only the RR.<a href="#section-5-4" class="pilcrow">¶</a></p>
+<p id="section-5-4">A BGP speaker (Sender or Receiver) needs to be upgraded to support
+      the procedures defined in this document to provide full interoperability
+      for both transitive and non-transitive versions of Link Bandwidth
+      Extended Community. In order to simplify implementations, it is not a
+      goal to provide interoperability by upgrading only the RR.<a href="#section-5-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="IANA">
