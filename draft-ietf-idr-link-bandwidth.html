@@ -16,25 +16,23 @@
       that allows a router to perform WECMP (Weighted Equal-Cost
       Multipath). 
     " name="description">
-<meta content="xml2rfc 3.16.0" name="generator">
-<meta content="draft-ietf-idr-link-bandwidth-14" name="ietf.draft">
+<meta content="xml2rfc 3.18.2" name="generator">
+<meta content="draft-ietf-idr-link-bandwidth-15" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.16.0
-    Python 3.11.1
-    appdirs 1.4.4
-    ConfigArgParse 1.5.3
-    google-i18n-address 2.5.2
-    html5lib 1.1
+  xml2rfc 3.18.2
+    Python 3.9.6
+    ConfigArgParse 1.7
+    google-i18n-address 3.1.0
     intervaltree 3.1.0
     Jinja2 3.1.2
-    lxml 4.9.2
-    MarkupSafe 2.1.2
+    lxml 4.9.3
+    platformdirs 3.11.0
     pycountry 22.3.5
-    PyYAML 6.0
-    requests 2.28.2
-    setuptools 65.5.0
-    six 1.16.0
-    wcwidth 0.2.6
+    PyYAML 6.0.1
+    requests 2.31.0
+    setuptools 58.0.4
+    six 1.15.0
+    wcwidth 0.2.9
 -->
 <link href="draft-ietf-idr-link-bandwidth.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -64,7 +62,6 @@
 
 @viewport {
   zoom: 1.0;
-  width: extend-to-zoom;
 }
 @-ms-viewport {
   width: extend-to-zoom;
@@ -82,6 +79,7 @@ body {
   font-family: var(--font-sans);
   line-height: 1.6;
   scroll-behavior: smooth;
+  overflow-wrap: break-word;
 }
 .ears {
   display: none;
@@ -260,7 +258,8 @@ a[href]:hover {
   background-color: #f2f2f2;
 }
 figcaption a[href],
-a[href].selfRef {
+a[href].selfRef,
+.iref + a[href].internal {
   color: #222;
 }
 /* XXX probably not this:
@@ -311,6 +310,9 @@ blockquote {
   border: 1px solid #ddd;
   border-radius: 3px;
   margin: 1em 0;
+}
+blockquote > *:last-child {
+  margin-bottom: 0;
 }
 cite {
   display: block;
@@ -649,7 +651,6 @@ hr.addr {
 /* pagination */
 @media print {
   body {
-
     width: 100%;
   }
   p {
@@ -1214,7 +1215,7 @@ li > p:last-of-type:only-child {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Mohapatra, et al.</td>
-<td class="center">Expires 2 February 2026</td>
+<td class="center">Expires 8 February 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1224,15 +1225,15 @@ li > p:last-of-type:only-child {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">Network Working Group</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-ietf-idr-link-bandwidth-14</dd>
+<dd class="internet-draft">draft-ietf-idr-link-bandwidth-15</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-08-01" class="published">1 August 2025</time>
+<time datetime="2025-08-07" class="published">7 August 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-02-02">2 February 2026</time></dd>
+<dd class="expires"><time datetime="2026-02-08">8 February 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1272,8 +1273,8 @@ li > p:last-of-type:only-child {
       Multipath).<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note" id="section-note.1">
-      <h2 id="name-requirements-language-2">
-<a href="#name-requirements-language-2" class="section-name selfRef">Requirements Language</a>
+      <h2 id="name-requirements-language">
+<a href="#name-requirements-language" class="section-name selfRef">Requirements Language</a>
       </h2>
 <p id="section-note.1-1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
       "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
@@ -1281,8 +1282,8 @@ li > p:last-of-type:only-child {
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
-        <h2 id="name-status-of-this-memo-2">
-<a href="#name-status-of-this-memo-2" class="section-name selfRef">Status of This Memo</a>
+        <h2 id="name-status-of-this-memo">
+<a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
         </h2>
 <p id="section-boilerplate.1-1">
         This Internet-Draft is submitted in full conformance with the
@@ -1298,13 +1299,13 @@ li > p:last-of-type:only-child {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 2 February 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 February 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
 <section id="section-boilerplate.2">
-        <h2 id="name-copyright-notice-2">
-<a href="#name-copyright-notice-2" class="section-name selfRef">Copyright Notice</a>
+        <h2 id="name-copyright-notice">
+<a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
             Copyright (c) 2025 IETF Trust and the persons identified as the
@@ -1323,80 +1324,80 @@ li > p:last-of-type:only-child {
 </div>
 <div id="toc">
 <section id="section-toc.1">
-        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents-2">
-<a href="#name-table-of-contents-2" class="section-name selfRef">Table of Contents</a>
+        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
+<a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
 <nav class="toc"><ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
-            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction-2" class="internal xref">Introduction</a></p>
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
-            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-link-bandwidth-extended-commun" class="internal xref">Link Bandwidth Extended Community</a></p>
+            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-link-bandwidth-extended-com" class="internal xref">Link Bandwidth Extended Community</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-protocol-procedures-2" class="internal xref">Protocol Procedures</a></p>
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-protocol-procedures" class="internal xref">Protocol Procedures</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-sender-originating-link-band" class="internal xref">Sender (Originating Link Bandwidth Extended Community)</a></p>
+                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-sender-originating-link-ban" class="internal xref">Sender (Originating Link Bandwidth Extended Community)</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-receiver-receiving-link-band" class="internal xref">Receiver (Receiving Link Bandwidth Extended Community)</a></p>
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-receiver-receiving-link-ban" class="internal xref">Receiver (Receiving Link Bandwidth Extended Community)</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
-                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-re-advertisement-procedures-2" class="internal xref">Re-advertisement Procedures</a></p>
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-re-advertisement-procedures" class="internal xref">Re-advertisement Procedures</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3.2.1">
-                    <p id="section-toc.1-1.3.2.3.2.1.1"><a href="#section-3.3.1" class="auto internal xref">3.3.1</a>.  <a href="#name-re-advertisement-with-next-ho" class="internal xref">Re-advertisement with Next hop Self</a></p>
+                    <p id="section-toc.1-1.3.2.3.2.1.1"><a href="#section-3.3.1" class="auto internal xref">3.3.1</a>.  <a href="#name-re-advertisement-with-next-" class="internal xref">Re-advertisement with Next hop Self</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3.2.2">
-                    <p id="section-toc.1-1.3.2.3.2.2.1"><a href="#section-3.3.2" class="auto internal xref">3.3.2</a>.  <a href="#name-re-advertisement-with-next-hop" class="internal xref">Re-advertisement with Next Hop Unchanged</a></p>
+                    <p id="section-toc.1-1.3.2.3.2.2.1"><a href="#section-3.3.2" class="auto internal xref">3.3.2</a>.  <a href="#name-re-advertisement-with-next-h" class="internal xref">Re-advertisement with Next Hop Unchanged</a></p>
 </li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
-                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-link-bandwidth-extended-communit" class="internal xref">Link Bandwidth Extended Community Arithmetic and BGP Multipath</a></p>
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-link-bandwidth-extended-commu" class="internal xref">Link Bandwidth Extended Community Arithmetic and BGP Multipath</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-error-handling-2" class="internal xref">Error Handling</a></p>
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-error-handling" class="internal xref">Error Handling</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-document-history-2" class="internal xref">Document History</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-document-history" class="internal xref">Document History</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-iana-considerations-2" class="internal xref">IANA Considerations</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-security-considerations-2" class="internal xref">Security Considerations</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-operational-considerations-2" class="internal xref">Operational Considerations</a></p>
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-operational-considerations" class="internal xref">Operational Considerations</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
-                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-inconsistent-deployment-2" class="internal xref">Inconsistent Deployment</a></p>
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-inconsistent-deployment" class="internal xref">Inconsistent Deployment</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-contributors-2" class="internal xref">Contributors</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-contributors" class="internal xref">Contributors</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-acknowledgments-2" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-normative-references-2" class="internal xref">Normative References</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-normative-references" class="internal xref">Normative References</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-authors-addresses-2" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
 </section>
 </div>
 <section id="section-1">
-      <h2 id="name-introduction-2">
-<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction-2" class="section-name selfRef">Introduction</a>
+      <h2 id="name-introduction">
+<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
 <p id="section-1-1">Load balancing is a critical aspect of network design, enabling
       efficient utilization of available bandwidth and improving overall
@@ -1409,8 +1410,8 @@ li > p:last-of-type:only-child {
       path(s), facilitating maximum utilization of network resources.<a href="#section-1-1" class="pilcrow">¶</a></p>
 </section>
 <section id="section-2">
-      <h2 id="name-link-bandwidth-extended-commun">
-<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-link-bandwidth-extended-commun" class="section-name selfRef">Link Bandwidth Extended Community</a>
+      <h2 id="name-link-bandwidth-extended-com">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-link-bandwidth-extended-com" class="section-name selfRef">Link Bandwidth Extended Community</a>
       </h2>
 <p id="section-2-1">The Link Bandwidth Extended Community is defined as a BGP extended
       community that carries the bandwidth information of a router,
@@ -1431,7 +1432,7 @@ li > p:last-of-type:only-child {
       octets in <span>[<a href="#IEEE.754-2019" class="cite xref">IEEE.754-2019</a>]</span> floating point format, units
       being bytes (not bits!) per second. It is carried in the Local
       Administrator subfield of the Value Field.<a href="#section-2-2" class="pilcrow">¶</a></p>
-<span id="name-link-bandwidth-extended-communi"></span><div id="LBWExtCom">
+<span id="name-link-bandwidth-extended-comm"></span><div id="LBWExtCom">
 <figure id="figure-1">
         <div class="alignLeft art-text artwork" id="section-2-3.1">
 <pre>
@@ -1458,18 +1459,18 @@ li > p:last-of-type:only-child {
 </pre>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
-<a href="#name-link-bandwidth-extended-communi" class="selfRef">Link Bandwidth Extended Community</a>
+<a href="#name-link-bandwidth-extended-comm" class="selfRef">Link Bandwidth Extended Community</a>
         </figcaption></figure>
 </div>
 </section>
 <section id="section-3">
-      <h2 id="name-protocol-procedures-2">
-<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-protocol-procedures-2" class="section-name selfRef">Protocol Procedures</a>
+      <h2 id="name-protocol-procedures">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-protocol-procedures" class="section-name selfRef">Protocol Procedures</a>
       </h2>
 <div id="Originator">
 <section id="section-3.1">
-        <h3 id="name-sender-originating-link-band">
-<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-sender-originating-link-band" class="section-name selfRef">Sender (Originating Link Bandwidth Extended Community)</a>
+        <h3 id="name-sender-originating-link-ban">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-sender-originating-link-ban" class="section-name selfRef">Sender (Originating Link Bandwidth Extended Community)</a>
         </h3>
 <p id="section-3.1-1">An originator of Link Bandwidth Extended Community SHOULD be able
         to originate either a transitive or a non-transitive Link Bandwidth
@@ -1499,30 +1500,35 @@ li > p:last-of-type:only-child {
 </div>
 <div id="Receiver">
 <section id="section-3.2">
-        <h3 id="name-receiver-receiving-link-band">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-receiver-receiving-link-band" class="section-name selfRef">Receiver (Receiving Link Bandwidth Extended Community)</a>
+        <h3 id="name-receiver-receiving-link-ban">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-receiver-receiving-link-ban" class="section-name selfRef">Receiver (Receiving Link Bandwidth Extended Community)</a>
         </h3>
 <p id="section-3.2-1">A BGP receiver MUST be able to process Link Bandwidth Extended
         Community of both transitive and non-transitive types. The receiver
         MUST NOT flap or treat the route as malformed based on the
         transitivity of the Link Bandwidth Extended Community and/or BGP
-        session type (internal vs. external). Implemention MUST be able to
-        process and accept a Link Bandwidth Extended Community where the
-        bandwidth value is set to zero.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+        session type (internal vs. external).<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.2-2">Note: Implementations MAY provide configuration to accept
         non-transitive Link Bandwidth extended communities from external BGP
         sessions.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.2-3">Implementions MUST be able to process and accept a Link Bandwidth
+        Extended Community where the bandwidth value is set to zero. WECMP
+        can be utilized when all contributing paths have a non-zero
+        value in the Link Bandwidth Extended Community. Paths with zero value
+        SHOULD be excluded from the WECMP formation. Implementations that
+        are not able to support such exclusion MAY use ECMP formation
+        instead.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="Re-advertisement">
 <section id="section-3.3">
-        <h3 id="name-re-advertisement-procedures-2">
-<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-re-advertisement-procedures-2" class="section-name selfRef">Re-advertisement Procedures</a>
+        <h3 id="name-re-advertisement-procedures">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-re-advertisement-procedures" class="section-name selfRef">Re-advertisement Procedures</a>
         </h3>
 <div id="NextHopSelf">
 <section id="section-3.3.1">
-          <h4 id="name-re-advertisement-with-next-ho">
-<a href="#section-3.3.1" class="section-number selfRef">3.3.1. </a><a href="#name-re-advertisement-with-next-ho" class="section-name selfRef">Re-advertisement with Next hop Self</a>
+          <h4 id="name-re-advertisement-with-next-">
+<a href="#section-3.3.1" class="section-number selfRef">3.3.1. </a><a href="#name-re-advertisement-with-next-" class="section-name selfRef">Re-advertisement with Next hop Self</a>
           </h4>
 <p id="section-3.3.1-1">When a BGP speaker re-advertises a route with Link Bandwidth
           Extended Community and sets the next hop to itself, it SHOULD follow
@@ -1535,8 +1541,8 @@ li > p:last-of-type:only-child {
 </div>
 <div id="NextHopUnchanged">
 <section id="section-3.3.2">
-          <h4 id="name-re-advertisement-with-next-hop">
-<a href="#section-3.3.2" class="section-number selfRef">3.3.2. </a><a href="#name-re-advertisement-with-next-hop" class="section-name selfRef">Re-advertisement with Next Hop Unchanged</a>
+          <h4 id="name-re-advertisement-with-next-h">
+<a href="#section-3.3.2" class="section-number selfRef">3.3.2. </a><a href="#name-re-advertisement-with-next-h" class="section-name selfRef">Re-advertisement with Next Hop Unchanged</a>
           </h4>
 <p id="section-3.3.2-1">A BGP speaker that receives a route with a Link Bandwidth
           Extended Community, re-advertises or reflects the same without
@@ -1547,8 +1553,8 @@ li > p:last-of-type:only-child {
 </section>
 </div>
 <section id="section-3.4">
-        <h3 id="name-link-bandwidth-extended-communit">
-<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-link-bandwidth-extended-communit" class="section-name selfRef">Link Bandwidth Extended Community Arithmetic and BGP Multipath</a>
+        <h3 id="name-link-bandwidth-extended-commu">
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-link-bandwidth-extended-commu" class="section-name selfRef">Link Bandwidth Extended Community Arithmetic and BGP Multipath</a>
         </h3>
 <p id="section-3.4-1">In a BGP multipath ECMP environment, the link bandwidth value that
         is sent or re-advertised may be calculated based on the Link Bandwidth
@@ -1559,8 +1565,8 @@ li > p:last-of-type:only-child {
 </section>
 <div id="Error">
 <section id="section-4">
-      <h2 id="name-error-handling-2">
-<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-error-handling-2" class="section-name selfRef">Error Handling</a>
+      <h2 id="name-error-handling">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-error-handling" class="section-name selfRef">Error Handling</a>
       </h2>
 <p id="section-4-1">If a BGP speaker receives a route with more than one Link Bandwidth
       extended communities and uses the route to compute WECMP, it SHOULD use
@@ -1578,16 +1584,14 @@ li > p:last-of-type:only-child {
       rules.<a href="#section-4-3" class="pilcrow">¶</a></p>
 <p id="section-4-4">Link bandwidth extended communities with a negative value SHALL be
       ignored and MUST NOT be originated.<a href="#section-4-4" class="pilcrow">¶</a></p>
-<p id="section-4-5">WECMP can be utilized only when all contributing paths have a
-      non-zero value in the Link Bandwidth Extended Community. If any of the
-      paths lack a valid Link Bandwidth Extended Community, ECMP (Equal-Cost
-      Multi-Path) MUST be used instead.<a href="#section-4-5" class="pilcrow">¶</a></p>
+<p id="section-4-5">If any of the paths lack a valid Link Bandwidth Extended Community,
+      ECMP (Equal-Cost Multi-Path) MUST be used instead.<a href="#section-4-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="History">
 <section id="section-5">
-      <h2 id="name-document-history-2">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-document-history-2" class="section-name selfRef">Document History</a>
+      <h2 id="name-document-history">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-document-history" class="section-name selfRef">Document History</a>
       </h2>
 <p id="section-5-1">BGP Link Bandwidth Extended Community has evolved over several
       versions of the IETF draft. In the earlier versions up to
@@ -1610,8 +1614,8 @@ li > p:last-of-type:only-child {
 </div>
 <div id="IANA">
 <section id="section-6">
-      <h2 id="name-iana-considerations-2">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-iana-considerations-2" class="section-name selfRef">IANA Considerations</a>
+      <h2 id="name-iana-considerations">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
 <p id="section-6-1">This document defines a specific application of the two-octet AS
       specific extended community.<a href="#section-6-1" class="pilcrow">¶</a></p>
@@ -1636,19 +1640,19 @@ li > p:last-of-type:only-child {
 </div>
 <div id="Security">
 <section id="section-7">
-      <h2 id="name-security-considerations-2">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations-2" class="section-name selfRef">Security Considerations</a>
+      <h2 id="name-security-considerations">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
 <p id="section-7-1">There are no additional security risks introduced by this design.<a href="#section-7-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <section id="section-8">
-      <h2 id="name-operational-considerations-2">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-operational-considerations-2" class="section-name selfRef">Operational Considerations</a>
+      <h2 id="name-operational-considerations">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-operational-considerations" class="section-name selfRef">Operational Considerations</a>
       </h2>
 <section id="section-8.1">
-        <h3 id="name-inconsistent-deployment-2">
-<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-inconsistent-deployment-2" class="section-name selfRef">Inconsistent Deployment</a>
+        <h3 id="name-inconsistent-deployment">
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-inconsistent-deployment" class="section-name selfRef">Inconsistent Deployment</a>
         </h3>
 <p id="section-8.1-1">Prior deployments of the feature specified in this document have
         involved implementations that only understood one of the two extended
@@ -1682,8 +1686,8 @@ li > p:last-of-type:only-child {
 </section>
 <div id="Contributors">
 <section id="section-9">
-      <h2 id="name-contributors-2">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-contributors-2" class="section-name selfRef">Contributors</a>
+      <h2 id="name-contributors">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-contributors" class="section-name selfRef">Contributors</a>
       </h2>
 <address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Kaliraj Vairavakkalai</span></div>
@@ -1728,8 +1732,8 @@ li > p:last-of-type:only-child {
 </div>
 <div id="Acknowledgments">
 <section id="section-10">
-      <h2 id="name-acknowledgments-2">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-acknowledgments-2" class="section-name selfRef">Acknowledgments</a>
+      <h2 id="name-acknowledgments">
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
 <p id="section-10-1">The authors would like to thank Yakov Rekhter, Srihari Sangli and Dan
       Tappan for proposing unequal cost load balancing as one possible
@@ -1743,8 +1747,8 @@ li > p:last-of-type:only-child {
 </section>
 </div>
 <section id="section-11">
-      <h2 id="name-normative-references-2">
-<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-normative-references-2" class="section-name selfRef">Normative References</a>
+      <h2 id="name-normative-references">
+<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
       </h2>
 <dl class="references">
 <dt id="IEEE.754-2019">[IEEE.754-2019]</dt>
@@ -1767,8 +1771,8 @@ li > p:last-of-type:only-child {
 </section>
 <div id="authors-addresses">
 <section id="appendix-A">
-      <h2 id="name-authors-addresses-2">
-<a href="#name-authors-addresses-2" class="section-name selfRef">Authors' Addresses</a>
+      <h2 id="name-authors-addresses">
+<a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
 <address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Pradosh Mohapatra</span></div>

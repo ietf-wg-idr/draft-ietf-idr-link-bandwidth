@@ -9,7 +9,7 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std" docName="draft-ietf-idr-link-bandwidth-14"
+<rfc category="std" docName="draft-ietf-idr-link-bandwidth-15"
      ipr="trust200902">
   <front>
     <title abbrev="BGP Link Bandwidth Extended Community">BGP Link Bandwidth
@@ -118,7 +118,7 @@
       </address>
     </author>
 
-    <date day="01" month="08" year="2025"/>
+    <date day="07" month="08" year="2025"/>
 
     <abstract>
       <t>This document describes an application of BGP extended communities
@@ -235,13 +235,20 @@
         Community of both transitive and non-transitive types. The receiver
         MUST NOT flap or treat the route as malformed based on the
         transitivity of the Link Bandwidth Extended Community and/or BGP
-        session type (internal vs. external). Implemention MUST be able to
-        process and accept a Link Bandwidth Extended Community where the
-        bandwidth value is set to zero.</t>
+        session type (internal vs. external). </t>
 
         <t>Note: Implementations MAY provide configuration to accept
         non-transitive Link Bandwidth extended communities from external BGP
         sessions.</t>
+
+        <t>Implementions MUST be able to process and accept a Link Bandwidth
+        Extended Community where the bandwidth value is set to zero. WECMP
+        can be utilized when all contributing paths have a non-zero
+        value in the Link Bandwidth Extended Community. Paths with zero value
+        SHOULD be excluded from the WECMP formation. Implementations that
+        are not able to support such exclusion MAY use ECMP formation
+        instead.</t>
+ 
       </section>
 
       <section anchor="Re-advertisement" title="Re-advertisement Procedures">
@@ -296,10 +303,9 @@
       <t>Link bandwidth extended communities with a negative value SHALL be
       ignored and MUST NOT be originated.</t>
 
-      <t>WECMP can be utilized only when all contributing paths have a
-      non-zero value in the Link Bandwidth Extended Community. If any of the
-      paths lack a valid Link Bandwidth Extended Community, ECMP (Equal-Cost
-      Multi-Path) MUST be used instead.</t>
+     <t>If any of the paths lack a valid Link Bandwidth Extended Community,
+      ECMP (Equal-Cost Multi-Path) MUST be used instead.
+      </t>
     </section>
 
     <section anchor="History" title="Document History">

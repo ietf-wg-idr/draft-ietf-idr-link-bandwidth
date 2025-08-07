@@ -5,7 +5,7 @@
 Network Working Group                                       P. Mohapatra
 Internet-Draft                                          Sproute Networks
 Intended status: Standards Track                             R. Das, Ed.
-Expires: 2 February 2026                          Juniper Networks, Inc.
+Expires: 8 February 2026                          Juniper Networks, Inc.
                                                          S. Mohanty, Ed.
                                                                  Zscaler
                                                                 S. Krier
@@ -14,11 +14,11 @@ Expires: 2 February 2026                          Juniper Networks, Inc.
                                                               Google LLC
                                                               A. Gattani
                                                          Arista Networks
-                                                           1 August 2025
+                                                           7 August 2025
 
 
                  BGP Link Bandwidth Extended Community
-                    draft-ietf-idr-link-bandwidth-14
+                    draft-ietf-idr-link-bandwidth-15
 
 Abstract
 
@@ -47,13 +47,13 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 February 2026.
+   This Internet-Draft will expire on 8 February 2026.
 
 
 
 
 
-Mohapatra, et al.        Expires 2 February 2026                [Page 1]
+Mohapatra, et al.        Expires 8 February 2026                [Page 1]
 
 Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 
@@ -79,7 +79,7 @@ Table of Contents
    3.  Protocol Procedures . . . . . . . . . . . . . . . . . . . . .   4
      3.1.  Sender (Originating Link Bandwidth Extended Community)  .   4
      3.2.  Receiver (Receiving Link Bandwidth Extended Community)  .   4
-     3.3.  Re-advertisement Procedures . . . . . . . . . . . . . . .   4
+     3.3.  Re-advertisement Procedures . . . . . . . . . . . . . . .   5
        3.3.1.  Re-advertisement with Next hop Self . . . . . . . . .   5
        3.3.2.  Re-advertisement with Next Hop Unchanged  . . . . . .   5
      3.4.  Link Bandwidth Extended Community Arithmetic and BGP
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Mohapatra, et al.        Expires 2 February 2026                [Page 2]
+Mohapatra, et al.        Expires 8 February 2026                [Page 2]
 
 Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 
@@ -165,7 +165,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 
 
 
-Mohapatra, et al.        Expires 2 February 2026                [Page 3]
+Mohapatra, et al.        Expires 8 February 2026                [Page 3]
 
 Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 
@@ -208,23 +208,32 @@ Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
    Community of both transitive and non-transitive types.  The receiver
    MUST NOT flap or treat the route as malformed based on the
    transitivity of the Link Bandwidth Extended Community and/or BGP
-   session type (internal vs. external).  Implemention MUST be able to
-   process and accept a Link Bandwidth Extended Community where the
-   bandwidth value is set to zero.
+   session type (internal vs. external).
 
    Note: Implementations MAY provide configuration to accept non-
    transitive Link Bandwidth extended communities from external BGP
    sessions.
 
-3.3.  Re-advertisement Procedures
 
 
 
 
-Mohapatra, et al.        Expires 2 February 2026                [Page 4]
+
+
+
+Mohapatra, et al.        Expires 8 February 2026                [Page 4]
 
 Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 
+
+   Implementions MUST be able to process and accept a Link Bandwidth
+   Extended Community where the bandwidth value is set to zero.  WECMP
+   can be utilized when all contributing paths have a non-zero value in
+   the Link Bandwidth Extended Community.  Paths with zero value SHOULD
+   be excluded from the WECMP formation.  Implementations that are not
+   able to support such exclusion MAY use ECMP formation instead.
+
+3.3.  Re-advertisement Procedures
 
 3.3.1.  Re-advertisement with Next hop Self
 
@@ -265,6 +274,14 @@ Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
    transitivity doesn't matter for purpose of computing WECMP or
    programming to FIB (Forwarding Information Base).
 
+
+
+
+Mohapatra, et al.        Expires 8 February 2026                [Page 5]
+
+Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
+
+
    Note that these procedures mean that a BGP speaker reflecting a route
    with next hop unchanged (e.g.  RR) will re-advertise the Link
    Bandwidth extended communities received on the route as-is without
@@ -274,18 +291,8 @@ Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
    Link bandwidth extended communities with a negative value SHALL be
    ignored and MUST NOT be originated.
 
-
-
-
-Mohapatra, et al.        Expires 2 February 2026                [Page 5]
-
-Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
-
-
-   WECMP can be utilized only when all contributing paths have a non-
-   zero value in the Link Bandwidth Extended Community.  If any of the
-   paths lack a valid Link Bandwidth Extended Community, ECMP (Equal-
-   Cost Multi-Path) MUST be used instead.
+   If any of the paths lack a valid Link Bandwidth Extended Community,
+   ECMP (Equal-Cost Multi-Path) MUST be used instead.
 
 5.  Document History
 
@@ -324,19 +331,16 @@ Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
        ----
        transitive Link Bandwidth Extended Community
 
-   IANA is requested to update the Non-Transitive Two-Octet AS-Specific
-   Extended Community Sub-Types registry (Type 0x40) and Sub-Type 0x04
-   to:
 
 
-
-
-
-
-Mohapatra, et al.        Expires 2 February 2026                [Page 6]
+Mohapatra, et al.        Expires 8 February 2026                [Page 6]
 
 Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 
+
+   IANA is requested to update the Non-Transitive Two-Octet AS-Specific
+   Extended Community Sub-Types registry (Type 0x40) and Sub-Type 0x04
+   to:
 
        Name
        ----
@@ -381,18 +385,18 @@ Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
    of doing such operations, could strip the Link Bandwidth Extended
    Community type that is unsupported by the sender.
 
-   Ideally this operational consideration is short-lived until the
-   network has been upgraded to implementations that consistently
-   support the procedures in this draft.
 
 
 
 
-
-Mohapatra, et al.        Expires 2 February 2026                [Page 7]
+Mohapatra, et al.        Expires 8 February 2026                [Page 7]
 
 Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 
+
+   Ideally this operational consideration is short-lived until the
+   network has been upgraded to implementations that consistently
+   support the procedures in this draft.
 
 9.  Contributors
 
@@ -441,11 +445,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 
 
 
-
-
-
-
-Mohapatra, et al.        Expires 2 February 2026                [Page 8]
+Mohapatra, et al.        Expires 8 February 2026                [Page 8]
 
 Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 
@@ -501,7 +501,7 @@ Authors' Addresses
 
 
 
-Mohapatra, et al.        Expires 2 February 2026                [Page 9]
+Mohapatra, et al.        Expires 8 February 2026                [Page 9]
 
 Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 
@@ -557,4 +557,4 @@ Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 
 
 
-Mohapatra, et al.        Expires 2 February 2026               [Page 10]
+Mohapatra, et al.        Expires 8 February 2026               [Page 10]
