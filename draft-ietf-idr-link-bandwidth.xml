@@ -118,7 +118,7 @@
       </address>
     </author>
 
-    <date day="07" month="08" year="2025"/>
+    <date day="12" month="08" year="2025"/>
 
     <abstract>
       <t>This document describes an application of BGP extended communities
@@ -225,7 +225,7 @@
         speaker.</t>
 
         <t>Note: Implementations MAY provide a configuration option to send
-        non-transitive Link Bandwidth extended communities on external BGP
+        non-transitive Link Bandwidth Extended Communities on external BGP
         sessions.</t>
       </section>
 
@@ -238,16 +238,19 @@
         session type (internal vs. external). </t>
 
         <t>Note: Implementations MAY provide configuration to accept
-        non-transitive Link Bandwidth extended communities from external BGP
+        non-transitive Link Bandwidth Extended Communities from external BGP
         sessions.</t>
 
-        <t>Implementions MUST be able to process and accept a Link Bandwidth
+        <t>Implementations MUST be able to process and accept a Link Bandwidth
         Extended Community where the bandwidth value is set to zero. WECMP
-        can be utilized when all contributing paths have a non-zero
-        value in the Link Bandwidth Extended Community. Paths with zero value
-        SHOULD be excluded from the WECMP formation. Implementations that
-        are not able to support such exclusion MAY use ECMP formation
-        instead.</t>
+        can be utilized when all contributing paths have a non-zero value
+        in the Link Bandwidth Extended Community.</t>
+
+        <t>In case some paths have a zero value but others have non-zero
+        value, or all paths have Link Bandwidth with zero value, the
+        behavior is determined by local policy. For example, an
+        implementation may exclude the paths with zero value from
+        WECMP formation or an implementation may fallback to ECMP.</t>
  
       </section>
 
@@ -284,23 +287,23 @@
 
     <section anchor="Error" title="Error Handling">
       <t>If a BGP speaker receives a route with more than one Link Bandwidth
-      extended communities and uses the route to compute WECMP, it SHOULD use
+      Extended Communities and uses the route to compute WECMP, it SHOULD use
       the extended community with the lowest "Link Bandwidth Value", ignoring
       the transitivity. Implementations MAY provide configuration to change
       the above preference.</t>
 
       <t>Between transitive and non-transitive types of Link Bandwidth
-      extended communities that have the same 'Link Bandwidth Value', the
+      Extended Communities that have the same 'Link Bandwidth Value', the
       transitivity doesn't matter for purpose of computing WECMP or
       programming to FIB (Forwarding Information Base).</t>
 
       <t>Note that these procedures mean that a BGP speaker reflecting a route
       with next hop unchanged (e.g. RR) will re-advertise the Link Bandwidth
-      extended communities received on the route as-is without any
+      Extended Communities received on the route as-is without any
       modification, while following the extended community transitivity
       rules.</t>
 
-      <t>Link bandwidth extended communities with a negative value SHALL be
+      <t>Link Bandwidth Extended Communities with a negative value SHALL be
       ignored and MUST NOT be originated.</t>
 
      <t>If any of the paths lack a valid Link Bandwidth Extended Community,
