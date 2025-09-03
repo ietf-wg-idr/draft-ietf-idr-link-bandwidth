@@ -3,9 +3,9 @@
 
 
 Network Working Group                                       P. Mohapatra
-Internet-Draft                                          Sproute Networks
+Internet-Draft                                                Google LLC
 Intended status: Standards Track                             R. Das, Ed.
-Expires: 13 February 2026                         Juniper Networks, Inc.
+Expires: 7 March 2026                             Juniper Networks, Inc.
                                                          S. Mohanty, Ed.
                                                                  Zscaler
                                                                 S. Krier
@@ -14,11 +14,11 @@ Expires: 13 February 2026                         Juniper Networks, Inc.
                                                               Google LLC
                                                               A. Gattani
                                                          Arista Networks
-                                                          12 August 2025
+                                                        3 September 2025
 
 
                  BGP Link Bandwidth Extended Community
-                    draft-ietf-idr-link-bandwidth-15
+                    draft-ietf-idr-link-bandwidth-16
 
 Abstract
 
@@ -47,15 +47,15 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 February 2026.
+   This Internet-Draft will expire on 7 March 2026.
 
 
 
 
 
-Mohapatra, et al.       Expires 13 February 2026                [Page 1]
+Mohapatra, et al.         Expires 7 March 2026                  [Page 1]
 
-Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
+Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Mohapatra, et al.       Expires 13 February 2026                [Page 2]
+Mohapatra, et al.         Expires 7 March 2026                  [Page 2]
 
-Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
+Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
    path(s), facilitating maximum utilization of network resources.
@@ -165,9 +165,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 
 
 
-Mohapatra, et al.       Expires 13 February 2026                [Page 3]
+Mohapatra, et al.         Expires 7 March 2026                  [Page 3]
 
-Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
+Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
 3.  Protocol Procedures
@@ -221,9 +221,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 
 
 
-Mohapatra, et al.       Expires 13 February 2026                [Page 4]
+Mohapatra, et al.         Expires 7 March 2026                  [Page 4]
 
-Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
+Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
    In case some paths have a zero value but others have non-zero value,
@@ -277,9 +277,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 
 
 
-Mohapatra, et al.       Expires 13 February 2026                [Page 5]
+Mohapatra, et al.         Expires 7 March 2026                  [Page 5]
 
-Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
+Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
    Note that these procedures mean that a BGP speaker reflecting a route
@@ -333,9 +333,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 
 
 
-Mohapatra, et al.       Expires 13 February 2026                [Page 6]
+Mohapatra, et al.         Expires 7 March 2026                  [Page 6]
 
-Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
+Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
    IANA is requested to update the Non-Transitive Two-Octet AS-Specific
@@ -389,9 +389,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 
 
 
-Mohapatra, et al.       Expires 13 February 2026                [Page 7]
+Mohapatra, et al.         Expires 7 March 2026                  [Page 7]
 
-Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
+Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
    Ideally this operational consideration is short-lived until the
@@ -445,9 +445,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 
 
 
-Mohapatra, et al.       Expires 13 February 2026                [Page 8]
+Mohapatra, et al.         Expires 7 March 2026                  [Page 8]
 
-Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
+Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
@@ -467,8 +467,8 @@ Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 Authors' Addresses
 
    Pradosh Mohapatra
-   Sproute Networks
-   Email: pradosh@sproute.com
+   Google LLC
+   Email: pradosh@google.com
 
 
    Reshma Das (editor)
@@ -501,9 +501,9 @@ Authors' Addresses
 
 
 
-Mohapatra, et al.       Expires 13 February 2026                [Page 9]
+Mohapatra, et al.         Expires 7 March 2026                  [Page 9]
 
-Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
+Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
    Rafal Jan Szarecki
@@ -557,4 +557,4 @@ Internet-Draft    BGP Link Bandwidth Extended Community      August 2025
 
 
 
-Mohapatra, et al.       Expires 13 February 2026               [Page 10]
+Mohapatra, et al.         Expires 7 March 2026                 [Page 10]
