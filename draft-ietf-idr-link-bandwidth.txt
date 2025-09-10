@@ -105,7 +105,7 @@ Table of Contents
    the network using one of two new extended communities [RFC4360] - the
    transitive and non-transitive Link Bandwidth Extended Community.  The
    Link Bandwidth Extended Community provides a mechanism for routers to
-   advertise the bandwidth of their downstream path(s), facilitating
+   advertise the bandwidth of their downstream path that may either be a
 
 
 
@@ -114,7 +114,8 @@ Mohapatra, et al.         Expires 14 March 2026                 [Page 2]
 Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
-   maximum utilization of network resources.
+   directly connected link or multi-hop/multipath nexthop.  This
+   mechanism facilitates maximizing utilization of network resources.
 
 2.  Link Bandwidth Extended Community
 
@@ -164,7 +165,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
 
-
 Mohapatra, et al.         Expires 14 March 2026                 [Page 3]
 
 Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
@@ -180,8 +180,8 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 3.1.  Sender (Originating Link Bandwidth Extended Community)
 
    A BGP speaker that attaches a Link Bandwidth Extended Community
-   SHOULD be able to send either a transitive or a non-transitive Link
-   Bandwidth Extended Community.  Implementations SHOULD provide
+   SHOULD be able to advertise either a transitive or a non-transitive
+   Link Bandwidth Extended Community.  Implementations SHOULD provide
    configuration to set the transitivity type of the Link Bandwidth
    Extended Community, as well as the Global Administrator and bandwidth
    values in the Local Administrator field, using local policy.
@@ -226,15 +226,15 @@ Mohapatra, et al.         Expires 14 March 2026                 [Page 4]
 Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
-   Zero is a valid bandwidth value to be set in the Link Bandwidth
-   Extended Community.  Weighted ECMP (WECMP) described in section 6.3
-   [RFC7938] can be utilized when all contributing paths have a non-zero
-   value in the Link Bandwidth Extended Community.  However, in the case
-   where the paths have a mix of zero and non-zero values, or all zero
-   values, the behavior is determined by local policy.  For example,
-   implementations MAY exclude the paths with zero value from WECMP
-   formation as long as at least one path with non-zero value exists or
-   they MAY fallback to ECMP.
+   A BGP update with an attached Link Bandwidth Extended Community with
+   a bandwidth value of zero is valid.  Weighted ECMP (WECMP) described
+   in section 6.3 [RFC7938] can be utilized when all contributing paths
+   have a non-zero value in the Link Bandwidth Extended Community.
+   However, in the case where the paths have a mix of zero and non-zero
+   values, or all zero values, the behavior is determined by local
+   policy.  For example, implementations MAY exclude the paths with zero
+   value from WECMP formation as long as at least one path with non-zero
+   value exists or they MAY fallback to ECMP.
 
 3.3.  Re-advertisement Procedures
 
@@ -340,15 +340,16 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 6.  Security Considerations
 
+   This extension to BGP has similar security implications as BGP
+   Extended Communities [RFC4360]
+
    The Link Bandwidth Extended Community conveys bandwidth and capacity
    information that may be sensitive.  Exporting this community outside
-   a single provider's network or across the Internet can expose private
-   network resource details.  Operators should limit usage of the Link
-   Bandwidth Extended Community to intra-provider deployments or to
-   exchanges between trusted parties.  When propagating the routes with
-   Link Bandwidth Extended Community towards an untrusted network or
-   peers, it is recommended operators use policy to filter this
-   community.
+   of an administrative domain can expose private network resource
+   details.  When propagating the routes with Link Bandwidth Extended
+   Community towards an untrusted network or outside of an
+   administrative domain, it is recommended operators use policy to
+   filter out this community.
 
 7.  Operational Considerations
 
@@ -385,7 +386,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
    Ideally this operational consideration is short-lived until all the
    routers in the network have been upgraded to implementations that
    consistently support the procedures in this document.
-
 
 
 

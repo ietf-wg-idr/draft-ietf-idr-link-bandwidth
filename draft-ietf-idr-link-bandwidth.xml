@@ -143,8 +143,9 @@
       using one of two new extended communities <xref target="RFC4360"/> - the
       transitive and non-transitive Link Bandwidth Extended Community. The
       Link Bandwidth Extended Community provides a mechanism for routers to
-      advertise the bandwidth of their downstream path(s), facilitating
-      maximum utilization of network resources.</t>
+      advertise the bandwidth of their downstream path that may either be a
+      directly connected link or multi-hop/multipath nexthop. This mechanism
+      facilitates maximizing utilization of network resources.</t>
     </section>
 
     <section title="Link Bandwidth Extended Community">
@@ -206,8 +207,8 @@
       <section anchor="Originator"
                title="Sender (Originating Link Bandwidth Extended Community)">
         <t>A BGP speaker that attaches a Link Bandwidth Extended Community
-        SHOULD be able to send either a transitive or a non-transitive Link
-        Bandwidth Extended Community. Implementations SHOULD provide
+        SHOULD be able to advertise either a transitive or a non-transitive
+        Link Bandwidth Extended Community. Implementations SHOULD provide
         configuration to set the transitivity type of the Link Bandwidth
         Extended Community, as well as the Global Administrator and bandwidth
         values in the Local Administrator field, using local policy. Different
@@ -247,15 +248,15 @@
         <t>Implementations MAY provide configuration to accept non-transitive
         Link Bandwidth Extended Communities from external BGP sessions.</t>
 
-        <t>Zero is a valid bandwidth value to be set in the Link Bandwidth
-        Extended Community. Weighted ECMP (WECMP) described in section 6.3
-        <xref target="RFC7938"/> can be utilized when all contributing paths
-        have a non-zero value in the Link Bandwidth Extended Community.
-        However, in the case where the paths have a mix of zero and non-zero
-        values, or all zero values, the behavior is determined by local
-        policy. For example, implementations MAY exclude the paths with zero
-        value from WECMP formation as long as at least one path with non-zero
-        value exists or they MAY fallback to ECMP.</t>
+        <t>A BGP update with an attached Link Bandwidth Extended Community
+        with a bandwidth value of zero is valid. Weighted ECMP (WECMP)
+        described in section 6.3 <xref target="RFC7938"/> can be utilized when
+        all contributing paths have a non-zero value in the Link Bandwidth
+        Extended Community. However, in the case where the paths have a mix of
+        zero and non-zero values, or all zero values, the behavior is
+        determined by local policy. For example, implementations MAY exclude
+        the paths with zero value from WECMP formation as long as at least one
+        path with non-zero value exists or they MAY fallback to ECMP.</t>
       </section>
 
       <section anchor="Re-advertisement" title="Re-advertisement Procedures">
@@ -348,14 +349,15 @@
     </section>
 
     <section anchor="Security" title="Security Considerations">
+      <t>This extension to BGP has similar security implications as BGP
+      Extended Communities <xref target="RFC4360"/></t>
+
       <t>The Link Bandwidth Extended Community conveys bandwidth and capacity
-      information that may be sensitive. Exporting this community outside a
-      single provider's network or across the Internet can expose private
-      network resource details. Operators should limit usage of the Link
-      Bandwidth Extended Community to intra-provider deployments or to
-      exchanges between trusted parties. When propagating the routes with Link
-      Bandwidth Extended Community towards an untrusted network or peers, it
-      is recommended operators use policy to filter this community.</t>
+      information that may be sensitive. Exporting this community outside of
+      an administrative domain can expose private network resource details.
+      When propagating the routes with Link Bandwidth Extended Community
+      towards an untrusted network or outside of an administrative domain, it
+      is recommended operators use policy to filter out this community.</t>
     </section>
 
     <section anchor="Operational Condiderations"

@@ -1404,8 +1404,9 @@ li > p:last-of-type:only-child {
       using one of two new extended communities <span>[<a href="#RFC4360" class="cite xref">RFC4360</a>]</span> - the
       transitive and non-transitive Link Bandwidth Extended Community. The
       Link Bandwidth Extended Community provides a mechanism for routers to
-      advertise the bandwidth of their downstream path(s), facilitating
-      maximum utilization of network resources.<a href="#section-1-1" class="pilcrow">¶</a></p>
+      advertise the bandwidth of their downstream path that may either be a
+      directly connected link or multi-hop/multipath nexthop. This mechanism
+      facilitates maximizing utilization of network resources.<a href="#section-1-1" class="pilcrow">¶</a></p>
 </section>
 <section id="section-2">
       <h2 id="name-link-bandwidth-extended-commun">
@@ -1476,8 +1477,8 @@ li > p:last-of-type:only-child {
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-sender-originating-link-band" class="section-name selfRef">Sender (Originating Link Bandwidth Extended Community)</a>
         </h3>
 <p id="section-3.1-1">A BGP speaker that attaches a Link Bandwidth Extended Community
-        SHOULD be able to send either a transitive or a non-transitive Link
-        Bandwidth Extended Community. Implementations SHOULD provide
+        SHOULD be able to advertise either a transitive or a non-transitive
+        Link Bandwidth Extended Community. Implementations SHOULD provide
         configuration to set the transitivity type of the Link Bandwidth
         Extended Community, as well as the Global Administrator and bandwidth
         values in the Local Administrator field, using local policy. Different
@@ -1514,15 +1515,15 @@ li > p:last-of-type:only-child {
         session type (internal vs. external).<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.2-2">Implementations MAY provide configuration to accept non-transitive
         Link Bandwidth Extended Communities from external BGP sessions.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
-<p id="section-3.2-3">Zero is a valid bandwidth value to be set in the Link Bandwidth
-        Extended Community. Weighted ECMP (WECMP) described in section 6.3
-        <span>[<a href="#RFC7938" class="cite xref">RFC7938</a>]</span> can be utilized when all contributing paths
-        have a non-zero value in the Link Bandwidth Extended Community.
-        However, in the case where the paths have a mix of zero and non-zero
-        values, or all zero values, the behavior is determined by local
-        policy. For example, implementations MAY exclude the paths with zero
-        value from WECMP formation as long as at least one path with non-zero
-        value exists or they MAY fallback to ECMP.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.2-3">A BGP update with an attached Link Bandwidth Extended Community
+        with a bandwidth value of zero is valid. Weighted ECMP (WECMP)
+        described in section 6.3 <span>[<a href="#RFC7938" class="cite xref">RFC7938</a>]</span> can be utilized when
+        all contributing paths have a non-zero value in the Link Bandwidth
+        Extended Community. However, in the case where the paths have a mix of
+        zero and non-zero values, or all zero values, the behavior is
+        determined by local policy. For example, implementations MAY exclude
+        the paths with zero value from WECMP formation as long as at least one
+        path with non-zero value exists or they MAY fallback to ECMP.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="Re-advertisement">
@@ -1630,14 +1631,14 @@ li > p:last-of-type:only-child {
       <h2 id="name-security-considerations-2">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-security-considerations-2" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-6-1">The Link Bandwidth Extended Community conveys bandwidth and capacity
-      information that may be sensitive. Exporting this community outside a
-      single provider's network or across the Internet can expose private
-      network resource details. Operators should limit usage of the Link
-      Bandwidth Extended Community to intra-provider deployments or to
-      exchanges between trusted parties. When propagating the routes with Link
-      Bandwidth Extended Community towards an untrusted network or peers, it
-      is recommended operators use policy to filter this community.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-1">This extension to BGP has similar security implications as BGP
+      Extended Communities <span>[<a href="#RFC4360" class="cite xref">RFC4360</a>]</span><a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-2">The Link Bandwidth Extended Community conveys bandwidth and capacity
+      information that may be sensitive. Exporting this community outside of
+      an administrative domain can expose private network resource details.
+      When propagating the routes with Link Bandwidth Extended Community
+      towards an untrusted network or outside of an administrative domain, it
+      is recommended operators use policy to filter out this community.<a href="#section-6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="Operational_Condiderations">
