@@ -5,7 +5,7 @@
 Network Working Group                                       P. Mohapatra
 Internet-Draft                                                Google LLC
 Intended status: Standards Track                             R. Das, Ed.
-Expires: 20 March 2026                            Juniper Networks, Inc.
+Expires: 22 March 2026                            Juniper Networks, Inc.
                                                          S. Mohanty, Ed.
                                                                  Zscaler
                                                                 S. Krier
@@ -14,7 +14,7 @@ Expires: 20 March 2026                            Juniper Networks, Inc.
                                                               Google LLC
                                                               A. Gattani
                                                          Arista Networks
-                                                       16 September 2025
+                                                       18 September 2025
 
 
                  BGP Link Bandwidth Extended Community
@@ -46,14 +46,14 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 March 2026.
+   This Internet-Draft will expire on 22 March 2026.
 
 
 
 
 
 
-Mohapatra, et al.         Expires 20 March 2026                 [Page 1]
+Mohapatra, et al.         Expires 22 March 2026                 [Page 1]
 
 Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
@@ -80,7 +80,7 @@ Table of Contents
      3.1.  Sender (Originating Link Bandwidth Extended Community)  .   4
      3.2.  Receiver (Receiving Link Bandwidth Extended Community)  .   4
      3.3.  Re-advertisement Procedures . . . . . . . . . . . . . . .   5
-       3.3.1.  Re-advertisement with Next hop Self . . . . . . . . .   5
+       3.3.1.  Re-advertisement with Next hop Change . . . . . . . .   5
        3.3.2.  Re-advertisement with Next Hop Unchanged  . . . . . .   5
      3.4.  Link Bandwidth Extended Community Arithmetic and BGP
            Multipath . . . . . . . . . . . . . . . . . . . . . . . .   5
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Mohapatra, et al.         Expires 20 March 2026                 [Page 2]
+Mohapatra, et al.         Expires 22 March 2026                 [Page 2]
 
 Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
@@ -165,7 +165,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
 
-Mohapatra, et al.         Expires 20 March 2026                 [Page 3]
+Mohapatra, et al.         Expires 22 March 2026                 [Page 3]
 
 Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
@@ -221,7 +221,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
 
-Mohapatra, et al.         Expires 20 March 2026                 [Page 4]
+Mohapatra, et al.         Expires 22 March 2026                 [Page 4]
 
 Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
@@ -244,15 +244,17 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
    speaker receives a route with an attached Link Bandwidth Extended
    Community and subsequently re-advertises that route.
 
-3.3.1.  Re-advertisement with Next hop Self
+3.3.1.  Re-advertisement with Next hop Change
 
    When a BGP speaker re-advertises a route with Link Bandwidth Extended
-   Community and sets the next hop to itself, it SHOULD follow the same
-   procedures as outlined in Section 3.1.
+   Community and sets the next hop to itself or to an arbitrary address,
+   implementation may remove the Link Bandwidth Extended Community or
+   may re-advertise it unchanged or regenerate as its default behaviour.
+   Implementation SHOULD provide a local configuration method to alter
+   its default behaviour with per-session granularity.
 
-   In the absence of any route policies that alter the Link Bandwidth
-   Extended Community, any received Link Bandwidth Extended Community on
-   the route will be re-advertised unchanged.  Please also refer to
+   When regenerating Link Bandwidth Extended Community, follow the same
+   procedures as outlined in Section 3.1.  Please also refer to
    Section 3.4 for use in a BGP multipath environment.
 
 3.3.2.  Re-advertisement with Next Hop Unchanged
@@ -275,9 +277,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
 
-
-
-Mohapatra, et al.         Expires 20 March 2026                 [Page 5]
+Mohapatra, et al.         Expires 22 March 2026                 [Page 5]
 
 Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
@@ -333,7 +333,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
 
-Mohapatra, et al.         Expires 20 March 2026                 [Page 6]
+Mohapatra, et al.         Expires 22 March 2026                 [Page 6]
 
 Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
@@ -389,7 +389,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
 
-Mohapatra, et al.         Expires 20 March 2026                 [Page 7]
+Mohapatra, et al.         Expires 22 March 2026                 [Page 7]
 
 Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
@@ -434,21 +434,25 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
    The authors would like to thank Bruno Decraene, Robert Raszuk, Joel
    Halpern, Aleksi Suhonen, Randy Bush, Stephane Litkowski, Mankamana
-   Mishra, Moshiko Nayman, Yingzhen Qu, Anoop Ghanwani, Dongjie (Jimmy)
-   and John Scudder for their comments and contributions.
+   Mishra, Moshiko Nayman, Keon Vafai, Ketan Talaulikar, Yingzhen Qu,
+   Anoop Ghanwani, Dongjie (Jimmy) and John Scudder for their comments
+   and contributions.
 
 10.  Normative References
+
+
+
+
+
+
+Mohapatra, et al.         Expires 22 March 2026                 [Page 8]
+
+Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
+
 
    [IEEE.754-2019]
               IEEE, "IEEE Standard for Floating-Point Arithmetic", 22
               July 2019, <https://ieeexplore.ieee.org/document/8766229>.
-
-
-
-Mohapatra, et al.         Expires 20 March 2026                 [Page 8]
-
-Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
-
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -497,11 +501,7 @@ Authors' Addresses
 
 
 
-
-
-
-
-Mohapatra, et al.         Expires 20 March 2026                 [Page 9]
+Mohapatra, et al.         Expires 22 March 2026                 [Page 9]
 
 Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
@@ -557,4 +557,4 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
 
-Mohapatra, et al.         Expires 20 March 2026                [Page 10]
+Mohapatra, et al.         Expires 22 March 2026                [Page 10]

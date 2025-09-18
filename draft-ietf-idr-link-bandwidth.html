@@ -1213,7 +1213,7 @@ li > p:last-of-type:only-child {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Mohapatra, et al.</td>
-<td class="center">Expires 20 March 2026</td>
+<td class="center">Expires 22 March 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1226,12 +1226,12 @@ li > p:last-of-type:only-child {
 <dd class="internet-draft">draft-ietf-idr-link-bandwidth-17</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-09-16" class="published">16 September 2025</time>
+<time datetime="2025-09-18" class="published">18 September 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-03-20">20 March 2026</time></dd>
+<dd class="expires"><time datetime="2026-03-22">22 March 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1296,7 +1296,7 @@ li > p:last-of-type:only-child {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 20 March 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 22 March 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1344,7 +1344,7 @@ li > p:last-of-type:only-child {
                 <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-re-advertisement-procedures-2" class="internal xref">Re-advertisement Procedures</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3.2.1">
-                    <p id="section-toc.1-1.3.2.3.2.1.1"><a href="#section-3.3.1" class="auto internal xref">3.3.1</a>.  <a href="#name-re-advertisement-with-next-ho" class="internal xref">Re-advertisement with Next hop Self</a></p>
+                    <p id="section-toc.1-1.3.2.3.2.1.1"><a href="#section-3.3.1" class="auto internal xref">3.3.1</a>.  <a href="#name-re-advertisement-with-next-ho" class="internal xref">Re-advertisement with Next hop Change</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3.2.2">
                     <p id="section-toc.1-1.3.2.3.2.2.1"><a href="#section-3.3.2" class="auto internal xref">3.3.2</a>.  <a href="#name-re-advertisement-with-next-hop" class="internal xref">Re-advertisement with Next Hop Unchanged</a></p>
@@ -1538,16 +1538,19 @@ li > p:last-of-type:only-child {
 <div id="NextHopSelf">
 <section id="section-3.3.1">
           <h4 id="name-re-advertisement-with-next-ho">
-<a href="#section-3.3.1" class="section-number selfRef">3.3.1. </a><a href="#name-re-advertisement-with-next-ho" class="section-name selfRef">Re-advertisement with Next hop Self</a>
+<a href="#section-3.3.1" class="section-number selfRef">3.3.1. </a><a href="#name-re-advertisement-with-next-ho" class="section-name selfRef">Re-advertisement with Next hop Change</a>
           </h4>
-<p id="section-3.3.1-1">When a BGP speaker re-advertises a route with Link Bandwidth
-          Extended Community and sets the next hop to itself, it SHOULD follow
-          the same procedures as outlined in <a href="#Originator" class="auto internal xref">Section 3.1</a>.<a href="#section-3.3.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.3.1-2">In the absence of any route policies that alter the Link
-          Bandwidth Extended Community, any received Link Bandwidth Extended
-          Community on the route will be re-advertised unchanged. Please also
-          refer to <a href="#LinkBandwidthArithmetic" class="auto internal xref">Section 3.4</a> for use in a BGP
-          multipath environment.<a href="#section-3.3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.3.1-1"> When a BGP speaker re-advertises a route with Link Bandwidth
+          Extended Community and sets the next hop to itself or to an
+          arbitrary address, implementation may remove the Link Bandwidth
+          Extended Community or may re-advertise it unchanged or regenerate as
+          its default behaviour. Implementation SHOULD provide a local
+          configuration method to alter its default behaviour with per-session
+          granularity.<a href="#section-3.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.3.1-2"> When regenerating Link Bandwidth Extended Community, follow the
+          same procedures as outlined in <a href="#Originator" class="auto internal xref">Section 3.1</a>. Please
+          also refer to <a href="#LinkBandwidthArithmetic" class="auto internal xref">Section 3.4</a> for use in a
+          BGP multipath environment.<a href="#section-3.3.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="NextHopUnchanged">
@@ -1741,8 +1744,9 @@ li > p:last-of-type:only-child {
       operational considerations.<a href="#section-9-1" class="pilcrow">¶</a></p>
 <p id="section-9-2">The authors would like to thank Bruno Decraene, Robert Raszuk, Joel
       Halpern, Aleksi Suhonen, Randy Bush, Stephane Litkowski, Mankamana
-      Mishra, Moshiko Nayman, Yingzhen Qu, Anoop Ghanwani, Dongjie (Jimmy) and
-      John Scudder for their comments and contributions.<a href="#section-9-2" class="pilcrow">¶</a></p>
+      Mishra, Moshiko Nayman, Keon Vafai, Ketan Talaulikar, Yingzhen Qu, Anoop
+      Ghanwani, Dongjie (Jimmy) and John Scudder for their comments and
+      contributions.<a href="#section-9-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <section id="section-10">
