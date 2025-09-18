@@ -268,12 +268,12 @@
 
         <section anchor="NextHopSelf"
                  title="Re-advertisement with Next hop Change">
-          <t> When a BGP speaker re-advertises a route with Link Bandwidth
+          <t>When a BGP speaker re-advertises a route with Link Bandwidth
           Extended Community and sets the next hop to itself or to an
           arbitrary address, implementation may remove the Link Bandwidth
           Extended Community or may re-advertise it unchanged or regenerate as
-          its default behaviour. Implementation SHOULD provide a local
-          configuration method to alter its default behaviour with per-session
+          its default behavior. Implementation SHOULD provide a local
+          configuration method to alter its default behavior with per-session
           granularity.</t>
 
           <t> When regenerating Link Bandwidth Extended Community, follow the
