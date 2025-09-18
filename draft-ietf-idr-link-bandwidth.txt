@@ -246,12 +246,13 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 3.3.1.  Re-advertisement with Next hop Change
 
-   When a BGP speaker re-advertises a route with Link Bandwidth Extended
-   Community and sets the next hop to itself or to an arbitrary address,
-   implementation may remove the Link Bandwidth Extended Community or
-   may re-advertise it unchanged or regenerate as its default behavior.
-   Implementation SHOULD provide a local configuration method to alter
-   its default behavior with per-session granularity.
+   When a BGP speaker re-advertises a route received with Link Bandwidth
+   Extended Community and sets the next hop to itself or to another
+   address, implementation may remove the Link Bandwidth Extended
+   Community or may re-advertise it unchanged or regenerate as its
+   default behaviour.  Implementation SHOULD provide a local
+   configuration method to alter its default behaviour to one of these
+   options with per-session granularity.
 
    When regenerating Link Bandwidth Extended Community, follow the same
    procedures as outlined in Section 3.1.  Please also refer to
@@ -271,7 +272,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
    Extended Community of the routes contributing to multipath in the
    Local Routing Information Base (Local-RIB).  This topic is beyond the
    scope of this document.
-
 
 
 
