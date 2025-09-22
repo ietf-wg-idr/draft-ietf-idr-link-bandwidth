@@ -9,7 +9,7 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std" docName="draft-ietf-idr-link-bandwidth-17"
+<rfc category="std" docName="draft-ietf-idr-link-bandwidth-18"
      ipr="trust200902">
   <front>
     <title abbrev="BGP Link Bandwidth Extended Community">BGP Link Bandwidth
@@ -118,7 +118,7 @@
       </address>
     </author>
 
-    <date day="16" month="09" year="2025"/>
+    <date day="18" month="09" year="2025"/>
 
     <abstract>
       <t>This document specifies a type of BGP Extended Community that enables
@@ -267,16 +267,19 @@
         Community and subsequently re-advertises that route.</t>
 
         <section anchor="NextHopSelf"
-                 title="Re-advertisement with Next hop Self">
-          <t>When a BGP speaker re-advertises a route with Link Bandwidth
-          Extended Community and sets the next hop to itself, it SHOULD follow
-          the same procedures as outlined in <xref target="Originator"/>.</t>
+                 title="Re-advertisement with Next hop Change">
+          <t>When a BGP speaker re-advertises a route received with Link
+          Bandwidth Extended Community and sets the next hop to itself or to
+          another address, implementation MAY remove the Link Bandwidth
+          Extended Community or MAY re-advertise it unchanged or regenerate it
+          as its default behavior. Implementation SHOULD provide a local
+          configuration method to alter its default behavior to one of these
+          options with per-session granularity.</t>
 
-          <t>In the absence of any route policies that alter the Link
-          Bandwidth Extended Community, any received Link Bandwidth Extended
-          Community on the route will be re-advertised unchanged. Please also
-          refer to <xref target="LinkBandwidthArithmetic"/> for use in a BGP
-          multipath environment.</t>
+          <t>When regenerating Link Bandwidth Extended Community, follow the
+          same procedures as outlined in <xref target="Originator"/>. Please
+          also refer to <xref target="LinkBandwidthArithmetic"/> for use in a
+          BGP multipath environment.</t>
         </section>
 
         <section anchor="NextHopUnchanged"
@@ -473,8 +476,9 @@
 
       <t>The authors would like to thank Bruno Decraene, Robert Raszuk, Joel
       Halpern, Aleksi Suhonen, Randy Bush, Stephane Litkowski, Mankamana
-      Mishra, Moshiko Nayman, Yingzhen Qu, Anoop Ghanwani, Dongjie (Jimmy) and
-      John Scudder for their comments and contributions.</t>
+      Mishra, Moshiko Nayman, Keon Vafai, Ketan Talaulikar, Yingzhen Qu, Anoop
+      Ghanwani, Dongjie (Jimmy) and John Scudder for their comments and
+      contributions.</t>
     </section>
   </middle>
 
