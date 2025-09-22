@@ -270,8 +270,8 @@
                  title="Re-advertisement with Next hop Change">
           <t>When a BGP speaker re-advertises a route received with Link
           Bandwidth Extended Community and sets the next hop to itself or to
-          another address, implementation may remove the Link Bandwidth
-          Extended Community or may re-advertise it unchanged or regenerate it
+          another address, implementation MAY remove the Link Bandwidth
+          Extended Community or MAY re-advertise it unchanged or regenerate it
           as its default behavior. Implementation SHOULD provide a local
           configuration method to alter its default behavior to one of these
           options with per-session granularity.</t>
