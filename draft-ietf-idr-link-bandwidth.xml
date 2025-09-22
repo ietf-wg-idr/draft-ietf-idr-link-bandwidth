@@ -223,8 +223,8 @@
         route. However during transition (refer <xref
         target="Operational Condiderations"/> for details), a BGP speaker MAY
         attach one Link Bandwidth Extended Community per transitivity
-        (transitive/non-transitive) both having the same 'Link Bandwidth
-        Value' field.</t>
+        (transitive/non-transitive) both having the same 'Bandwidth Value'
+        field.</t>
 
         <t>A Link Bandwidth Extended Community MAY be attached or updated for
         a BGP route upon receipt during Adj-RIB-In processing. The Link
@@ -293,10 +293,10 @@
 
       <section anchor="LinkBandwidthArithmetic"
                title="Link Bandwidth Extended Community Arithmetic and BGP Multipath">
-        <t>In a BGP multipath environment, the link bandwidth value that is
-        sent or re-advertised MAY be calculated based on the Link Bandwidth
-        Extended Community associated with each constituent path contributing
-        to multipath in the Local Routing Information Base (Local-RIB). This
+        <t>In a BGP multipath environment, the bandwidth value that is sent or
+        re-advertised MAY be calculated based on the Link Bandwidth Extended
+        Community associated with each constituent path contributing to
+        multipath in the Local Routing Information Base (Local-RIB). This
         topic is beyond the scope of this document. Refer to <xref
         target="draft-ietf-bess-ebgp-dmz"/> which describes how this could be
         done in specific scenarios.</t>

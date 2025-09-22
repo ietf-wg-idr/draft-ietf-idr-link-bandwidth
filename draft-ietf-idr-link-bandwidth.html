@@ -1498,8 +1498,8 @@ li > p:last-of-type:only-child {
         transitivity type that is desired in a deployment is attached to a
         route. However during transition (refer <a href="#Operational_Condiderations" class="auto internal xref">Section 7</a> for details), a BGP speaker MAY
         attach one Link Bandwidth Extended Community per transitivity
-        (transitive/non-transitive) both having the same 'Link Bandwidth
-        Value' field.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+        (transitive/non-transitive) both having the same 'Bandwidth Value'
+        field.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
 <p id="section-3.1-3">A Link Bandwidth Extended Community MAY be attached or updated for
         a BGP route upon receipt during Adj-RIB-In processing. The Link
         Bandwidth Extended Community MAY be attached or updated for a BGP
@@ -1579,10 +1579,10 @@ li > p:last-of-type:only-child {
         <h3 id="name-link-bandwidth-extended-communit">
 <a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-link-bandwidth-extended-communit" class="section-name selfRef">Link Bandwidth Extended Community Arithmetic and BGP Multipath</a>
         </h3>
-<p id="section-3.4-1">In a BGP multipath environment, the link bandwidth value that is
-        sent or re-advertised MAY be calculated based on the Link Bandwidth
-        Extended Community associated with each constituent path contributing
-        to multipath in the Local Routing Information Base (Local-RIB). This
+<p id="section-3.4-1">In a BGP multipath environment, the bandwidth value that is sent or
+        re-advertised MAY be calculated based on the Link Bandwidth Extended
+        Community associated with each constituent path contributing to
+        multipath in the Local Routing Information Base (Local-RIB). This
         topic is beyond the scope of this document. Refer to <span>[<a href="#draft-ietf-bess-ebgp-dmz" class="cite xref">draft-ietf-bess-ebgp-dmz</a>]</span> which describes how this could be
         done in specific scenarios.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
 </section>
