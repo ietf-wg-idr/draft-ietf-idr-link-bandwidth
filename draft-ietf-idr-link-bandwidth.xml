@@ -118,7 +118,7 @@
       </address>
     </author>
 
-    <date day="18" month="09" year="2025"/>
+    <date day="21" month="09" year="2025"/>
 
     <abstract>
       <t>This document specifies a type of BGP Extended Community that enables
@@ -295,9 +295,11 @@
                title="Link Bandwidth Extended Community Arithmetic and BGP Multipath">
         <t>In a BGP multipath environment, the link bandwidth value that is
         sent or re-advertised MAY be calculated based on the Link Bandwidth
-        Extended Community of the routes contributing to multipath in the
-        Local Routing Information Base (Local-RIB). This topic is beyond the
-        scope of this document.</t>
+        Extended Community associated with each constituent path contributing
+        to multipath in the Local Routing Information Base (Local-RIB). This
+        topic is beyond the scope of this document. Refer to <xref
+        target="draft-ietf-bess-ebgp-dmz"/> which describes how this could be
+        done in specific scenarios.</t>
       </section>
     </section>
 
@@ -501,6 +503,21 @@
           </author>
 
           <date day="22" month="July" year="2019"/>
+        </front>
+      </reference>
+    </references>
+
+    <references title="Informative References">
+      <reference anchor="draft-ietf-bess-ebgp-dmz"
+                 target="https://tools.ietf.org/html/draft-ietf-bess-ebgp-dmz">
+        <front>
+          <title abbrev="ebgp-dmz">Cumulative DMZ Link Bandwidth and
+          load-balancing</title>
+
+          <author fullname="Satya Ranjan Mohanty" initials="S"
+                  surname="Mohanty"/>
+
+          <date day="20" month="07" year="2025"/>
         </front>
       </reference>
     </references>

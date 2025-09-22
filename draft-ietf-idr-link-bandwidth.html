@@ -1213,7 +1213,7 @@ li > p:last-of-type:only-child {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Mohapatra, et al.</td>
-<td class="center">Expires 22 March 2026</td>
+<td class="center">Expires 25 March 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1226,12 +1226,12 @@ li > p:last-of-type:only-child {
 <dd class="internet-draft">draft-ietf-idr-link-bandwidth-18</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-09-18" class="published">18 September 2025</time>
+<time datetime="2025-09-21" class="published">21 September 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-03-22">22 March 2026</time></dd>
+<dd class="expires"><time datetime="2026-03-25">25 March 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1296,7 +1296,7 @@ li > p:last-of-type:only-child {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 22 March 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 25 March 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1380,7 +1380,15 @@ li > p:last-of-type:only-child {
             <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-acknowledgments-2" class="internal xref">Acknowledgments</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-normative-references-2" class="internal xref">Normative References</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-references-2" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
+                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="auto internal xref">10.1</a>.  <a href="#name-normative-references-2" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
+                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="auto internal xref">10.2</a>.  <a href="#name-informative-references-2" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
             <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-document-history-2" class="internal xref">Document History</a></p>
@@ -1573,9 +1581,10 @@ li > p:last-of-type:only-child {
         </h3>
 <p id="section-3.4-1">In a BGP multipath environment, the link bandwidth value that is
         sent or re-advertised MAY be calculated based on the Link Bandwidth
-        Extended Community of the routes contributing to multipath in the
-        Local Routing Information Base (Local-RIB). This topic is beyond the
-        scope of this document.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+        Extended Community associated with each constituent path contributing
+        to multipath in the Local Routing Information Base (Local-RIB). This
+        topic is beyond the scope of this document. Refer to <span>[<a href="#draft-ietf-bess-ebgp-dmz" class="cite xref">draft-ietf-bess-ebgp-dmz</a>]</span> which describes how this could be
+        done in specific scenarios.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1750,27 +1759,43 @@ li > p:last-of-type:only-child {
 </section>
 </div>
 <section id="section-10">
-      <h2 id="name-normative-references-2">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-normative-references-2" class="section-name selfRef">Normative References</a>
+      <h2 id="name-references-2">
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-references-2" class="section-name selfRef">References</a>
       </h2>
+<section id="section-10.1">
+        <h3 id="name-normative-references-2">
+<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-normative-references-2" class="section-name selfRef">Normative References</a>
+        </h3>
 <dl class="references">
 <dt id="IEEE.754-2019">[IEEE.754-2019]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">IEEE</span>, <span class="refTitle">"IEEE Standard for Floating-Point Arithmetic"</span>, <time datetime="2019-07-22" class="refDate">22 July 2019</time>, <span>&lt;<a href="https://ieeexplore.ieee.org/document/8766229">https://ieeexplore.ieee.org/document/8766229</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4360">[RFC4360]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Sangli, S.</span>, <span class="refAuthor">Tappan, D.</span>, and <span class="refAuthor">Y. Rekhter</span>, <span class="refTitle">"BGP Extended Communities Attribute"</span>, <span class="seriesInfo">RFC 4360</span>, <span class="seriesInfo">DOI 10.17487/RFC4360</span>, <time datetime="2006-02" class="refDate">February 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc4360">https://www.rfc-editor.org/info/rfc4360</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6793">[RFC6793]</dt>
-    <dd>
+      <dd>
 <span class="refAuthor">Vohra, Q.</span> and <span class="refAuthor">E. Chen</span>, <span class="refTitle">"BGP Support for Four-Octet Autonomous System (AS) Number Space"</span>, <span class="seriesInfo">RFC 6793</span>, <span class="seriesInfo">DOI 10.17487/RFC6793</span>, <time datetime="2012-12" class="refDate">December 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc6793">https://www.rfc-editor.org/info/rfc6793</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
+</section>
+<section id="section-10.2">
+        <h3 id="name-informative-references-2">
+<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-informative-references-2" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="draft-ietf-bess-ebgp-dmz">[draft-ietf-bess-ebgp-dmz]</dt>
+      <dd>
+<span class="refAuthor">Mohanty, S.</span>, <span class="refTitle">"Cumulative DMZ Link Bandwidth and load-balancing"</span>, <time datetime="2025-07-20" class="refDate">20 July 2025</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-ietf-bess-ebgp-dmz">https://tools.ietf.org/html/draft-ietf-bess-ebgp-dmz</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
 </section>
 <div id="Appendix">
 <section id="appendix-A">

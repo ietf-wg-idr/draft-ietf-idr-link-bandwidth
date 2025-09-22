@@ -5,7 +5,7 @@
 Network Working Group                                       P. Mohapatra
 Internet-Draft                                                Google LLC
 Intended status: Standards Track                             R. Das, Ed.
-Expires: 22 March 2026                            Juniper Networks, Inc.
+Expires: 25 March 2026                            Juniper Networks, Inc.
                                                          S. Mohanty, Ed.
                                                                  Zscaler
                                                                 S. Krier
@@ -14,7 +14,7 @@ Expires: 22 March 2026                            Juniper Networks, Inc.
                                                               Google LLC
                                                               A. Gattani
                                                          Arista Networks
-                                                       18 September 2025
+                                                       21 September 2025
 
 
                  BGP Link Bandwidth Extended Community
@@ -46,14 +46,14 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 March 2026.
+   This Internet-Draft will expire on 25 March 2026.
 
 
 
 
 
 
-Mohapatra, et al.         Expires 22 March 2026                 [Page 1]
+Mohapatra, et al.         Expires 25 March 2026                 [Page 1]
 
 Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
@@ -83,7 +83,7 @@ Table of Contents
        3.3.1.  Re-advertisement with Next hop Change . . . . . . . .   5
        3.3.2.  Re-advertisement with Next Hop Unchanged  . . . . . .   5
      3.4.  Link Bandwidth Extended Community Arithmetic and BGP
-           Multipath . . . . . . . . . . . . . . . . . . . . . . . .   5
+           Multipath . . . . . . . . . . . . . . . . . . . . . . . .   6
    4.  Error Handling  . . . . . . . . . . . . . . . . . . . . . . .   6
    5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   6
    6.  Security Considerations . . . . . . . . . . . . . . . . . . .   7
@@ -91,9 +91,11 @@ Table of Contents
      7.1.  Inconsistent Deployment . . . . . . . . . . . . . . . . .   7
    8.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .   8
    9.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   8
-   10. Normative References  . . . . . . . . . . . . . . . . . . . .   8
+   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .   9
+     10.1.  Normative References . . . . . . . . . . . . . . . . . .   9
+     10.2.  Informative References . . . . . . . . . . . . . . . . .   9
    Appendix A.  Document History . . . . . . . . . . . . . . . . . .   9
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   9
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  10
 
 1.  Introduction
 
@@ -104,16 +106,16 @@ Table of Contents
    paths.  This document suggests that the bandwidth be carried in the
    network using one of two new extended communities [RFC4360] - the
    transitive and non-transitive Link Bandwidth Extended Community.  The
-   Link Bandwidth Extended Community provides a mechanism for routers to
-   advertise the bandwidth of their downstream path that may either be a
 
 
 
-Mohapatra, et al.         Expires 22 March 2026                 [Page 2]
+Mohapatra, et al.         Expires 25 March 2026                 [Page 2]
 
 Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
+   Link Bandwidth Extended Community provides a mechanism for routers to
+   advertise the bandwidth of their downstream path that may either be a
    directly connected link or multi-hop/multipath nexthop.  This
    mechanism facilitates maximizing utilization of network resources.
 
@@ -161,14 +163,14 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
              Bandwidth value (bytes per sec) encoded as 4 octets
              in IEEE floating point format.
 
-                Figure 1: Link Bandwidth Extended Community
 
 
-
-Mohapatra, et al.         Expires 22 March 2026                 [Page 3]
+Mohapatra, et al.         Expires 25 March 2026                 [Page 3]
 
 Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
+
+                Figure 1: Link Bandwidth Extended Community
 
 3.  Protocol Procedures
 
@@ -216,15 +218,16 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
    transitivity of the Link Bandwidth Extended Community and/or BGP
    session type (internal vs. external).
 
-   Implementations MAY provide configuration to accept non-transitive
-   Link Bandwidth Extended Communities from external BGP sessions.
 
 
 
-Mohapatra, et al.         Expires 22 March 2026                 [Page 4]
+Mohapatra, et al.         Expires 25 March 2026                 [Page 4]
 
 Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
+
+   Implementations MAY provide configuration to accept non-transitive
+   Link Bandwidth Extended Communities from external BGP sessions.
 
    A BGP update with an attached Link Bandwidth Extended Community with
    a bandwidth value of zero is valid.  When all contributing paths have
@@ -265,22 +268,29 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
    next hop, SHOULD NOT change the Link Bandwidth Extended Community in
    any way.
 
+
+
+
+
+
+
+
+
+
+Mohapatra, et al.         Expires 25 March 2026                 [Page 5]
+
+Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
+
+
 3.4.  Link Bandwidth Extended Community Arithmetic and BGP Multipath
 
    In a BGP multipath environment, the link bandwidth value that is sent
    or re-advertised MAY be calculated based on the Link Bandwidth
-   Extended Community of the routes contributing to multipath in the
-   Local Routing Information Base (Local-RIB).  This topic is beyond the
-   scope of this document.
-
-
-
-
-
-Mohapatra, et al.         Expires 22 March 2026                 [Page 5]
-
-Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
-
+   Extended Community associated with each constituent path contributing
+   to multipath in the Local Routing Information Base (Local-RIB).  This
+   topic is beyond the scope of this document.  Refer to
+   [draft-ietf-bess-ebgp-dmz] which describes how this could be done in
+   specific scenarios.
 
 4.  Error Handling
 
@@ -320,6 +330,14 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
        ----
        transitive Link Bandwidth Extended Community
 
+
+
+
+Mohapatra, et al.         Expires 25 March 2026                 [Page 6]
+
+Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
+
+
    IANA is requested to update the Non-Transitive Two-Octet AS-Specific
    Extended Community Sub-Types registry (Type 0x40) and Sub-Type 0x04
    to:
@@ -329,14 +347,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
        non-transitive Link Bandwidth Extended Community
 
    Both updates are to reference this document.
-
-
-
-
-Mohapatra, et al.         Expires 22 March 2026                 [Page 6]
-
-Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
-
 
 6.  Security Considerations
 
@@ -374,6 +384,16 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
    receive such routes may perform inappropriate weighted load
    balancing.
 
+
+
+
+
+
+Mohapatra, et al.         Expires 25 March 2026                 [Page 7]
+
+Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
+
+
    To mitigate such issues, when operators are aware that older
    implementations are present in their networks, they may wish to take
    actions to address such inconsistencies.  One option would be to
@@ -383,16 +403,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
    receiving BGP speaker, knowing that the sending speaker is incapable
    of doing such operations, could strip the Link Bandwidth Extended
    Community type that is unsupported by the sender.
-
-
-
-
-
-
-Mohapatra, et al.         Expires 22 March 2026                 [Page 7]
-
-Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
-
 
    Ideally this operational consideration is short-lived until all the
    routers in the network have been upgraded to implementations that
@@ -432,23 +442,23 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
    like to thank Jeff Haas for all the discussions and providing text
    for operational considerations.
 
+
+
+
+Mohapatra, et al.         Expires 25 March 2026                 [Page 8]
+
+Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
+
+
    The authors would like to thank Bruno Decraene, Robert Raszuk, Joel
    Halpern, Aleksi Suhonen, Randy Bush, Stephane Litkowski, Mankamana
    Mishra, Moshiko Nayman, Keon Vafai, Ketan Talaulikar, Yingzhen Qu,
    Anoop Ghanwani, Dongjie (Jimmy) and John Scudder for their comments
    and contributions.
 
-10.  Normative References
+10.  References
 
-
-
-
-
-
-Mohapatra, et al.         Expires 22 March 2026                 [Page 8]
-
-Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
-
+10.1.  Normative References
 
    [IEEE.754-2019]
               IEEE, "IEEE Standard for Floating-Point Arithmetic", 22
@@ -468,6 +478,13 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
               DOI 10.17487/RFC6793, December 2012,
               <https://www.rfc-editor.org/info/rfc6793>.
 
+10.2.  Informative References
+
+   [draft-ietf-bess-ebgp-dmz]
+              Mohanty, S., "Cumulative DMZ Link Bandwidth and load-
+              balancing", 20 July 2025,
+              <https://tools.ietf.org/html/draft-ietf-bess-ebgp-dmz>.
+
 Appendix A.  Document History
 
    BGP Link Bandwidth Extended Community has evolved over several
@@ -476,6 +493,18 @@ Appendix A.  Document History
    Bandwidth Extended Community was supported.  However, starting from
    draft-ietf-idr-link-bandwidth-09, both transitive and non-transitive
    versions of Link Bandwidth Extended Community are supported.
+
+
+
+
+
+
+
+
+Mohapatra, et al.         Expires 25 March 2026                 [Page 9]
+
+Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
+
 
    A BGP speaker (Sender or Receiver) needs to be upgraded to support
    the procedures defined in this document to provide full
@@ -499,13 +528,6 @@ Authors' Addresses
    Email: dreshma@juniper.net
 
 
-
-
-Mohapatra, et al.         Expires 22 March 2026                 [Page 9]
-
-Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
-
-
    Satya Mohanty (editor)
    Zscaler
    120 Holger Way,
@@ -527,6 +549,17 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
    Sunnyvale, CA 94089
    United States of America
    Email: rszarecki@gmail.com
+
+
+
+
+
+
+
+
+Mohapatra, et al.         Expires 25 March 2026                [Page 10]
+
+Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
    Akshay Gattani
@@ -557,4 +590,27 @@ Internet-Draft    BGP Link Bandwidth Extended Community   September 2025
 
 
 
-Mohapatra, et al.         Expires 22 March 2026                [Page 10]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Mohapatra, et al.         Expires 25 March 2026                [Page 11]
