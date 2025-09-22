@@ -215,7 +215,7 @@
         implementations MAY use different default values for the transitivity
         type of the Link Bandwidth Extended Community. The provided
         configuration SHOULD allow operators to override the default
-        transitivity value as needed. An implementation MAY advertise a
+        transitivity value as needed. An implementation MAY advertise
         bandwidth value as zero.</t>
 
         <t>Generally, a single Link Bandwidth Extended Community of the
@@ -253,12 +253,12 @@
         have a non-zero value in the Link Bandwidth Extended Community, the
         bandwidth values of those paths (or their ratio) can be utilized as
         weights to enable weighted load-balancing. Details of weighted
-        load-balancing are outside the scope of this document.However, in the
+        load-balancing are outside the scope of this document. However, in the
         case where the paths have a mix of zero and non-zero values, or all
         zero values, the behavior is determined by local policy. For example,
-        implementations MAY exclude the paths with zero value from WECMP
-        formation as long as at least one path with non-zero value exists or
-        they MAY fallback to ECMP.</t>
+        implementations MAY exclude the paths with zero value from weighted
+        load balancing formation as long as at least one path with non-zero
+        value exists or they MAY fallback to ECMP.</t>
       </section>
 
       <section anchor="Re-advertisement" title="Re-advertisement Procedures">
@@ -305,15 +305,15 @@
 
     <section anchor="Error" title="Error Handling">
       <t>If a BGP speaker receives a route with more than one Link Bandwidth
-      Extended Communities and uses the route to compute WECMP, it SHOULD use
-      the extended community with the lowest "Link Bandwidth Value", ignoring
-      the transitivity. Implementations MAY provide configuration to change
-      the above preference.</t>
+      Extended Communities and uses the route to compute weighted load
+      balancing, it SHOULD use the extended community with the lowest
+      "Bandwidth Value", ignoring the transitivity. Implementations MAY
+      provide configuration to change the above preference.</t>
 
       <t>Between transitive and non-transitive types of Link Bandwidth
-      Extended Communities that have the same 'Link Bandwidth Value', the
-      transitivity doesn't matter for purpose of computing WECMP or
-      programming to FIB (Forwarding Information Base).</t>
+      Extended Communities that have the same 'Bandwidth Value', the
+      transitivity doesn't matter for purpose of computing weighted load
+      balancing or programming to FIB (Forwarding Information Base).</t>
 
       <t>Note that these procedures mean that a BGP speaker reflecting a route
       with next hop unchanged (e.g. RR) will re-advertise the Link Bandwidth
