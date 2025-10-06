@@ -9,7 +9,7 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std" docName="draft-ietf-idr-link-bandwidth-18"
+<rfc category="std" docName="draft-ietf-idr-link-bandwidth-19"
      ipr="trust200902">
   <front>
     <title abbrev="BGP Link Bandwidth Extended Community">BGP Link Bandwidth
@@ -118,7 +118,7 @@
       </address>
     </author>
 
-    <date day="21" month="09" year="2025"/>
+    <date day="06" month="10" year="2025"/>
 
     <abstract>
       <t>This document specifies a type of BGP Extended Community that enables
@@ -270,14 +270,15 @@
                  title="Re-advertisement with Next hop Change">
           <t>When a BGP speaker re-advertises a route received with Link
           Bandwidth Extended Community and sets the next hop to itself or to
-          another address, implementation MAY remove the Link Bandwidth
-          Extended Community or MAY re-advertise it unchanged or regenerate it
-          as its default behavior. Implementation SHOULD provide a local
-          configuration method to alter its default behavior to one of these
-          options with per-session granularity.</t>
+          another address, it MAY do any one of the following as its default
+          behavior -remove the Link Bandwidth Extended Community, re-advertise
+          it unchanged, or regenerate it with an appropriate value.
+          Implementations SHOULD provide a local configuration method to alter
+          their default behavior to the other options with per-session
+          granularity.</t>
 
-          <t>When regenerating Link Bandwidth Extended Community, follow the
-          same procedures as outlined in <xref target="Originator"/>. Please
+          <t>When regenerating Link Bandwidth Extended Community, the same
+          procedures as outlined in <xref target="Originator"/> apply. Please
           also refer to <xref target="LinkBandwidthArithmetic"/> for use in a
           BGP multipath environment.</t>
         </section>
