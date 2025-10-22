@@ -167,11 +167,11 @@
       Bandwidth Extended Community, but MAY contain any two-octet value. If
       the Autonomous System number cannot be represented in two octets,
       AS_TRANS <xref target="RFC6793"/>, SHOULD be used in the Global
-      Administrator subfield. The encoding of four-octet ASNs is out of scope
-      for this document. The value in the Global Administrator subfield does
-      not affect the use or semantics of the Link Bandwidth Extended
-      Community. This approach maintains consistency with two-octet community
-      registries and remains operationally familiar.</t>
+      Administrator subfield. The encoding of the full four-octet ASNs is out
+      of scope for this document. The value in the Global Administrator
+      subfield does not affect the use or semantics of the Link Bandwidth
+      Extended Community. This approach maintains consistency with two-octet
+      community registries and remains operationally familiar.</t>
 
       <t>The bandwidth value is expressed as 4 octets in <xref
       target="IEEE.754-2019"/> floating point format, units being bytes (not
@@ -267,7 +267,9 @@
         zero values, the behavior is determined by local policy. For example,
         implementations may exclude the paths with zero value from weighted
         load balancing formation as long as at least one path with non-zero
-        value exists or they may fallback to ECMP.</t>
+        value exists or they may fallback to ECMP. The Link Bandwidth value,
+        however, SHOULD NOT be used as an input to the BGP best path selection
+        process.</t>
       </section>
 
       <section anchor="Re-advertisement" title="Re-advertisement Procedures">

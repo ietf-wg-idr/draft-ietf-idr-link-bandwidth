@@ -1452,11 +1452,11 @@ li > p:last-of-type:only-child {
       Bandwidth Extended Community, but MAY contain any two-octet value. If
       the Autonomous System number cannot be represented in two octets,
       AS_TRANS <span>[<a href="#RFC6793" class="cite xref">RFC6793</a>]</span>, SHOULD be used in the Global
-      Administrator subfield. The encoding of four-octet ASNs is out of scope
-      for this document. The value in the Global Administrator subfield does
-      not affect the use or semantics of the Link Bandwidth Extended
-      Community. This approach maintains consistency with two-octet community
-      registries and remains operationally familiar.<a href="#section-2-3" class="pilcrow">¶</a></p>
+      Administrator subfield. The encoding of the full four-octet ASNs is out
+      of scope for this document. The value in the Global Administrator
+      subfield does not affect the use or semantics of the Link Bandwidth
+      Extended Community. This approach maintains consistency with two-octet
+      community registries and remains operationally familiar.<a href="#section-2-3" class="pilcrow">¶</a></p>
 <p id="section-2-4">The bandwidth value is expressed as 4 octets in <span>[<a href="#IEEE.754-2019" class="cite xref">IEEE.754-2019</a>]</span> floating point format, units being bytes (not
       bits!) per second. It is carried in the Local Administrator subfield of
       the Value Field.<a href="#section-2-4" class="pilcrow">¶</a></p>
@@ -1555,7 +1555,9 @@ li > p:last-of-type:only-child {
         zero values, the behavior is determined by local policy. For example,
         implementations may exclude the paths with zero value from weighted
         load balancing formation as long as at least one path with non-zero
-        value exists or they may fallback to ECMP.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+        value exists or they may fallback to ECMP. The Link Bandwidth value,
+        however, SHOULD NOT be used as an input to the BGP best path selection
+        process.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="Re-advertisement">
