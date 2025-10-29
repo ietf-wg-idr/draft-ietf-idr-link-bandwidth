@@ -102,10 +102,10 @@ Table of Contents
 
    Load balancing is a critical aspect of network design, enabling
    efficient utilization of available bandwidth and improving overall
-   network performance.  Traditional equal-cost multi-path (ECMP)
-   routing does not account for the varying capacities of different
-   paths.  This document suggests that the bandwidth be carried in the
-   network using one of two new extended communities [RFC4360] - the
+   network performance.  Traditional equal load-balancing routing does
+   not account for the varying capacities of different paths.  This
+   document suggests that the bandwidth be carried in the network using
+   one of two new extended communities [RFC4360] - the transitive and
 
 
 
@@ -114,11 +114,11 @@ Mohapatra, et al.         Expires 9 April 2026                  [Page 2]
 Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
 
 
-   transitive and non-transitive Link Bandwidth Extended Community.  The
-   Link Bandwidth Extended Community provides a mechanism for routers to
-   advertise the bandwidth of their downstream path that may either be a
-   directly connected link or multi-hop/multipath nexthop.  This
-   mechanism facilitates maximizing utilization of network resources.
+   non-transitive Link Bandwidth Extended Community.  The Link Bandwidth
+   Extended Community provides a mechanism for routers to advertise the
+   bandwidth of their downstream path that may either be a directly
+   connected link or multi-hop/multipath nexthop.  This mechanism
+   facilitates maximizing utilization of network resources.
 
 2.  Link Bandwidth Extended Community
 
@@ -173,9 +173,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |Type=0x00/0x40 | SubType= 0x04 |       AS Number               |
+   |Type=0x00/0x40 | SubType= 0x04 |      Global Administrator     |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                     Bandwidth Value                           |
+   |                     Local Administrator                       |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
     Type:   1-octet field MUST be set to 0x00 or 0x40
@@ -197,8 +197,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
 
    The procedures cover both the transitive and non-transitive variants
    of the Link Bandwidth Extended Community so that implementations can
-   handle both variants in a way that supports existing deployments.
-   Please refer to Section 5 and Appendix A for more details.
+   handle both variants, ensuring that implementations can interoperate
+   correctly across all deployments.  Please refer to Section 5 and
+   Appendix A for more details.
 
 3.1.  Sender (Originating Link Bandwidth Extended Community)
 
@@ -215,9 +216,8 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
    their default value.  An implementation MAY advertise bandwidth value
    as zero.
 
-   Generally, a single Link Bandwidth Extended Community of the
-   transitivity type that is desired in a deployment is attached to a
-   route.  However during transition (refer Section 7 for details), a
+
+
 
 
 
@@ -226,6 +226,9 @@ Mohapatra, et al.         Expires 9 April 2026                  [Page 4]
 Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
 
 
+   Generally, a single Link Bandwidth Extended Community of the
+   transitivity type that is desired in a deployment is attached to a
+   route.  However during transition (refer Section 7 for details), a
    BGP speaker MAY attach one Link Bandwidth Extended Community per
    transitivity (transitive/non-transitive) both having the same
    'Bandwidth Value' field.
@@ -261,18 +264,15 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
    zero values, the behavior is determined by local policy.  For
    example, implementations may exclude the paths with zero value from
    weighted load balancing formation as long as at least one path with
-   non-zero value exists or they may fallback to ECMP.  The Link
-   Bandwidth value, however, SHOULD NOT be used as an input to the BGP
-   best path selection process.
+   non-zero value exists or they may fallback to equal load-balancing.
+   The Link Bandwidth value, however, SHOULD NOT be used as an input to
+   the BGP best path selection process.
 
 3.3.  Re-advertisement Procedures
 
    This section describes the procedures to be followed when a BGP
    speaker receives a route with an attached Link Bandwidth Extended
    Community and subsequently re-advertises that route.
-
-
-
 
 
 
@@ -351,7 +351,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
    considered malformed.
 
    If any of the paths lack a valid Link Bandwidth Extended Community,
-   ECMP (Equal-Cost Multi-Path) MUST be used instead.
+   equal load-balancing MUST be used instead.
 
 5.  IANA Considerations
 
