@@ -227,9 +227,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
 
 
    Generally, a single Link Bandwidth Extended Community of the
-   transitivity type that is desired in a deployment is attached to a
-   route.  However during transition (refer Section 7 for details), a
-   BGP speaker MAY attach one Link Bandwidth Extended Community per
+   transitivity type desired in a deployment is attached to a route.
+   However during transition (refer Section 7 for details), a BGP
+   speaker MAY attach one Link Bandwidth Extended Community per
    transitivity (transitive/non-transitive) both having the same
    'Bandwidth Value' field.
 
