@@ -121,8 +121,10 @@
     <date day="06" month="10" year="2025"/>
 
     <abstract>
-      <t>This document specifies a type of BGP Extended Community that enables
-      routers to perform weighted load-balancing in multipath scenarios.</t>
+      <t>This document defines a BGP Extended Community, the Link Bandwidth
+      Extended Community, which carries link bandwidth information to enable
+      weighted load-balancing in multipath scenarios. It specifies the format
+      and processing rules for this extended community type.</t>
     </abstract>
 
     <note title="Requirements Language">
@@ -143,10 +145,10 @@
       suggests that the bandwidth be carried in the network using one of two
       new extended communities <xref target="RFC4360"/> - the transitive and
       non-transitive Link Bandwidth Extended Community. The Link Bandwidth
-      Extended Community provides a mechanism for routers to advertise the
-      bandwidth of their downstream path that may either be a directly
-      connected link or multi-hop/multipath nexthop. This mechanism
-      facilitates maximizing utilization of network resources.</t>
+      Extended Community carries the bandwidth information of a directly
+      connected link or multi-hop/multipath nexthop as advertised by a router.
+      This mechanism facilitates maximizing utilization of network
+      resources.</t>
     </section>
 
     <section title="Link Bandwidth Extended Community">
@@ -325,7 +327,7 @@
 
       <t>Between transitive and non-transitive types of Link Bandwidth
       Extended Communities that have the same 'Bandwidth Value', the
-      transitivity doesn't matter for purpose of computing weighted load
+      transitivity does not matter for purpose of computing weighted load
       balancing or programming to FIB (Forwarding Information Base).</t>
 
       <t>Note that these procedures mean that a BGP speaker reflecting a route

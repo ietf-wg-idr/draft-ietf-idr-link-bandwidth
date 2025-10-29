@@ -22,8 +22,10 @@ Expires: 9 April 2026                             Juniper Networks, Inc.
 
 Abstract
 
-   This document specifies a type of BGP Extended Community that enables
-   routers to perform weighted load-balancing in multipath scenarios.
+   This document defines a BGP Extended Community, the Link Bandwidth
+   Extended Community, which carries link bandwidth information to
+   enable weighted load-balancing in multipath scenarios.  It specifies
+   the format and processing rules for this extended community type.
 
 Requirements Language
 
@@ -48,8 +50,6 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 April 2026.
-
 
 
 
@@ -57,6 +57,8 @@ Mohapatra, et al.         Expires 9 April 2026                  [Page 1]
 
 Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
 
+
+   This Internet-Draft will expire on 9 April 2026.
 
 Copyright Notice
 
@@ -74,7 +76,7 @@ Copyright Notice
 
 Table of Contents
 
-   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
    2.  Link Bandwidth Extended Community . . . . . . . . . . . . . .   3
    3.  Protocol Procedures . . . . . . . . . . . . . . . . . . . . .   4
      3.1.  Sender (Originating Link Bandwidth Extended Community)  .   4
@@ -98,14 +100,12 @@ Table of Contents
    Appendix A.  Document History . . . . . . . . . . . . . . . . . .  10
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  10
 
-1.  Introduction
 
-   Load balancing is a critical aspect of network design, enabling
-   efficient utilization of available bandwidth and improving overall
-   network performance.  Traditional equal load-balancing routing does
-   not account for the varying capacities of different paths.  This
-   document suggests that the bandwidth be carried in the network using
-   one of two new extended communities [RFC4360] - the transitive and
+
+
+
+
+
 
 
 
@@ -114,11 +114,19 @@ Mohapatra, et al.         Expires 9 April 2026                  [Page 2]
 Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
 
 
+1.  Introduction
+
+   Load balancing is a critical aspect of network design, enabling
+   efficient utilization of available bandwidth and improving overall
+   network performance.  Traditional equal load-balancing routing does
+   not account for the varying capacities of different paths.  This
+   document suggests that the bandwidth be carried in the network using
+   one of two new extended communities [RFC4360] - the transitive and
    non-transitive Link Bandwidth Extended Community.  The Link Bandwidth
-   Extended Community provides a mechanism for routers to advertise the
-   bandwidth of their downstream path that may either be a directly
-   connected link or multi-hop/multipath nexthop.  This mechanism
-   facilitates maximizing utilization of network resources.
+   Extended Community carries the bandwidth information of a directly
+   connected link or multi-hop/multipath nexthop as advertised by a
+   router.  This mechanism facilitates maximizing utilization of network
+   resources.
 
 2.  Link Bandwidth Extended Community
 
@@ -148,14 +156,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
    The bandwidth value is expressed as 4 octets in [IEEE.754-2019]
    floating point format, units being bytes (not bits!) per second.  It
    is carried in the Local Administrator subfield of the Value Field.
-
-
-
-
-
-
-
-
 
 
 
@@ -324,7 +324,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
 
    Between transitive and non-transitive types of Link Bandwidth
    Extended Communities that have the same 'Bandwidth Value', the
-   transitivity doesn't matter for purpose of computing weighted load
+   transitivity does not matter for purpose of computing weighted load
    balancing or programming to FIB (Forwarding Information Base).
 
 

@@ -12,8 +12,10 @@
 <meta content="Rafal Jan Szarecki" name="author">
 <meta content="Akshay Gattani" name="author">
 <meta content="
-       This document specifies a type of BGP Extended Community that enables
-      routers to perform weighted load-balancing in multipath scenarios. 
+       This document defines a BGP Extended Community, the Link Bandwidth
+      Extended Community, which carries link bandwidth information to enable
+      weighted load-balancing in multipath scenarios. It specifies the format
+      and processing rules for this extended community type. 
     " name="description">
 <meta content="xml2rfc 3.30.1" name="generator">
 <meta content="draft-ietf-idr-link-bandwidth-20" name="ietf.draft">
@@ -1278,8 +1280,10 @@ li > p:last-of-type:only-child {
 <h1 id="title">BGP Link Bandwidth Extended Community</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document specifies a type of BGP Extended Community that enables
-      routers to perform weighted load-balancing in multipath scenarios.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document defines a BGP Extended Community, the Link Bandwidth
+      Extended Community, which carries link bandwidth information to enable
+      weighted load-balancing in multipath scenarios. It specifies the format
+      and processing rules for this extended community type.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note" id="section-note.1">
       <h2 id="name-requirements-language">
@@ -1428,10 +1432,10 @@ li > p:last-of-type:only-child {
       suggests that the bandwidth be carried in the network using one of two
       new extended communities <span>[<a href="#RFC4360" class="cite xref">RFC4360</a>]</span> - the transitive and
       non-transitive Link Bandwidth Extended Community. The Link Bandwidth
-      Extended Community provides a mechanism for routers to advertise the
-      bandwidth of their downstream path that may either be a directly
-      connected link or multi-hop/multipath nexthop. This mechanism
-      facilitates maximizing utilization of network resources.<a href="#section-1-1" class="pilcrow">¶</a></p>
+      Extended Community carries the bandwidth information of a directly
+      connected link or multi-hop/multipath nexthop as advertised by a router.
+      This mechanism facilitates maximizing utilization of network
+      resources.<a href="#section-1-1" class="pilcrow">¶</a></p>
 </section>
 <section id="section-2">
       <h2 id="name-link-bandwidth-extended-com">
@@ -1627,7 +1631,7 @@ li > p:last-of-type:only-child {
       provide configuration to change the above preference.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <p id="section-4-2">Between transitive and non-transitive types of Link Bandwidth
       Extended Communities that have the same 'Bandwidth Value', the
-      transitivity doesn't matter for purpose of computing weighted load
+      transitivity does not matter for purpose of computing weighted load
       balancing or programming to FIB (Forwarding Information Base).<a href="#section-4-2" class="pilcrow">¶</a></p>
 <p id="section-4-3">Note that these procedures mean that a BGP speaker reflecting a route
       with next hop unchanged (e.g. RR) will re-advertise the Link Bandwidth
