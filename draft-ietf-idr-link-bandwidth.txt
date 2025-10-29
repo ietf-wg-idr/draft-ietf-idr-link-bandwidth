@@ -18,7 +18,7 @@ Expires: 9 April 2026                             Juniper Networks, Inc.
 
 
                  BGP Link Bandwidth Extended Community
-                    draft-ietf-idr-link-bandwidth-19
+                    draft-ietf-idr-link-bandwidth-20
 
 Abstract
 
@@ -28,8 +28,10 @@ Abstract
 Requirements Language
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-   document are to be interpreted as described in [RFC2119].
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in BCP
+   14 [RFC2119] [RFC8174]when, and only when, they appear in all
+   capitals, as shown here.
 
 Status of This Memo
 
@@ -47,8 +49,6 @@ Status of This Memo
    material or to cite them other than as "work in progress."
 
    This Internet-Draft will expire on 9 April 2026.
-
-
 
 
 
@@ -78,23 +78,24 @@ Table of Contents
    2.  Link Bandwidth Extended Community . . . . . . . . . . . . . .   3
    3.  Protocol Procedures . . . . . . . . . . . . . . . . . . . . .   4
      3.1.  Sender (Originating Link Bandwidth Extended Community)  .   4
-     3.2.  Receiver (Receiving Link Bandwidth Extended Community)  .   4
+     3.2.  Receiver (Receiving Link Bandwidth Extended Community)  .   5
      3.3.  Re-advertisement Procedures . . . . . . . . . . . . . . .   5
-       3.3.1.  Re-advertisement with Next hop Change . . . . . . . .   5
-       3.3.2.  Re-advertisement with Next Hop Unchanged  . . . . . .   5
+       3.3.1.  Re-advertisement with Next hop Change . . . . . . . .   6
+       3.3.2.  Re-advertisement with Next Hop Unchanged  . . . . . .   6
      3.4.  Link Bandwidth Extended Community Arithmetic and BGP
            Multipath . . . . . . . . . . . . . . . . . . . . . . . .   6
    4.  Error Handling  . . . . . . . . . . . . . . . . . . . . . . .   6
-   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   6
+   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   7
    6.  Security Considerations . . . . . . . . . . . . . . . . . . .   7
-   7.  Operational Considerations  . . . . . . . . . . . . . . . . .   7
-     7.1.  Inconsistent Deployment . . . . . . . . . . . . . . . . .   7
+   7.  Operational Considerations  . . . . . . . . . . . . . . . . .   8
+     7.1.  Inconsistent Deployment . . . . . . . . . . . . . . . . .   8
+     7.2.  Bandwidth Value . . . . . . . . . . . . . . . . . . . . .   8
    8.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .   8
-   9.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   8
+   9.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   9
    10. References  . . . . . . . . . . . . . . . . . . . . . . . . .   9
      10.1.  Normative References . . . . . . . . . . . . . . . . . .   9
-     10.2.  Informative References . . . . . . . . . . . . . . . . .   9
-   Appendix A.  Document History . . . . . . . . . . . . . . . . . .   9
+     10.2.  Informative References . . . . . . . . . . . . . . . . .  10
+   Appendix A.  Document History . . . . . . . . . . . . . . . . . .  10
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  10
 
 1.  Introduction
@@ -105,7 +106,6 @@ Table of Contents
    routing does not account for the varying capacities of different
    paths.  This document suggests that the bandwidth be carried in the
    network using one of two new extended communities [RFC4360] - the
-   transitive and non-transitive Link Bandwidth Extended Community.  The
 
 
 
@@ -114,6 +114,7 @@ Mohapatra, et al.         Expires 9 April 2026                  [Page 2]
 Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
 
 
+   transitive and non-transitive Link Bandwidth Extended Community.  The
    Link Bandwidth Extended Community provides a mechanism for routers to
    advertise the bandwidth of their downstream path that may either be a
    directly connected link or multi-hop/multipath nexthop.  This
@@ -131,16 +132,43 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
    non-transitive.  Therefore the value of the high-order octet of the
    extended Type Field can be 0x00 or 0x40, respectively.  The value of
    the low-order octet of the extended type field for this communities
-   is 0x04.  The value of the Global Administrator subfield in the Value
-   Field SHOULD represent the Autonomous System of the router that
-   attaches the Link Bandwidth Extended Community, but it can be set to
-   any 2-byte value.  If the Autonomous System number cannot be
-   represented in two octets, AS_TRANS [RFC6793], SHOULD be used in the
-   Global Administrator subfield.  The encoding of 4-octet ASN is out of
-   scope of this document.  The bandwidth value is expressed as 4 octets
-   in [IEEE.754-2019] floating point format, units being bytes (not
-   bits!) per second.  It is carried in the Local Administrator subfield
-   of the Value Field.
+   is 0x04.
+
+   The Global Administrator subfield in the Value Field SHOULD be set to
+   the Autonomous System (AS) number of the router attaching the Link
+   Bandwidth Extended Community, but MAY contain any two-octet value.
+   If the Autonomous System number cannot be represented in two octets,
+   AS_TRANS [RFC6793], SHOULD be used in the Global Administrator
+   subfield.  The encoding of the full four-octet ASNs is out of scope
+   for this document.  The value in the Global Administrator subfield
+   does not affect the use or semantics of the Link Bandwidth Extended
+   Community.  This approach maintains consistency with two-octet
+   community registries and remains operationally familiar.
+
+   The bandwidth value is expressed as 4 octets in [IEEE.754-2019]
+   floating point format, units being bytes (not bits!) per second.  It
+   is carried in the Local Administrator subfield of the Value Field.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Mohapatra, et al.         Expires 9 April 2026                  [Page 3]
+
+Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
+
 
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -163,13 +191,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
              Bandwidth value (bytes per sec) encoded as 4 octets
              in IEEE floating point format.
 
-
-
-Mohapatra, et al.         Expires 9 April 2026                  [Page 3]
-
-Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
-
-
                 Figure 1: Link Bandwidth Extended Community
 
 3.  Protocol Procedures
@@ -190,12 +211,21 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
    Different implementations MAY use different default values for the
    transitivity type of the Link Bandwidth Extended Community.  The
    provided configuration SHOULD allow operators to override the default
-   transitivity value as needed.  An implementation MAY advertise
-   bandwidth value as zero.
+   transitivity value as needed.  Likewise, Implementation SHOULD expose
+   their default value.  An implementation MAY advertise bandwidth value
+   as zero.
 
    Generally, a single Link Bandwidth Extended Community of the
    transitivity type that is desired in a deployment is attached to a
    route.  However during transition (refer Section 7 for details), a
+
+
+
+Mohapatra, et al.         Expires 9 April 2026                  [Page 4]
+
+Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
+
+
    BGP speaker MAY attach one Link Bandwidth Extended Community per
    transitivity (transitive/non-transitive) both having the same
    'Bandwidth Value' field.
@@ -212,19 +242,11 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
 
 3.2.  Receiver (Receiving Link Bandwidth Extended Community)
 
-   A BGP receiver MUST be able to process Link Bandwidth Extended
-   Community of both transitive and non-transitive types.  The receiver
-   MUST NOT flap or treat the route as malformed based on the
-   transitivity of the Link Bandwidth Extended Community and/or BGP
-   session type (internal vs. external).
-
-
-
-
-Mohapatra, et al.         Expires 9 April 2026                  [Page 4]
-
-Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
-
+   A BGP receiver that supports the Link Bandwidth Extended Community
+   MUST support processing of both the transitive and non-transitive
+   types.  The receiver MUST NOT flap or treat the route as malformed
+   based on the transitivity of the Link Bandwidth Extended Community
+   and/or BGP session type (internal vs. external).
 
    Implementations MAY provide configuration to accept non-transitive
    Link Bandwidth Extended Communities from external BGP sessions.
@@ -237,39 +259,17 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
    balancing are outside the scope of this document.  However, in the
    case where the paths have a mix of zero and non-zero values, or all
    zero values, the behavior is determined by local policy.  For
-   example, implementations MAY exclude the paths with zero value from
+   example, implementations may exclude the paths with zero value from
    weighted load balancing formation as long as at least one path with
-   non-zero value exists or they MAY fallback to ECMP.
+   non-zero value exists or they may fallback to ECMP.  The Link
+   Bandwidth value, however, SHOULD NOT be used as an input to the BGP
+   best path selection process.
 
 3.3.  Re-advertisement Procedures
 
    This section describes the procedures to be followed when a BGP
    speaker receives a route with an attached Link Bandwidth Extended
    Community and subsequently re-advertises that route.
-
-3.3.1.  Re-advertisement with Next hop Change
-
-   When a BGP speaker re-advertises a route received with Link Bandwidth
-   Extended Community and sets the next hop to itself or to another
-   address, it MAY do any one of the following as its default behavior
-   -remove the Link Bandwidth Extended Community, re-advertise it
-   unchanged, or regenerate it with an appropriate value.
-   Implementations SHOULD provide a local configuration method to alter
-   their default behavior to the other options with per-session
-   granularity.
-
-   When regenerating Link Bandwidth Extended Community, the same
-   procedures as outlined in Section 3.1 apply.  Please also refer to
-   Section 3.4 for use in a BGP multipath environment.
-
-3.3.2.  Re-advertisement with Next Hop Unchanged
-
-   A BGP speaker that receives a route with a Link Bandwidth Extended
-   Community and re-advertises or reflects the same without changing its
-   next hop, SHOULD NOT change the Link Bandwidth Extended Community in
-   any way.
-
-
 
 
 
@@ -281,6 +281,28 @@ Mohapatra, et al.         Expires 9 April 2026                  [Page 5]
 
 Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
 
+
+3.3.1.  Re-advertisement with Next hop Change
+
+   When a BGP speaker re-advertises a route received with Link Bandwidth
+   Extended Community and sets the next hop to itself or to another
+   address, it MAY do any one of the following as its default behavior
+   -remove the Link Bandwidth Extended Community, re-advertise it
+   unchanged, or regenerate it with an updated value.  Implementations
+   SHOULD provide a local configuration method to alter their default
+   behavior to the other options with per-session granularity.
+   Likewise, Implementation SHOULD expose their default value.
+
+   When regenerating Link Bandwidth Extended Community, the same
+   procedures as outlined in Section 3.1 apply.  Please also refer to
+   Section 3.4 for use in a BGP multipath environment.
+
+3.3.2.  Re-advertisement with Next Hop Unchanged
+
+   A BGP speaker that receives a route with a Link Bandwidth Extended
+   Community and re-advertises or reflects the same without changing its
+   next hop, SHOULD NOT change the Link Bandwidth Extended Community in
+   any way.
 
 3.4.  Link Bandwidth Extended Community Arithmetic and BGP Multipath
 
@@ -305,8 +327,19 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
    transitivity doesn't matter for purpose of computing weighted load
    balancing or programming to FIB (Forwarding Information Base).
 
+
+
+
+
+
+
+Mohapatra, et al.         Expires 9 April 2026                  [Page 6]
+
+Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
+
+
    Note that these procedures mean that a BGP speaker reflecting a route
-   with next hop unchanged (e.g.  RR) will re-advertise the Link
+   with next hop unchanged (e.g. RR) will re-advertise the Link
    Bandwidth Extended Communities received on the route as-is without
    any modification, while following the extended community transitivity
    rules.
@@ -329,14 +362,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
        Name
        ----
        transitive Link Bandwidth Extended Community
-
-
-
-
-Mohapatra, et al.         Expires 9 April 2026                  [Page 6]
-
-Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
-
 
    IANA is requested to update the Non-Transitive Two-Octet AS-Specific
    Extended Community Sub-Types registry (Type 0x40) and Sub-Type 0x04
@@ -361,6 +386,14 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
    administrative domain, it is recommended operators use policy to
    filter out this community.
 
+
+
+
+Mohapatra, et al.         Expires 9 April 2026                  [Page 7]
+
+Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
+
+
 7.  Operational Considerations
 
 7.1.  Inconsistent Deployment
@@ -384,16 +417,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
    receive such routes may perform inappropriate weighted load
    balancing.
 
-
-
-
-
-
-Mohapatra, et al.         Expires 9 April 2026                  [Page 7]
-
-Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
-
-
    To mitigate such issues, when operators are aware that older
    implementations are present in their networks, they may wish to take
    actions to address such inconsistencies.  One option would be to
@@ -408,7 +431,24 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
    routers in the network have been upgraded to implementations that
    consistently support the procedures in this document.
 
+7.2.  Bandwidth Value
+
+   How the bandwidth value is computed or determined is out of scope of
+   this document.  It is recommended that implementations provide
+   mechanisms to limit the churn caused by frequently changing bandwidth
+   values because rapid fluctuations could impact protocol stability and
+   network operations.  However, the specific methods for achieving this
+   are out of scope of this document.
+
 8.  Contributors
+
+
+
+
+Mohapatra, et al.         Expires 9 April 2026                  [Page 8]
+
+Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
+
 
    Kaliraj Vairavakkalai
    Juniper Networks, Inc.
@@ -442,14 +482,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
    like to thank Jeff Haas for all the discussions and providing text
    for operational considerations.
 
-
-
-
-Mohapatra, et al.         Expires 9 April 2026                  [Page 8]
-
-Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
-
-
    The authors would like to thank Bruno Decraene, Robert Raszuk, Joel
    Halpern, Aleksi Suhonen, Randy Bush, Stephane Litkowski, Mankamana
    Mishra, Moshiko Nayman, Keon Vafai, Ketan Talaulikar, Yingzhen Qu,
@@ -464,6 +496,16 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
               IEEE, "IEEE Standard for Floating-Point Arithmetic", 22
               July 2019, <https://ieeexplore.ieee.org/document/8766229>.
 
+
+
+
+
+
+Mohapatra, et al.         Expires 9 April 2026                  [Page 9]
+
+Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
+
+
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
@@ -477,6 +519,10 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
               Autonomous System (AS) Number Space", RFC 6793,
               DOI 10.17487/RFC6793, December 2012,
               <https://www.rfc-editor.org/info/rfc6793>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
 10.2.  Informative References
 
@@ -494,18 +540,6 @@ Appendix A.  Document History
    draft-ietf-idr-link-bandwidth-09, both transitive and non-transitive
    versions of Link Bandwidth Extended Community are supported.
 
-
-
-
-
-
-
-
-Mohapatra, et al.         Expires 9 April 2026                  [Page 9]
-
-Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
-
-
    A BGP speaker (Sender or Receiver) needs to be upgraded to support
    the procedures defined in this document to provide full
    interoperability for both transitive and non-transitive versions of
@@ -518,6 +552,14 @@ Authors' Addresses
    Pradosh Mohapatra
    Google LLC
    Email: pradosh@google.com
+
+
+
+
+
+Mohapatra, et al.         Expires 9 April 2026                 [Page 10]
+
+Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
 
 
    Reshma Das (editor)
@@ -551,54 +593,12 @@ Authors' Addresses
    Email: rszarecki@gmail.com
 
 
-
-
-
-
-
-
-Mohapatra, et al.         Expires 9 April 2026                 [Page 10]
-
-Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
-
-
    Akshay Gattani
    Arista Networks
    5453 Great America Parkway
    Santa Clara, CA 95054
    United States of America
    Email: akshay@arista.com
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
