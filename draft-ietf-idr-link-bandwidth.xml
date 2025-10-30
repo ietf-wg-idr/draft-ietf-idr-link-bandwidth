@@ -118,7 +118,7 @@
       </address>
     </author>
 
-    <date day="06" month="10" year="2025"/>
+    <date day="30" month="10" year="2025"/>
 
     <abstract>
       <t>This document defines a BGP Extended Community, the Link Bandwidth
@@ -234,8 +234,8 @@
         However during transition (refer <xref
         target="Operational Condiderations"/> for details), a BGP speaker MAY
         attach one Link Bandwidth Extended Community per transitivity
-        (transitive/non-transitive) both having the same 'Bandwidth Value'
-        field.</t>
+        (transitive/non-transitive) ; the 'Bandwidth Value' field in both
+        communities SHOULD be the same.</t>
 
         <t>A Link Bandwidth Extended Community MAY be attached or updated for
         a BGP route upon receipt during Adj-RIB-In processing. The Link
@@ -336,8 +336,11 @@
       modification, while following the extended community transitivity
       rules.</t>
 
-      <t>Link Bandwidth Extended Communities with a negative value SHALL be
-      ignored and MUST NOT be advertised.</t>
+      <t>A negative value in a Link Bandwidth Extended Community SHOULD NOT be
+      attached or originated by any BGP speaker. If a BGP receiver encounters
+      a Link Bandwidth Extended Community that contains a negative
+      link-bandwidth value, the Link Bandwidth Extended Community SHALL be
+      ignored.</t>
 
       <t>Link Bandwidth Extended Communities with a zero value MUST NOT be
       considered malformed.</t>

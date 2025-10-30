@@ -1227,7 +1227,7 @@ li > p:last-of-type:only-child {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Mohapatra, et al.</td>
-<td class="center">Expires 9 April 2026</td>
+<td class="center">Expires 3 May 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1240,12 +1240,12 @@ li > p:last-of-type:only-child {
 <dd class="internet-draft">draft-ietf-idr-link-bandwidth-20</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-10-06" class="published">6 October 2025</time>
+<time datetime="2025-10-30" class="published">30 October 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-04-09">9 April 2026</time></dd>
+<dd class="expires"><time datetime="2026-05-03">3 May 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1314,7 +1314,7 @@ li > p:last-of-type:only-child {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 9 April 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 3 May 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1525,8 +1525,8 @@ li > p:last-of-type:only-child {
         transitivity type desired in a deployment is attached to a route.
         However during transition (refer <a href="#Operational_Condiderations" class="auto internal xref">Section 7</a> for details), a BGP speaker MAY
         attach one Link Bandwidth Extended Community per transitivity
-        (transitive/non-transitive) both having the same 'Bandwidth Value'
-        field.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+        (transitive/non-transitive) ; the 'Bandwidth Value' field in both
+        communities SHOULD be the same.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
 <p id="section-3.1-3">A Link Bandwidth Extended Community MAY be attached or updated for
         a BGP route upon receipt during Adj-RIB-In processing. The Link
         Bandwidth Extended Community MAY be attached or updated for a BGP
@@ -1638,8 +1638,11 @@ li > p:last-of-type:only-child {
       Extended Communities received on the route as-is without any
       modification, while following the extended community transitivity
       rules.<a href="#section-4-3" class="pilcrow">¶</a></p>
-<p id="section-4-4">Link Bandwidth Extended Communities with a negative value SHALL be
-      ignored and MUST NOT be advertised.<a href="#section-4-4" class="pilcrow">¶</a></p>
+<p id="section-4-4">A negative value in a Link Bandwidth Extended Community SHOULD NOT be
+      attached or originated by any BGP speaker. If a BGP receiver encounters
+      a Link Bandwidth Extended Community that contains a negative
+      link-bandwidth value, the Link Bandwidth Extended Community SHALL be
+      ignored.<a href="#section-4-4" class="pilcrow">¶</a></p>
 <p id="section-4-5">Link Bandwidth Extended Communities with a zero value MUST NOT be
       considered malformed.<a href="#section-4-5" class="pilcrow">¶</a></p>
 <p id="section-4-6">If any of the paths lack a valid Link Bandwidth Extended Community,
