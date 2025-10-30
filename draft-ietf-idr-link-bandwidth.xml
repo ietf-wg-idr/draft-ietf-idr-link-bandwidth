@@ -352,7 +352,7 @@
     <section anchor="IANA" title="IANA Considerations">
       <t>IANA is requested to update the Transitive Two-Octet AS-Specific
       Extended Community Sub-Types registry (Type 0x00) and Sub-Type 0x04
-      to:</t>
+      <xref target="IANA-ExtComm"/> to:</t>
 
       <figure>
         <artwork align="left" xml:space="preserve">    Name
@@ -547,6 +547,17 @@
                   surname="Mohanty"/>
 
           <date day="20" month="07" year="2025"/>
+        </front>
+      </reference>
+
+      <reference anchor="IANA-ExtComm"
+                 target="https://www.iana.org/assignments/bgp-extended-communities/bgp-extended-communities.xhtml#trans-two-octet-as">
+        <front>
+          <title abbrev="IANA-EXTCOMM">IANA Registry</title>
+
+          <author>
+            <organization showOnFrontPage="true">IANA</organization>
+          </author>
         </front>
       </reference>
     </references>
