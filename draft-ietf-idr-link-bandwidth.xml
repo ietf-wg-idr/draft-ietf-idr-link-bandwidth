@@ -202,7 +202,7 @@
 
  Local Administrator sub-field: 
           Bandwidth value (bytes per sec) encoded as 4 octets
-          in IEEE floating point format.
+          in IEEE 754 floating point format.
 </artwork>
       </figure>
     </section>
@@ -343,7 +343,7 @@
       considered malformed.</t>
 
       <t>If any of the paths lack a valid Link Bandwidth Extended Community,
-      equal load-balancing MUST be used instead. </t>
+      equal load-balancing MAY be used instead. </t>
     </section>
 
     <section anchor="IANA" title="IANA Considerations">

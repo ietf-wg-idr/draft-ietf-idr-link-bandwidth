@@ -189,7 +189,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
 
     Local Administrator sub-field:
              Bandwidth value (bytes per sec) encoded as 4 octets
-             in IEEE floating point format.
+             in IEEE 754 floating point format.
 
                 Figure 1: Link Bandwidth Extended Community
 
@@ -351,7 +351,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
    considered malformed.
 
    If any of the paths lack a valid Link Bandwidth Extended Community,
-   equal load-balancing MUST be used instead.
+   equal load-balancing MAY be used instead.
 
 5.  IANA Considerations
 
