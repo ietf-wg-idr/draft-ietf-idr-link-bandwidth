@@ -131,7 +131,7 @@
       <t> The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
       "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
       "OPTIONAL" in this document are to be interpreted as described in BCP 14
-      <xref target="RFC2119"/> <xref target="RFC8174"/> when, and only when,
+      <xref target="RFC2119"/> <xref target="RFC8174"/>when, and only when,
       they appear in all capitals, as shown here.</t>
     </note>
   </front>
@@ -225,7 +225,7 @@
         implementations MAY use different default values for the transitivity
         type of the Link Bandwidth Extended Community. The provided
         configuration SHOULD allow operators to override the default
-        transitivity value as needed. Likewise, implementation SHOULD expose
+        transitivity value as needed. Likewise, Implementation SHOULD expose
         their default value. An implementation MAY advertise bandwidth value
         as zero.</t>
 
@@ -234,7 +234,7 @@
         However during transition (refer <xref
         target="Operational Condiderations"/> for details), a BGP speaker MAY
         attach one Link Bandwidth Extended Community per transitivity
-        (transitive/non-transitive); the 'Bandwidth Value' field in both
+        (transitive/non-transitive) ; the 'Bandwidth Value' field in both
         communities SHOULD be the same.</t>
 
         <t>A Link Bandwidth Extended Community MAY be attached or updated for
@@ -288,7 +288,7 @@
           it unchanged, or regenerate it with an updated value.
           Implementations SHOULD provide a local configuration method to alter
           their default behavior to the other options with per-session
-          granularity. Likewise, implementation SHOULD expose their default
+          granularity. Likewise, Implementation SHOULD expose their default
           value.</t>
 
           <t>When regenerating Link Bandwidth Extended Community, the same
