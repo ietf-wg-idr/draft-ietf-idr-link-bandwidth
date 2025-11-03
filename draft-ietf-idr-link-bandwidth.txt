@@ -32,7 +32,7 @@ Requirements Language
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
    "OPTIONAL" in this document are to be interpreted as described in BCP
-   14 [RFC2119] [RFC8174]when, and only when, they appear in all
+   14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
 Status of This Memo
@@ -212,7 +212,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
    Different implementations MAY use different default values for the
    transitivity type of the Link Bandwidth Extended Community.  The
    provided configuration SHOULD allow operators to override the default
-   transitivity value as needed.  Likewise, Implementation SHOULD expose
+   transitivity value as needed.  Likewise, implementation SHOULD expose
    their default value.  An implementation MAY advertise bandwidth value
    as zero.
 
@@ -230,8 +230,8 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
    transitivity type desired in a deployment is attached to a route.
    However during transition (refer Section 7 for details), a BGP
    speaker MAY attach one Link Bandwidth Extended Community per
-   transitivity (transitive/non-transitive) ; the 'Bandwidth Value'
-   field in both communities SHOULD be the same.
+   transitivity (transitive/non-transitive); the 'Bandwidth Value' field
+   in both communities SHOULD be the same.
 
    A Link Bandwidth Extended Community MAY be attached or updated for a
    BGP route upon receipt during Adj-RIB-In processing.  The Link
@@ -291,7 +291,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community     October 2025
    unchanged, or regenerate it with an updated value.  Implementations
    SHOULD provide a local configuration method to alter their default
    behavior to the other options with per-session granularity.
-   Likewise, Implementation SHOULD expose their default value.
+   Likewise, implementation SHOULD expose their default value.
 
    When regenerating Link Bandwidth Extended Community, the same
    procedures as outlined in Section 3.1 apply.  Please also refer to
