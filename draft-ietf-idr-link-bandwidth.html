@@ -18,7 +18,7 @@
       and processing rules for this extended community type. 
     " name="description">
 <meta content="xml2rfc 3.30.1" name="generator">
-<meta content="draft-ietf-idr-link-bandwidth-20" name="ietf.draft">
+<meta content="draft-ietf-idr-link-bandwidth-21" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.30.1
     Python 3.13.7
@@ -1227,7 +1227,7 @@ li > p:last-of-type:only-child {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Mohapatra, et al.</td>
-<td class="center">Expires 6 May 2026</td>
+<td class="center">Expires 21 May 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1237,15 +1237,15 @@ li > p:last-of-type:only-child {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">Network Working Group</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-ietf-idr-link-bandwidth-20</dd>
+<dd class="internet-draft">draft-ietf-idr-link-bandwidth-21</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-11-02" class="published">2 November 2025</time>
+<time datetime="2025-11-17" class="published">17 November 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-05-06">6 May 2026</time></dd>
+<dd class="expires"><time datetime="2026-05-21">21 May 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1314,7 +1314,7 @@ li > p:last-of-type:only-child {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 6 May 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 21 May 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1519,14 +1519,13 @@ li > p:last-of-type:only-child {
         type of the Link Bandwidth Extended Community. The provided
         configuration SHOULD allow operators to override the default
         transitivity value as needed. Likewise, implementation SHOULD expose
-        their default value. An implementation MAY advertise bandwidth value
-        as zero.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.1-2">Generally, a single Link Bandwidth Extended Community of the
-        transitivity type desired in a deployment is attached to a route.
-        However during transition (refer <a href="#Operational_Condiderations" class="auto internal xref">Section 7</a> for details), a BGP speaker MAY
-        attach one Link Bandwidth Extended Community per transitivity
-        (transitive/non-transitive); the 'Bandwidth Value' field in both
-        communities SHOULD be the same.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+        their default value.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">An implementation MAY advertise bandwidth value as zero. An
+        operator may set the Link Bandwidth Extended Community value to zero
+        to indicate that the path should not attract traffic, for example
+        during maintenance. A bandwidth value of zero signals that the path be
+        deprioritized, thereby steering traffic away without withdrawing the
+        route.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
 <p id="section-3.1-3">A Link Bandwidth Extended Community MAY be attached or updated for
         a BGP route upon receipt during Adj-RIB-In processing. The Link
         Bandwidth Extended Community MAY be attached or updated for a BGP
