@@ -9,7 +9,7 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std" docName="draft-ietf-idr-link-bandwidth-20"
+<rfc category="std" docName="draft-ietf-idr-link-bandwidth-21"
      ipr="trust200902">
   <front>
     <title abbrev="BGP Link Bandwidth Extended Community">BGP Link Bandwidth
@@ -118,7 +118,7 @@
       </address>
     </author>
 
-    <date day="02" month="11" year="2025"/>
+    <date day="17" month="11" year="2025"/>
 
     <abstract>
       <t>This document defines a BGP Extended Community, the Link Bandwidth
@@ -226,16 +226,14 @@
         type of the Link Bandwidth Extended Community. The provided
         configuration SHOULD allow operators to override the default
         transitivity value as needed. Likewise, implementation SHOULD expose
-        their default value. An implementation MAY advertise bandwidth value
-        as zero.</t>
+        their default value.</t>
 
-        <t>Generally, a single Link Bandwidth Extended Community of the
-        transitivity type desired in a deployment is attached to a route.
-        However during transition (refer <xref
-        target="Operational Condiderations"/> for details), a BGP speaker MAY
-        attach one Link Bandwidth Extended Community per transitivity
-        (transitive/non-transitive); the 'Bandwidth Value' field in both
-        communities SHOULD be the same.</t>
+        <t>An implementation MAY advertise bandwidth value as zero. An
+        operator may set the Link Bandwidth Extended Community value to zero
+        to indicate that the path should not attract traffic, for example
+        during maintenance. A bandwidth value of zero signals that the path be
+        deprioritized, thereby steering traffic away without withdrawing the
+        route.</t>
 
         <t>A Link Bandwidth Extended Community MAY be attached or updated for
         a BGP route upon receipt during Adj-RIB-In processing. The Link
