@@ -235,6 +235,14 @@
         deprioritized, thereby steering traffic away without withdrawing the
         route.</t>
 
+        <t>Generally, a single Link Bandwidth Extended Community of the
+        transitivity type desired in a deployment is attached to a route.
+        However during transition (refer <xref
+        target="Operational Condiderations"/> for details), a BGP speaker MAY
+        attach one Link Bandwidth Extended Community per transitivity
+        (transitive/non-transitive); the 'Bandwidth Value' field in both
+        communities SHOULD be the same.</t>
+
         <t>A Link Bandwidth Extended Community MAY be attached or updated for
         a BGP route upon receipt during Adj-RIB-In processing. The Link
         Bandwidth Extended Community MAY be attached or updated for a BGP

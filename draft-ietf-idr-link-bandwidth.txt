@@ -81,7 +81,7 @@ Table of Contents
    3.  Protocol Procedures . . . . . . . . . . . . . . . . . . . . .   4
      3.1.  Sender (Originating Link Bandwidth Extended Community)  .   4
      3.2.  Receiver (Receiving Link Bandwidth Extended Community)  .   5
-     3.3.  Re-advertisement Procedures . . . . . . . . . . . . . . .   5
+     3.3.  Re-advertisement Procedures . . . . . . . . . . . . . . .   6
        3.3.1.  Re-advertisement with Next hop Change . . . . . . . .   6
        3.3.2.  Re-advertisement with Next Hop Unchanged  . . . . . .   6
      3.4.  Link Bandwidth Extended Community Arithmetic and BGP
@@ -230,6 +230,13 @@ Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
    deprioritized, thereby steering traffic away without withdrawing the
    route.
 
+   Generally, a single Link Bandwidth Extended Community of the
+   transitivity type desired in a deployment is attached to a route.
+   However during transition (refer Section 7 for details), a BGP
+   speaker MAY attach one Link Bandwidth Extended Community per
+   transitivity (transitive/non-transitive); the 'Bandwidth Value' field
+   in both communities SHOULD be the same.
+
    A Link Bandwidth Extended Community MAY be attached or updated for a
    BGP route upon receipt during Adj-RIB-In processing.  The Link
    Bandwidth Extended Community MAY be attached or updated for a BGP
@@ -265,13 +272,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
    The Link Bandwidth value, however, SHOULD NOT be used as an input to
    the BGP best path selection process.
 
-3.3.  Re-advertisement Procedures
-
-   This section describes the procedures to be followed when a BGP
-   speaker receives a route with an attached Link Bandwidth Extended
-   Community and subsequently re-advertises that route.
-
-
 
 
 
@@ -281,6 +281,12 @@ Mohapatra, et al.          Expires 21 May 2026                  [Page 5]
 
 Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
 
+
+3.3.  Re-advertisement Procedures
+
+   This section describes the procedures to be followed when a BGP
+   speaker receives a route with an attached Link Bandwidth Extended
+   Community and subsequently re-advertises that route.
 
 3.3.1.  Re-advertisement with Next hop Change
 
@@ -322,12 +328,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
    "Bandwidth Value", ignoring the transitivity.  Implementations MAY
    provide configuration to change the above preference.
 
-   Between transitive and non-transitive types of Link Bandwidth
-   Extended Communities that have the same 'Bandwidth Value', the
-   transitivity does not matter for purpose of computing weighted load
-   balancing or programming to FIB (Forwarding Information Base).
-
-
 
 
 
@@ -337,6 +337,11 @@ Mohapatra, et al.          Expires 21 May 2026                  [Page 6]
 
 Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
 
+
+   Between transitive and non-transitive types of Link Bandwidth
+   Extended Communities that have the same 'Bandwidth Value', the
+   transitivity does not matter for purpose of computing weighted load
+   balancing or programming to FIB (Forwarding Information Base).
 
    Note that these procedures mean that a BGP speaker reflecting a route
    with next hop unchanged (e.g. RR) will re-advertise the Link
@@ -380,11 +385,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
 
    This extension to BGP has similar security implications as BGP
    Extended Communities [RFC4360]
-
-
-
-
-
 
 
 
