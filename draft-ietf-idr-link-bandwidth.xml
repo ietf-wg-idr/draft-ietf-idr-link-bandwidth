@@ -9,7 +9,7 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std" docName="draft-ietf-idr-link-bandwidth-21"
+<rfc category="std" docName="draft-ietf-idr-link-bandwidth-22"
      ipr="trust200902">
   <front>
     <title abbrev="BGP Link Bandwidth Extended Community">BGP Link Bandwidth
@@ -118,7 +118,7 @@
       </address>
     </author>
 
-    <date day="17" month="11" year="2025"/>
+    <date day="01" month="12" year="2025"/>
 
     <abstract>
       <t>This document defines a BGP Extended Community, the Link Bandwidth
@@ -229,11 +229,11 @@
         their default value.</t>
 
         <t>An implementation MAY advertise bandwidth value as zero. An
-        operator may set the Link Bandwidth Extended Community value to zero
-        to indicate that the path should not attract traffic, for example
-        during maintenance. A bandwidth value of zero signals that the path be
-        deprioritized, thereby steering traffic away without withdrawing the
-        route.</t>
+        operator may, for example, set the Link Bandwidth Extended Community
+        to zero to indicate that the path should not attract traffic during
+        maintenance. However, as per <xref target="Receiver"/>, it is up to
+        the local policy of the receiver to decide how a link bandwidth value
+        of zero is deprioritized and handled.</t>
 
         <t>Generally, a single Link Bandwidth Extended Community of the
         transitivity type desired in a deployment is attached to a route.
@@ -352,7 +352,7 @@
       considered malformed.</t>
 
       <t>If any of the paths lack a valid Link Bandwidth Extended Community,
-      equal load-balancing MAY be used instead. </t>
+      equal load-balancing MUST be used instead. </t>
     </section>
 
     <section anchor="IANA" title="IANA Considerations">

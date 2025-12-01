@@ -5,7 +5,7 @@
 Network Working Group                                       P. Mohapatra
 Internet-Draft                                                Google LLC
 Intended status: Standards Track                             R. Das, Ed.
-Expires: 21 May 2026                              Juniper Networks, Inc.
+Expires: 4 June 2026                              Juniper Networks, Inc.
                                                          S. Mohanty, Ed.
                                                                  Zscaler
                                                                 S. Krier
@@ -14,11 +14,11 @@ Expires: 21 May 2026                              Juniper Networks, Inc.
                                                               Google LLC
                                                               A. Gattani
                                                          Arista Networks
-                                                        17 November 2025
+                                                         1 December 2025
 
 
                  BGP Link Bandwidth Extended Community
-                    draft-ietf-idr-link-bandwidth-21
+                    draft-ietf-idr-link-bandwidth-22
 
 Abstract
 
@@ -53,12 +53,12 @@ Status of This Memo
 
 
 
-Mohapatra, et al.          Expires 21 May 2026                  [Page 1]
+Mohapatra, et al.          Expires 4 June 2026                  [Page 1]
 
-Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
+Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
 
 
-   This Internet-Draft will expire on 21 May 2026.
+   This Internet-Draft will expire on 4 June 2026.
 
 Copyright Notice
 
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Mohapatra, et al.          Expires 21 May 2026                  [Page 2]
+Mohapatra, et al.          Expires 4 June 2026                  [Page 2]
 
-Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
+Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
 
 
 1.  Introduction
@@ -165,9 +165,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
 
 
 
-Mohapatra, et al.          Expires 21 May 2026                  [Page 3]
+Mohapatra, et al.          Expires 4 June 2026                  [Page 3]
 
-Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
+Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
 
 
     0                   1                   2                   3
@@ -216,19 +216,19 @@ Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
    their default value.
 
    An implementation MAY advertise bandwidth value as zero.  An operator
-   may set the Link Bandwidth Extended Community value to zero to
-   indicate that the path should not attract traffic, for example during
+   may, for example, set the Link Bandwidth Extended Community to zero
+   to indicate that the path should not attract traffic during
 
 
 
-Mohapatra, et al.          Expires 21 May 2026                  [Page 4]
+Mohapatra, et al.          Expires 4 June 2026                  [Page 4]
 
-Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
+Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
 
 
-   maintenance.  A bandwidth value of zero signals that the path be
-   deprioritized, thereby steering traffic away without withdrawing the
-   route.
+   maintenance.  However, as per Section 3.2, it is up to the local
+   policy of the receiver to decide how a link bandwidth value of zero
+   is deprioritized and handled.
 
    Generally, a single Link Bandwidth Extended Community of the
    transitivity type desired in a deployment is attached to a route.
@@ -277,9 +277,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
 
 
 
-Mohapatra, et al.          Expires 21 May 2026                  [Page 5]
+Mohapatra, et al.          Expires 4 June 2026                  [Page 5]
 
-Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
+Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
 
 
 3.3.  Re-advertisement Procedures
@@ -333,9 +333,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
 
 
 
-Mohapatra, et al.          Expires 21 May 2026                  [Page 6]
+Mohapatra, et al.          Expires 4 June 2026                  [Page 6]
 
-Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
+Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
 
 
    Between transitive and non-transitive types of Link Bandwidth
@@ -359,7 +359,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
    considered malformed.
 
    If any of the paths lack a valid Link Bandwidth Extended Community,
-   equal load-balancing MAY be used instead.
+   equal load-balancing MUST be used instead.
 
 5.  IANA Considerations
 
@@ -389,9 +389,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
 
 
 
-Mohapatra, et al.          Expires 21 May 2026                  [Page 7]
+Mohapatra, et al.          Expires 4 June 2026                  [Page 7]
 
-Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
+Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
 
 
    The Link Bandwidth Extended Community conveys bandwidth and capacity
@@ -445,9 +445,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
 
 
 
-Mohapatra, et al.          Expires 21 May 2026                  [Page 8]
+Mohapatra, et al.          Expires 4 June 2026                  [Page 8]
 
-Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
+Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
 
 
 7.2.  Bandwidth Value
@@ -501,9 +501,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
 
 
 
-Mohapatra, et al.          Expires 21 May 2026                  [Page 9]
+Mohapatra, et al.          Expires 4 June 2026                  [Page 9]
 
-Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
+Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
 
 
 10.  References
@@ -557,9 +557,9 @@ Appendix A.  Document History
 
 
 
-Mohapatra, et al.          Expires 21 May 2026                 [Page 10]
+Mohapatra, et al.          Expires 4 June 2026                 [Page 10]
 
-Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
+Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
 
 
    A BGP speaker (Sender or Receiver) needs to be upgraded to support
@@ -613,9 +613,9 @@ Authors' Addresses
 
 
 
-Mohapatra, et al.          Expires 21 May 2026                 [Page 11]
+Mohapatra, et al.          Expires 4 June 2026                 [Page 11]
 
-Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
+Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
 
 
    Akshay Gattani
@@ -669,4 +669,4 @@ Internet-Draft    BGP Link Bandwidth Extended Community    November 2025
 
 
 
-Mohapatra, et al.          Expires 21 May 2026                 [Page 12]
+Mohapatra, et al.          Expires 4 June 2026                 [Page 12]
