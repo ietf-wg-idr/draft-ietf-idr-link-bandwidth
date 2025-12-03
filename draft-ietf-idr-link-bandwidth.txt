@@ -231,7 +231,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
    to indicate that the path should not attract traffic during
    maintenance.  However, as per Section 3.2, it is up to the local
    policy of the receiver to decide how a link bandwidth value of zero
-   is deprioritized and handled.
+   is handled.
 
    Generally, a single Link Bandwidth Extended Community of the
    transitivity type desired in a deployment is attached to a route.
