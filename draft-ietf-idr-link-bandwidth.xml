@@ -119,7 +119,7 @@
       </address>
     </author>
 
-    <date day="01" month="12" year="2025"/>
+    <date day="04" month="12" year="2025"/>
 
     <abstract>
       <t>This document defines a BGP Extended Community, the Link Bandwidth
