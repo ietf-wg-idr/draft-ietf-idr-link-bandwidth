@@ -165,22 +165,22 @@
       low-order octet of the extended type field for this communities is
       0x04.</t>
 
-      <t>The Global Administrator subfield in the Value Field SHOULD be set to
-      the Autonomous System (AS) number of the router attaching the Link
+      <t>The Global Administrator sub-field in the Value Field SHOULD be set
+      to the Autonomous System (AS) number of the router attaching the Link
       Bandwidth Extended Community, but MAY contain any two-octet value. If
       the Autonomous System number cannot be represented in two octets,
       AS_TRANS <xref target="RFC6793"/>, SHOULD be used in the Global
-      Administrator subfield. The encoding of the full four-octet ASNs is not
+      Administrator sub-field. The encoding of the full four-octet ASNs is not
       supported by the Link Bandwidth Extended Community. Such a capability,
       should the operational need for it arise, may be provided by a new BGP
-      extension. The value in the Global Administrator subfield does not
+      extension. The value in the Global Administrator sub-field does not
       affect the use or semantics of the Link Bandwidth Extended Community.
       This approach maintains consistency with two-octet community registries
       and remains operationally familiar.</t>
 
       <t>The bandwidth value is expressed as 4 octets in <xref
       target="IEEE.754-2019"/> floating point format, units being bytes (not
-      bits!) per second. It is carried in the Local Administrator subfield of
+      bits!) per second. It is carried in the Local Administrator sub-field of
       the Value Field.</t>
 
       <figure anchor="LBWExtCom" suppress-title="false"
@@ -210,8 +210,9 @@
         <dt pn="section-2-6.5">Global Administrator sub-field:</dt>
 
         <dd pn="section-2-6.6">
-          <t indent="0" pn="section-2-6.6.1">A 2-octet field represent the
-          Autonomous System.</t>
+          <t indent="0" pn="section-2-6.6.1">A 2-octet field that represents
+          an operator assigned two-octet value. For example, this can be a
+          16-bit AS number.</t>
         </dd>
 
         <dt pn="section-2-6.7">Local Administrator sub-field:</dt>
@@ -256,7 +257,7 @@
         However during transition (refer <xref
         target="Operational Condiderations"/> for details), a BGP speaker MAY
         attach one Link Bandwidth Extended Community per transitivity
-        (transitive/non-transitive); the bandwidth value field in both
+        (transitive/non-transitive); the bandwidth value included in both
         communities SHOULD be the same.</t>
 
         <t>A Link Bandwidth Extended Community MAY be attached or updated for
@@ -364,7 +365,7 @@
       considered malformed.</t>
 
       <t>If any of the paths lack a valid Link Bandwidth Extended Community,
-      equal load-balancing MUST be used instead. </t>
+      unless otherwise configured, equal load-balancing MUST be used. </t>
     </section>
 
     <section anchor="IANA" title="IANA Considerations">
