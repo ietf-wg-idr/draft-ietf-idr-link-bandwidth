@@ -1651,8 +1651,9 @@ li > p:last-of-type:only-child {
 <p id="section-4-1">If a BGP speaker receives a route with more than one Link Bandwidth
       Extended Communities and uses the route to compute weighted load
       balancing, it SHOULD use the extended community with the lowest
-      bandwidth value, ignoring the transitivity. Implementations MAY provide
-      configuration to change the above preference.<a href="#section-4-1" class="pilcrow">¶</a></p>
+      bandwidth value (including zero), ignoring the transitivity.
+      Implementations MAY provide configuration to change the above
+      preference.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <p id="section-4-2">A negative value in a Link Bandwidth Extended Community SHOULD NOT be
       attached or originated by any BGP speaker. If a BGP receiver encounters
       a Link Bandwidth Extended Community that contains a negative
@@ -1661,7 +1662,8 @@ li > p:last-of-type:only-child {
 <p id="section-4-3">Link Bandwidth Extended Communities with a zero value MUST NOT be
       considered malformed.<a href="#section-4-3" class="pilcrow">¶</a></p>
 <p id="section-4-4">If any of the paths lack a valid Link Bandwidth Extended Community,
-      unless otherwise configured, equal load-balancing MUST be used.<a href="#section-4-4" class="pilcrow">¶</a></p>
+      equal load-balancing SHOULD be used unless overridden by local
+      configuration.<a href="#section-4-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="IANA">

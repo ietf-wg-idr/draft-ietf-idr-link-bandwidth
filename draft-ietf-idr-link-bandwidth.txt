@@ -343,8 +343,9 @@ Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
    If a BGP speaker receives a route with more than one Link Bandwidth
    Extended Communities and uses the route to compute weighted load
    balancing, it SHOULD use the extended community with the lowest
-   bandwidth value, ignoring the transitivity.  Implementations MAY
-   provide configuration to change the above preference.
+   bandwidth value (including zero), ignoring the transitivity.
+   Implementations MAY provide configuration to change the above
+   preference.
 
    A negative value in a Link Bandwidth Extended Community SHOULD NOT be
    attached or originated by any BGP speaker.  If a BGP receiver
@@ -356,7 +357,8 @@ Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
    considered malformed.
 
    If any of the paths lack a valid Link Bandwidth Extended Community,
-   unless otherwise configured, equal load-balancing MUST be used.
+   equal load-balancing SHOULD be used unless overridden by local
+   configuration.
 
 5.  IANA Considerations
 
@@ -383,9 +385,7 @@ Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
    This extension to BGP has similar security implications as BGP
    Extended Communities [RFC4360]
 
-   The Link Bandwidth Extended Community conveys bandwidth and capacity
-   information that may be sensitive.  Exporting this community outside
-   of an administrative domain can expose private network resource
+
 
 
 
@@ -394,6 +394,9 @@ Mohapatra, et al.          Expires 7 June 2026                  [Page 7]
 Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
 
 
+   The Link Bandwidth Extended Community conveys bandwidth and capacity
+   information that may be sensitive.  Exporting this community outside
+   of an administrative domain can expose private network resource
    details.  When propagating the routes with Link Bandwidth Extended
    Community towards an untrusted network or outside of an
    administrative domain, it is recommended operators use policy to
@@ -435,9 +438,6 @@ Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
    Ideally this operational consideration is short-lived until all the
    routers in the network have been upgraded to implementations that
    consistently support the procedures in this document.
-
-
-
 
 
 

@@ -352,8 +352,9 @@
       <t>If a BGP speaker receives a route with more than one Link Bandwidth
       Extended Communities and uses the route to compute weighted load
       balancing, it SHOULD use the extended community with the lowest
-      bandwidth value, ignoring the transitivity. Implementations MAY provide
-      configuration to change the above preference.</t>
+      bandwidth value (including zero), ignoring the transitivity.
+      Implementations MAY provide configuration to change the above
+      preference.</t>
 
       <t>A negative value in a Link Bandwidth Extended Community SHOULD NOT be
       attached or originated by any BGP speaker. If a BGP receiver encounters
@@ -365,7 +366,8 @@
       considered malformed.</t>
 
       <t>If any of the paths lack a valid Link Bandwidth Extended Community,
-      unless otherwise configured, equal load-balancing MUST be used. </t>
+      equal load-balancing SHOULD be used unless overridden by local
+      configuration.</t>
     </section>
 
     <section anchor="IANA" title="IANA Considerations">
