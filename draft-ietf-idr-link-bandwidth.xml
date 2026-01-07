@@ -9,7 +9,7 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std" docName="draft-ietf-idr-link-bandwidth-23"
+<rfc category="std" docName="draft-ietf-idr-link-bandwidth-24"
      ipr="trust200902" xmlns:xi="http://www.w3.org/2001/XInclude"
      xmlns:svg="http://www.w3.org/2000/svg">
   <front>
@@ -119,7 +119,7 @@
       </address>
     </author>
 
-    <date day="18" month="12" year="2025"/>
+    <date day="07" month="01" year="2026"/>
 
     <abstract>
       <t>This document defines a BGP Extended Community, the Link Bandwidth
