@@ -20,12 +20,12 @@
       <organization>Google LLC</organization>
 
       <address>
-        <email>pradosh@google.com</email>
+        <email>pradosh@gmail.com</email>
       </address>
     </author>
 
     <author fullname="Reshma Das" initials="R." role="editor" surname="Das">
-      <organization>Juniper Networks, Inc.</organization>
+      <organization>HPE</organization>
 
       <address>
         <postal>
@@ -40,7 +40,7 @@
           <country>US</country>
         </postal>
 
-        <email>dreshma@juniper.net</email>
+        <email>reshma.das@hpe.com</email>
       </address>
     </author>
 
@@ -373,22 +373,22 @@
     <section anchor="IANA" title="IANA Considerations">
       <t>IANA is requested to update the Transitive Two-Octet AS-Specific
       Extended Community Sub-Types registry (Type 0x00) and Sub-Type 0x04
-      <xref target="IANA-ExtComm"/> to:</t>
+      <xref target="IANA-TransExCom"/> to:</t>
 
       <figure>
         <artwork align="left" xml:space="preserve">    Name
     ----
-    transitive Link Bandwidth Extended Community</artwork>
+    Link Bandwidth</artwork>
       </figure>
 
       <t>IANA is requested to update the Non-Transitive Two-Octet AS-Specific
       Extended Community Sub-Types registry (Type 0x40) and Sub-Type 0x04
-      to:</t>
+      <xref target="IANA-NontransExcom"/> to:</t>
 
       <figure>
         <artwork align="left" xml:space="preserve">    Name
     ----
-    non-transitive Link Bandwidth Extended Community</artwork>
+    Link Bandwidth</artwork>
       </figure>
 
       <t>Both updates are to reference this document.</t>
@@ -457,7 +457,7 @@
     <section anchor=" Contributors" title=" Contributors">
       <author fullname="Kaliraj Vairavakkalai" initials="K."
               surname="Vairavakkalai">
-        <organization>Juniper Networks, Inc.</organization>
+        <organization>HPE</organization>
 
         <address>
           <postal>
@@ -472,13 +472,13 @@
             <country>US</country>
           </postal>
 
-          <email>kaliraj@juniper.net</email>
+          <email>kaliraj.vairavakkalai@hpe.com</email>
         </address>
       </author>
 
       <author fullname="Natrajan Venkataraman" initials="N."
               surname="Venkataraman">
-        <organization>Juniper Networks, Inc.</organization>
+        <organization>HPE</organization>
 
         <address>
           <postal>
@@ -493,7 +493,7 @@
             <country>US</country>
           </postal>
 
-          <email>natv@juniper.net</email>
+          <email>natrajan.venkataraman@hpe.com</email>
         </address>
       </author>
 
@@ -572,10 +572,21 @@
         </front>
       </reference>
 
-      <reference anchor="IANA-ExtComm"
+      <reference anchor="IANA-TransExCom"
                  target="https://www.iana.org/assignments/bgp-extended-communities/bgp-extended-communities.xhtml#trans-two-octet-as">
         <front>
           <title abbrev="IANA-EXTCOMM">IANA Registry</title>
+
+          <author>
+            <organization showOnFrontPage="true">IANA</organization>
+          </author>
+        </front>
+      </reference>
+
+      <reference anchor="IANA-NontransExcom"
+                 target="https://www.iana.org/assignments/bgp-extended-communities/bgp-extended-communities.xhtml#non-trans-two-octet-as">
+        <front>
+          <title abbrev="IANA-NonTrans">IANA Registry</title>
 
           <author>
             <organization showOnFrontPage="true">IANA</organization>

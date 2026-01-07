@@ -5,7 +5,7 @@
 Network Working Group                                       P. Mohapatra
 Internet-Draft                                                Google LLC
 Intended status: Standards Track                             R. Das, Ed.
-Expires: 21 June 2026                             Juniper Networks, Inc.
+Expires: 21 June 2026                                                HPE
                                                          S. Mohanty, Ed.
                                                                  Zscaler
                                                                 S. Krier
@@ -97,7 +97,7 @@ Table of Contents
    10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  10
      10.1.  Normative References . . . . . . . . . . . . . . . . . .  10
      10.2.  Informative References . . . . . . . . . . . . . . . . .  10
-   Appendix A.  Document History . . . . . . . . . . . . . . . . . .  10
+   Appendix A.  Document History . . . . . . . . . . . . . . . . . .  11
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  11
 
 
@@ -364,19 +364,19 @@ Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
 
    IANA is requested to update the Transitive Two-Octet AS-Specific
    Extended Community Sub-Types registry (Type 0x00) and Sub-Type 0x04
-   [IANA-ExtComm] to:
+   [IANA-TransExCom] to:
 
        Name
        ----
-       transitive Link Bandwidth Extended Community
+       Link Bandwidth
 
    IANA is requested to update the Non-Transitive Two-Octet AS-Specific
    Extended Community Sub-Types registry (Type 0x40) and Sub-Type 0x04
-   to:
+   [IANA-NontransExcom] to:
 
        Name
        ----
-       non-transitive Link Bandwidth Extended Community
+       Link Bandwidth
 
    Both updates are to reference this document.
 
@@ -462,19 +462,19 @@ Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
 8.  Contributors
 
    Kaliraj Vairavakkalai
-   Juniper Networks, Inc.
+   HPE
    1133 Innovation Way,
    Sunnyvale, CA 94089
    United States of America
-   Email: kaliraj@juniper.net
+   Email: kaliraj.vairavakkalai@hpe.com
 
 
    Natrajan Venkataraman
-   Juniper Networks, Inc.
+   HPE
    1133 Innovation Way,
    Sunnyvale, CA 94089
    United States of America
-   Email: natv@juniper.net
+   Email: natrajan.venkataraman@hpe.com
 
 
    Rex Fernando
@@ -539,19 +539,19 @@ Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
               balancing", 20 July 2025,
               <https://tools.ietf.org/html/draft-ietf-bess-ebgp-dmz>.
 
-   [IANA-ExtComm]
+   [IANA-NontransExcom]
+              IANA, "IANA Registry", <https://www.iana.org/assignments/
+              bgp-extended-communities/bgp-extended-
+              communities.xhtml#non-trans-two-octet-as>.
+
+   [IANA-TransExCom]
               IANA, "IANA Registry", <https://www.iana.org/assignments/
               bgp-extended-communities/bgp-extended-
               communities.xhtml#trans-two-octet-as>.
 
-Appendix A.  Document History
 
-   BGP Link Bandwidth Extended Community has evolved over several
-   versions of the IETF draft.  In the earlier versions up to draft-
-   ietf-idr-link-bandwidth-08, only the non-transitive version of Link
-   Bandwidth Extended Community was supported.  However, starting from
-   draft-ietf-idr-link-bandwidth-09, both transitive and non-transitive
-   versions of Link Bandwidth Extended Community are supported.
+
+
 
 
 
@@ -561,6 +561,15 @@ Mohapatra, et al.         Expires 21 June 2026                 [Page 10]
 
 Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
 
+
+Appendix A.  Document History
+
+   BGP Link Bandwidth Extended Community has evolved over several
+   versions of the IETF draft.  In the earlier versions up to draft-
+   ietf-idr-link-bandwidth-08, only the non-transitive version of Link
+   Bandwidth Extended Community was supported.  However, starting from
+   draft-ietf-idr-link-bandwidth-09, both transitive and non-transitive
+   versions of Link Bandwidth Extended Community are supported.
 
    A BGP speaker (Sender or Receiver) needs to be upgraded to support
    the procedures defined in this document to provide full
@@ -573,15 +582,15 @@ Authors' Addresses
 
    Pradosh Mohapatra
    Google LLC
-   Email: pradosh@google.com
+   Email: pradosh@gmail.com
 
 
    Reshma Das (editor)
-   Juniper Networks, Inc.
+   HPE
    1133 Innovation Way,
    Sunnyvale, CA 94089
    United States of America
-   Email: dreshma@juniper.net
+   Email: reshma.das@hpe.com
 
 
    Satya Mohanty (editor)
@@ -599,15 +608,6 @@ Authors' Addresses
    Email: sekrier@cisco.com
 
 
-   Rafal Jan Szarecki
-   Google LLC
-   1160 N Mathilda Ave,
-   Sunnyvale, CA 94089
-   United States of America
-   Email: rszarecki@gmail.com
-
-
-
 
 
 
@@ -618,20 +618,20 @@ Mohapatra, et al.         Expires 21 June 2026                 [Page 11]
 Internet-Draft    BGP Link Bandwidth Extended Community    December 2025
 
 
+   Rafal Jan Szarecki
+   Google LLC
+   1160 N Mathilda Ave,
+   Sunnyvale, CA 94089
+   United States of America
+   Email: rszarecki@gmail.com
+
+
    Akshay Gattani
    Arista Networks
    5453 Great America Parkway
    Santa Clara, CA 95054
    United States of America
    Email: akshay@arista.com
-
-
-
-
-
-
-
-
 
 
 
